@@ -8,30 +8,43 @@ Asad Du'al Ali Aliasad4
 Anthony Chu chuantho
 Gagandeep Bhangal bhangalg
 
+----------------------------------------------------------------
+
 Methods of Communication
 
 We will be using two methods of communication, namely, the whatsapp group, mostly to facilitate meetings and coordinating tutorials, and Discord which we can use to facilitate meetings as well as review issues easily. Generally, discord will be used to replace meetings if we cannot have them. 
+
+----------------------------------------------------------------
 
 Preferred Method of Communication
 
 Our preferred method of communication is WhatsApp because we prefer face-to-face meetings.
 
+----------------------------------------------------------------
+
 Communication Response Times
 
 The average response time amongst the group is about an hour
+
+----------------------------------------------------------------
 
 Standup/other Agile Meetings 
 
 In terms of meetings, we will be using 2 modes of meetings. Firstly, we'll use face-to-face meetings at a specified room a few days before the meeting. Secondly, we'll be using Discord to meet up more flexibily. Finally, the person that takes meetings minutes rotates per meeting
 
+----------------------------------------------------------------
 Meeting Preperation
 
 For meetings, The topic of the meeting is known before hand, so no preperation is needed. 
+
+----------------------------------------------------------------
 
 Version Control
 
 We will commit as often as needed, but please stick to your branch.
 Make sure your changes are meaningful. Each commit message needs to specify what was changed in the files that were commited and what user story it is associated with.
+
+----------------------------------------------------------------
 
 Roles and Division of Work
 
@@ -42,6 +55,8 @@ Back-end work will include any code that has to do with routing, databasing.
 
 To ensure proper the front-end team understands what the back-end team is doing, documentation will be written on the requests.
 
+----------------------------------------------------------------
+
 Submitting Sprint Deliverables and Software
 
 Every submission will be checked by Travis CI before any subsequent decisions are made.
@@ -51,6 +66,8 @@ Every submission will be checked by Travis CI before any subsequent decisions ar
 1 week before the sprint due date, the team would like at least 70% of the features to be implemented.
 
 3 days before the sprint due date, the team will do a code review to make sure everyone is on the same page
+
+----------------------------------------------------------------
 
 Contingency Planning
 
