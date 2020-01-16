@@ -10,36 +10,28 @@ Gagandeep Bhangal bhangalg
 
 Methods of Communication
 
-WhatsApp Group
-Phone
-Discord
+We will be using two methods of communication, namely, the whatsapp group, mostly to facilitate meetings and coordinating tutorials, and Discord which we can use to facilitate meetings as well as review issues easily. Generally, discord will be used to replace meetings if we cannot have them. 
 
 Preferred Method of Communication
 
-WhatsApp
+Our preferred method of communication is WhatsApp because we prefer face-to-face meetings.
 
 Communication Response Times
 
-
+The average response time amongst the group is about an hour
 
 Standup/other Agile Meetings 
 
-Voice over IP Meetings (Discord)
-Face-to-Face at a specified room (specified a few days before the meeting)
-The person that takes meetings minutes rotates per meeting
+In terms of meetings, we will be using 2 modes of meetings. Firstly, we'll use face-to-face meetings at a specified room a few days before the meeting. Secondly, we'll be using Discord to meet up more flexibily. Finally, the person that takes meetings minutes rotates per meeting
 
 Meeting Preperation
 
-The topic of the meeting is known before hand.
-No preperation is needed. 
+For meetings, The topic of the meeting is known before hand, so no preperation is needed. 
 
 Version Control
 
-Commit as often as needed, but please stick to your branch.
-Make sure your changes are meaningful
-
-Commit messages need to specify what was changed in the files that 
-were commited and what user story it is associated with.
+We will commit as often as needed, but please stick to your branch.
+Make sure your changes are meaningful. Each commit message needs to specify what was changed in the files that were commited and what user story it is associated with.
 
 Roles and Division of Work
 
