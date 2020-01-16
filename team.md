@@ -3,7 +3,7 @@ Team StudyBuddy
 Ahmad Yousef Fakhry Fakhryah
 Osama Hafez Hafezos1
 Elhan Syed syedelha 
-Shaun Aranha 
+Shaun Aranha aranhas1
 Asad Du'al Ali Aliasad4
 Anthony Chu chuantho
 Gagandeep Bhangal bhangalg
