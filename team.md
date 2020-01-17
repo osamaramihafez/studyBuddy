@@ -4,7 +4,7 @@ Ahmad Yousef Fakhry Fakhryah
 Osama Hafez Hafezos1
 Elhan Syed syedelha 
 Shaun Aranha aranhas1
-Asad Du'al Ali Aliasad4
+Asad Du'ale Ali Aliasad4
 Anthony Chu chuantho
 Gagandeep Bhangal bhangalg
 
@@ -12,30 +12,30 @@ Gagandeep Bhangal bhangalg
 
 Methods of Communication
 
-We will be using two methods of communication, namely, the whatsapp group, mostly to facilitate meetings and coordinating tutorials, and Discord which we can use to facilitate meetings as well as review issues easily. Generally, discord will be used to replace meetings if we cannot have them. 
+We will be using two methods of communication, namely, the whatsapp group, mostly to facilitate meetings and coordinating tutorials, and Discord which we can use to facilitate meetings as well as review issues easily. Generally, discord will be used to replace meetings if we cannot have them in person. 
 
 ----------------------------------------------------------------
 
 Preferred Method of Communication
 
-Our preferred method of communication is WhatsApp because we prefer face-to-face meetings.
+Our preferred method of communication is WhatsApp but we prefer face-to-face meetings.
 
 ----------------------------------------------------------------
 
 Communication Response Times
 
-The average response time amongst the group is about an hour
+The average response time amongst the group is about an hour to around 4 hours. Nothing longer than an entire day.
 
 ----------------------------------------------------------------
 
 Standup/other Agile Meetings 
 
-In terms of meetings, we will be using 2 modes of meetings. Firstly, we'll use face-to-face meetings at a specified room a few days before the meeting. Secondly, we'll be using Discord to meet up more flexibily. Finally, the person that takes meetings minutes rotates per meeting
+In terms of meetings, we will be using 2 modes of meetings. Firstly, we'll use face-to-face meetings at a specified room a few days before the tutorial. Secondly, we'll be using Discord to meet up since it is more flexible and online. Finally, the person responsible for taking meetings minutes (a format of note taking in meetings) rotates every meeting.
 
 ----------------------------------------------------------------
 Meeting Preperation
 
-For meetings, The topic of the meeting is known before hand, so no preperation is needed. 
+For meetings, the topic of the meeting is known before-hand. Members are to bring their laptops and present their issues or bring up new ideas. 
 
 ----------------------------------------------------------------
 
@@ -65,7 +65,7 @@ Every submission will be checked by Travis CI before any subsequent decisions ar
 
 1 week before the sprint due date, the team would like at least 70% of the features to be implemented.
 
-3 days before the sprint due date, the team will do a code review to make sure everyone is on the same page
+3 days before the sprint due date, the team will do a code review to make sure everyone is on the same page.
 
 ----------------------------------------------------------------
 
