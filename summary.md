@@ -35,6 +35,7 @@ Alessandro has a lot coming up in two weeks, 2 assignments on Friday, a test on 
 Maria wants to be able to structure her week to study a certain number of units per day, she also wants to listen to music at the same time because it gives her some background noise.
 
 Brian generally starts studying after he drops off his kids at school and stops when he has to pick his children up from school. However, sometimes he forgets the time and is late to pick them up, which is obviously not good. 
+
 -------------------------------
 # What are our key principles?
 
