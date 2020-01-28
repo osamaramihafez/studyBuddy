@@ -1,6 +1,6 @@
 # Product Backlog
 
-### We use the Fibonacci Series to estimate the the amount of effort needed for each task (0, 1, 2, 3, 5, 8, 13, 20, 40, 100)
+### We use the Fibonacci Series to estimate the amount of effort needed for each task (0, 1, 2, 3, 5, 8, 13, 20, 40, 100)
 
 1. (20) As a user, I should be able to create an account through an authentication process so that I can is securly access my data on multiple devices.
 2. (13) As a user, when I am logged in, I  should be able to create labelled groups (lists) which categorize the tasks.
