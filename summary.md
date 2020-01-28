@@ -44,7 +44,7 @@ We believe that applications aimed at students should not try to monetize them a
 Because of this, our product compromises and only uses APIs that do not require capital.
 
 ### Simplicity
-Any good design should focus first on the functionality instead of making things look good, as a result, we plan to make our user interface as simple as possible
+Any good design should focus first on the functionality instead of making things look good, as a result, we plan to make our user interface as simple as possible.
 
 ### Accessibility
-Our application should be able to be used by anyone regardless of who they are. Our design will keep the adhere to accessibility principles
+Our application should be able to be used by anyone regardless of who they are. Our design will keep the adhere to accessibility principles.
