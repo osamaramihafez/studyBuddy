@@ -1,6 +1,6 @@
 # What is Study Buddy?
 
-Study buddy is a task-manager web app built with MERN Stack. It is an application where people can.
+Study buddy is a task-manager web app built with MERN Stack. It is an application where people can
 both manage their study tasks using the [Pomodoro technique](https://lifehacker.com/productivity-101-a-primer-to-the-pomodoro-technique-1598992730), an acclaimed time management method, to assist busy students in studying more effectively and efficiently
 Adding on to this, StudyBuddy adds implementations of smaller things that students may or may not want to access during their studying “sessions”. The features include:
 
