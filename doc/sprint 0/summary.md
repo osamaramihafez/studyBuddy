@@ -18,13 +18,13 @@ By implementing a Spotify Connect Player into the application, users can play/pa
 ---------------------------------
 # Who are our key users?
 
-### Alessandro
+### Alessandro Esteves
 a 20-year university student taking 5 courses who finds it hard to stay organized when all his deadlines are coming up. 
 
-### Maria
+### Maria Chu
 a 15-year-old high school student who is new to the high school life.
 
-### Brian
+### Brian White
  a 40-year-old man who is continuing his studies by doing online courses at websites like Udemy and Udacity. 
 
 -------------------------------
