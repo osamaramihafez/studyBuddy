@@ -12,7 +12,7 @@
 8. **(Estimate: 8) (Priority: Low)** As a user, I should be able to enable a mode where the study and break are continuously looped for me to study long periods of time
 9. **(Estimate: 13) (Priority: Low)** As a user, I should be able to have a function for a no-distraction mode which Full-Screens the browser and allows me to concentrate with less distractions
 10. **(Estimate: 3) (Priority: Medium)** As a user, I should be able to clear all my completed tasks by clicking a button on the screen for ease of use.
-11. **(Estimate: 5) (Priority: Lowest)** As a user, I want to be able to get badges representing the amount of time I have been engaged on the application. 
+11. **(Estimate: 8) (Priority: Lowest)** As a user, I want to be able to get badges representing the amount of time I have been engaged on the application. 
 12. **(Estimate: 40) (Priority: Medium)** As a user, I As a user, I should be able to listen to Spotify which should be embedded into the application for convenience and ease of access.
 13. **(Estimate: 13) (Priority: Medium)** As a user, I should be able to see my schedule for the day to better manage my time on a daily basis.
 14. **(Estimate: 13) (Priority: Low)** As a user, I should be able to import my Google calendar on so that my I do not have to tediously add in my schedule
