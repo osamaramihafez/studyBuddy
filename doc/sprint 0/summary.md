@@ -1,6 +1,6 @@
 # What is Study Buddy?
 
-Study buddy is a task-manager web app built with MERN Stack. It is an application where people can.
+Study buddy is a task-manager web app built with MERN Stack. It is an application where people can
 both manage their study tasks using the [Pomodoro technique](https://lifehacker.com/productivity-101-a-primer-to-the-pomodoro-technique-1598992730), an acclaimed time management method, to assist busy students in studying more effectively and efficiently
 Adding on to this, StudyBuddy adds implementations of smaller things that students may or may not want to access during their studying “sessions”. The features include:
 
@@ -18,13 +18,13 @@ By implementing a Spotify Connect Player into the application, users can play/pa
 ---------------------------------
 # Who are our key users?
 
-### Alessandro
+### Alessandro Esteves
 a 20-year university student taking 5 courses who finds it hard to stay organized when all his deadlines are coming up. 
 
-### Maria
-a 15-year-old high school student who has exams coming up.
+### Maria Chu
+a 15-year-old high school student who is new to the high school life.
 
-### Brian
+### Brian White
  a 40-year-old man who is continuing his studies by doing online courses at websites like Udemy and Udacity. 
 
 -------------------------------
@@ -44,7 +44,7 @@ We believe that applications aimed at students should not try to monetize them a
 Because of this, our product compromises and only uses APIs that do not require capital.
 
 ### Simplicity
-Any good design should focus first on the functionality instead of making things look good, as a result, we plan to make our user interface as simple as possible
+Any good design should focus first on the functionality instead of making things look good, as a result, we plan to make our user interface as simple as possible.
 
 ### Accessibility
-Our application should be able to be used by anyone regardless of who they are. Our design will keep the adhere to accessibility principles
+Our application should be able to be used by anyone regardless of who they are. Our design will keep the adhere to accessibility principles.
