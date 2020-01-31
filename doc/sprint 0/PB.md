@@ -17,4 +17,4 @@
 13. (13) As a user, I should be able to import my Google calendar on so that my I do not have to tediously add in my schedule
 14. (20) As a user, I should receive notifications if my curent timer conflicts with an upcoming calendar event, to remind me that I have something coming up.
 15. (13) As a user,I should be taught how to use the application so that I can start as soon as possible
-
+16. (8) As a user, I should be notified by sound that my timer is up, so that I know when my break starts
