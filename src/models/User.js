@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+const jwt = require('jsonwebtoken')
+require('../middleware/auth')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -29,28 +29,40 @@ const userSchema = new mongoose.Schema({
     // timestamps: true
 })
 
-passport.use(new LocalStrategy( (email, password, done) => {
-       User.findOne(email, (err, user) => {
-         if (err) return done(err)
-         // User not found
-         if (!user) return done(null, false)
-         // Always use hashed passwords and fixed time comparison
-         bcrypt.compare(password, user.passwordHash, (err, isValid) => {
-           if (err) return done(err)
-           if (!isValid) return done(null, false)
-           return done(null, user)
-         })
-       })
-    }))
+userSchema.methods.genJWT = async function () {
+    const user = this;
+    const token = jwt.sign({
+      _id: user._id.toString()
+    }, process.env.JWTS);
+    user.tokens = user.tokens.concat({
+      token
+    });
+    await user.save();
+    return token;
+  };
+
 // Encypts the password before its pushed to the DB.
 // Saving passwords in plain text is never a good idea
 userSchema.pre("save", async function (next) {
     const user = this;
     if (user.isModified("password")) {
-      user.password = await bcrypt.hash(user.password, 5);
+      user.password = await bcrypt.hash(user.password, 8);
     }
     next();
   });
+userSchema.statics.validatePass = async (pw) => {
+    const user = this;
+    const isValid = await bcrypt.compare(pw, user.password)
+    return isValid;
+}
+
+userSchema.statics.login = async (email, password) => {
+    const user = await this.findOne({email});
+    if(!user) throw new Error("Unable to login");
+    const isValid = await user.validatePass(password);
+    if(!isValid) throw new Error("Unable to login");
+    else return user;
+}
 const User = mongoose.model("User", userSchema);
 
 
