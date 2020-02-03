@@ -18,7 +18,7 @@ router.post('/create/user', async (req, res, next) => ***REMOVED***
         console.log(error);
         res.status(400).send(error);
     }  
-})
+***REMOVED***
 // login to an existing account
 router.post('/user/login', async (req, res) => ***REMOVED***
     try ***REMOVED***
@@ -29,9 +29,6 @@ router.post('/user/login', async (req, res) => ***REMOVED***
         res.status(400).send();
     }
     
-})
-// Logout from your account
-
-
+***REMOVED***
 
 module.exports = router
