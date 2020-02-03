@@ -1,25 +1,34 @@
 const express = require("express");
 const router = new express.Router();
-const User = require("../models/user");
+const auth = require('../middleware/auth')
+const User = require('../models/User')
 
 // Create an account
-router.post('/user/create', async (req, res) => ***REMOVED***
-    console.log(req.body)
-    const user = new User(req.body)
+router.post('/create/user', async (req, res, next) => ***REMOVED***  
+    const user = new User(req.body);
+    console.log(user);
     try ***REMOVED***
-        user.save();
-        res.status(201).send();
+        const tk = await user.genJWT();
+        await user.save();
+        res.status(201).send(***REMOVED***
+            user,
+            tk
+        ***REMOVED***
     } catch (error) ***REMOVED***
-        res.status(400).send();
-    }
+        console.log(error);
+        res.status(400).send(error);
+    }  
 })
 // login to an existing account
 router.post('/user/login', async (req, res) => ***REMOVED***
     try ***REMOVED***
-        User.login(req.body.email, req.body.password)
+        const user = await User.login(req.body.email, req.body.password);
+        const tk = await user.genJWT();
+        res.send(***REMOVED***user, tk})
     } catch (error) ***REMOVED***
         res.status(400).send();
     }
+    
 })
 // Logout from your account
 
