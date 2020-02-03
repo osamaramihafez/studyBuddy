@@ -18,7 +18,7 @@ router.post('/create/user', async (req, res, next) => {
         console.log(error);
         res.status(400).send(error);
     }  
-})
+});
 // login to an existing account
 router.post('/user/login', async (req, res) => {
     try {
@@ -29,9 +29,6 @@ router.post('/user/login', async (req, res) => {
         res.status(400).send();
     }
     
-})
-// Logout from your account
-
-
+});
 
 module.exports = router
