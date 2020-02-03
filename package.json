@@ -1,0 +1,35 @@
+{
+  "name": "project-studybuddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UTMCSC301/project-studybuddy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UTMCSC301/project-studybuddy/issues"
+  },
+  "homepage": "https://github.com/UTMCSC301/project-studybuddy#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.11",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "react": "^16.12.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.0.1",
+    "nodemon": "^2.0.2"
+  }
+}
