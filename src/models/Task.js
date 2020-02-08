@@ -1,24 +1,23 @@
 ***REMOVED***
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
 require('../middleware/auth')
 
 const taskSchema = new mongoose.Schema(***REMOVED***
   Title: ***REMOVED***
-    Type: String,
+    type: String,
     required: true
     },
   Description:***REMOVED***
     Type: String,
     required: true,
+    trim:true
   },
   Completed:***REMOVED***
-    Type:Boolean,
+    type:Boolean,
     required: true
   }
 })
 
-const User = mongoose.model("User", userSchema);
+const Task = mongoose.model("Task", taskSchema);
 
 
-module.exports = User
+module.exports = Task;
