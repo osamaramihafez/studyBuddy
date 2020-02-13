@@ -7,8 +7,6 @@ require("./utils/DbSetup");
 
 const app = express();
 
-const taskRouter = require('./routes/task');
-
 app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
