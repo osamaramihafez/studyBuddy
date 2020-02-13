@@ -6,7 +6,10 @@ const taskRouter = require('./routes/Task');
 require("./utils/DbSetup");
 
 const app = express();
-app.use(express.json())
+
+const taskRouter = require('./routes/task');
+
+app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
 
