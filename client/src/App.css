@@ -17,6 +17,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
+  
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -35,4 +36,64 @@
   to ***REMOVED***
     transform: rotate(360deg);
   }
+  
+}
+
+.timer-design ***REMOVED***
+}
+
+h4***REMOVED***
+  text-align: center; 
+  font-size : 2rem; 
+  font-weight: 400; 
+  margin-top: 0;
+  padding: 10px;
+}
+
+.timer***REMOVED*** 
+  font-size: 2rem; 
+}
+
+.button ***REMOVED***
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: ruby-base-container;
+  font-size: 10px;
+  margin: 4px ;
+  transition-duration: 0.4s;
+}
+
+.start***REMOVED***
+
+}
+
+.stop***REMOVED***
+  background-color: white; 
+  color: black; 
+}
+
+.stop:hover ***REMOVED***
+  background-color: #f44336;
+  color: white;
+}
+
+.reset***REMOVED***
+  background-color: white; 
+  color: black; 
+}
+
+.reset:hover ***REMOVED***
+  background-color: #61dafb;
+  color: white;
+}
+
+.start***REMOVED***
+  background-color: white; 
+  color: black; 
+}
+
+.start:hover ***REMOVED***
+  background-color: #008000;
+  color: white;
 }
