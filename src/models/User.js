@@ -33,7 +33,7 @@ userSchema.methods.genJWT = async function () {
     const user = this;
     const token = jwt.sign({
       _id: user._id.toString()
-    }, process.env.JWTS);
+    }, "testing123");
     user.tokens = user.tokens.concat({
       token
     });
