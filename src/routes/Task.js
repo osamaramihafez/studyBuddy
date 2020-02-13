@@ -16,7 +16,7 @@ router.post('/create/task', auth, async (req, res, next) => {
     }
 });
 //An entry for a post request to delete a task
-router.post('/delete/task', auth, async (req, res, next) => {  
+router.delete('/delete/task/:_id', auth, async (req, res, next) => {  
     const _id = req.params.id;
     try {
         const task = await Task.findById(_id)
