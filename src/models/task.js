@@ -1,23 +1,22 @@
 ***REMOVED***
+require('../middleware/auth')
 
+//Schema to map to a MongoDB collection defining a task within a collection
 const taskSchema = new mongoose.Schema(***REMOVED***
-    title: ***REMOVED***
-        type: String,
-        required: true,
-        trim: true
-    },
-    description: ***REMOVED***
-        type: String,
-        required: true
-    },
-    completed: ***REMOVED***
-        type: Boolean,
-        required: true
-    },
-    timestamps: true
+  title: ***REMOVED***
+    type: String,
+    required: true
+  },
+  description: ***REMOVED***
+    type: String,
+    trim: true
+  },
+  completed: ***REMOVED***
+    type: Boolean,
+  }
 })
 
-const User = mongoose.model("Tasks", taskSchema);
+const Task = mongoose.model("Task", taskSchema);
 
 
-module.exports = User
+module.exports = Task;
