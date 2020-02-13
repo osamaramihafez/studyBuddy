@@ -3,18 +3,16 @@ require('../middleware/auth')
 
 //Schema to map to a MongoDB collection defining a task within a collection
 const taskSchema = new mongoose.Schema(***REMOVED***
-  Title: ***REMOVED***
+  title: ***REMOVED***
     type: String,
     required: true
     },
-  Description:***REMOVED***
-    Type: String,
-    required: true,
+  description:***REMOVED***
+    type: String,
     trim:true
   },
-  Completed:***REMOVED***
+  completed:***REMOVED***
     type:Boolean,
-    required: true
   }
 })
 
