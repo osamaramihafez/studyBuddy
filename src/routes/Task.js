@@ -17,7 +17,7 @@ router.get('task/get/:id', auth, (req, res) => ***REMOVED***
 ***REMOVED***
 
 //Update a task by sending in its id and using a post command
-router.update('/task/update/:id', auth, (req, res) => ***REMOVED***
+router.post('/task/update/:id', auth, (req, res) => ***REMOVED***
     Task.findById(req.params.id)
         .then(task => ***REMOVED***
             task.title = req.body.title;
