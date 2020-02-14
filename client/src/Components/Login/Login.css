@@ -8,5 +8,31 @@
 
 .pwdInp {
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
+}
+
+.login-button {
+    background-color: rgb(76, 139, 175); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 64px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100;
+    border-radius: 25px;
+}
+
+.login-button:hover {
+    background-color: rgb(42, 77, 97); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 64px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100;
+    border-radius: 25px;
 }

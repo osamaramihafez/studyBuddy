@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
               placeholder="password"
             />
           </FormGroup>
-          <Button variant="outline-secondary" type="submit">Submit</Button>
+          <Button variant="outline-secondary" type="submit" className="login-button">Submit</Button>
         </form>
       </div >
     );
