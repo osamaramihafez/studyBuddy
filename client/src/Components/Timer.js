@@ -7,6 +7,7 @@ class Timer extends React.Component ***REMOVED***
     this.state = ***REMOVED***
       seconds: 0,
       beginning: 0,
+      disabled : false
     }
 
     this.start = this.start.bind(this);
@@ -18,19 +19,27 @@ class Timer extends React.Component ***REMOVED***
   }
 
   start() ***REMOVED***
+    if (this.state.disabled) ***REMOVED***
+        return;
+    }
     let beginning = setInterval(this.decrease, 1000)
 
     this.setState(***REMOVED***
-        beginning: beginning
+        beginning: beginning,
+        disabled: true
     })
   }
 
   stop()***REMOVED***
       clearInterval(this.state.beginning)
+      this.setState(***REMOVED***
+        disabled: false
+    })
   }
 
   reset()***REMOVED***
       this.stop();
+      this.props.resetTimer()
       this.setState(***REMOVED***
         seconds: 0
       })
@@ -72,7 +81,7 @@ class Timer extends React.Component ***REMOVED***
           </span>
         </section>
         <section>
-          <button class="button start" onClick=***REMOVED***this.start}>
+          <button ref="btn" class="button start" onClick=***REMOVED***this.start}>
             Start
           </button>
           <button class="button stop" onClick=***REMOVED***this.stop}>
