@@ -16,15 +16,15 @@ class App extends React.Component {
 
   updateTimer() {
     this.setState( (prevState) => {
-      return { 
-        timerMinute: prevState.timerMinute - 1 
+      return {
+        timerMinute: prevState.timerMinute - 1
       }
     })
   }
 
   resetTimer() {
     this.setState({
-      timerMinute: 25,
+      timerMinute: 25
     })
   }
 
@@ -34,8 +34,8 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" /> {/* Instead of image here, it can be the task. */}
           <p>
-            <Timer 
-              timerMinute={this.state.timerMinute} 
+            <Timer
+              timerMinute={this.state.timerMinute}
               updateTimer={this.updateTimer}
               resetTimer={this.resetTimer}
             />

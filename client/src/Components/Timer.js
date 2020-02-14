@@ -1,4 +1,6 @@
 import React from 'react'
+import UIfx from 'uifx'
+import mp3File from './beep.mp3'
 
 class Timer extends React.Component {
   constructor() {
@@ -7,13 +9,15 @@ class Timer extends React.Component {
     this.state = {
       seconds: 0,
       beginning: 0,
-      disabled : false
+      disabled : false,
+      sound: true,  //play the sound whenever reset
     }
 
+    this.beep =  new UIfx(mp3File);
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
-    
+
 
     this.decrease = this.decrease.bind(this);
   }
@@ -22,18 +26,25 @@ class Timer extends React.Component {
     if (this.state.disabled) {
         return;
     }
+
+    if (this.state.sound) {
+      this.beep.play();
+    }
+
     let beginning = setInterval(this.decrease, 1000)
 
     this.setState({
         beginning: beginning,
-        disabled: true
+        disabled: true,
+        sound: false
     })
   }
 
   stop(){
       clearInterval(this.state.beginning)
       this.setState({
-        disabled: false
+        disabled: false,
+
     })
   }
 
@@ -41,7 +52,8 @@ class Timer extends React.Component {
       this.stop();
       this.props.resetTimer()
       this.setState({
-        seconds: 0
+        seconds: 0,
+        sound: true
       })
   }
 
@@ -49,6 +61,7 @@ class Timer extends React.Component {
     switch (this.state.seconds) {
       case 0:
           if ( this.props.timerMinute === 0 && this.state.seconds === 0 ){
+              this.beep.play();
               break;
           }
         this.props.updateTimer();
@@ -81,13 +94,13 @@ class Timer extends React.Component {
           </span>
         </section>
         <section>
-          <button ref="btn" class="button start" onClick={this.start}>
+          <button ref="btn" className="button start" onClick={this.start}>
             Start
           </button>
-          <button class="button stop" onClick={this.stop}>
+          <button className="button stop" onClick={this.stop}>
             Stop
           </button>
-          <button class="button reset" onClick={this.reset}>
+          <button className="button reset" onClick={this.reset}>
             Reset
           </button>
         </section>
