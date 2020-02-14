@@ -1,3 +1,28 @@
 .popup ***REMOVED***
     background-color: white;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 25px;
+    height: 500px;
+    width: 300px;
+}
+
+.title ***REMOVED***
+    color: black;
+}
+
+.subtitle ***REMOVED***
+    color: black;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.special-link ***REMOVED***
+    font-size: 10px;
+    color: rgb(151, 151, 151);
+    text-decoration: none;
+}
+
+.special-link:hover ***REMOVED*** 
+    color: rgb(83, 83, 83);
 }
