@@ -1,14 +1,14 @@
 import React, ***REMOVED*** Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Navi from "./Components/Popup/Popup"
 
 class App extends Component ***REMOVED***
-  render () ***REMOVED***
+  render() ***REMOVED***
     return (
       <div className="App">
         <header className="App-header">
-        <Navi/>
+          <Navi />
         </header>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react'
 import LoginForm from '../Login/Login'
-import RegisterationFrom from '../Register/Register.js'
+// import RegisterationFrom from '../Register/Register.js'
 import './Popup.css'
 
 class Navi extends React.Component ***REMOVED***
@@ -10,8 +10,7 @@ class Navi extends React.Component ***REMOVED***
         <h1 className="title">Welcome</h1>
         <h2 className="subtitle">StudyBuddy</h2>
         <LoginForm></LoginForm>
-        <button onClick=***REMOVED***console.log("test")} className="special-link">Not registered? Register here</button>
-        <RegisterationFrom />
+        <button className="special-link">Not registered? Register here</button>
       </div>
     )
   }
