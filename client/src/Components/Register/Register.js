@@ -24,13 +24,12 @@ class RegistrationForm extends React.Component {
 
     handleRegistration(e, state) {
         e.preventDefault();
-        console.log(state);
     }
     render() {
         return (
             <div className="Register">
                 <form onSubmit={e => this.handleRegistration(e, this.state)}>
-                    <FormGroup controlId="name" className="emailInp">
+                    <FormGroup controlId="name" className="inp-top">
                         <FormControl
                             autoFocus
                             type="text"
@@ -38,21 +37,20 @@ class RegistrationForm extends React.Component {
                             placeholder="name"
                         />
                     </FormGroup>
-                    <FormGroup controlId="email" className="emailInp">
+                    <FormGroup controlId="email" className="inp-mid">
                         <FormControl
                             type="email"
                             onChange={e => this.updateEmail(e.target.value)}
                             placeholder="email"
                         />
                     </FormGroup>
-                    <FormGroup controlId="password" className="pwdInp">
+                    <FormGroup controlId="password" className="inp-mid">
                         <FormControl
-                            onChange={e => this.updatePassword(e.target.value)}
                             type="password"
+                            onChange={e => this.updatePassword(e.target.value)}
                             placeholder="password"
                         />
                     </FormGroup>
-                    <Button variant="outline-secondary" type="submit">Submit</Button>
                 </form>
             </div>
         );
