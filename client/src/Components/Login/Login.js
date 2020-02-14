@@ -4,10 +4,6 @@ import Button from 'react-bootstrap/Button'
 import "./Login.css";
 
 class LoginForm extends React.Component {
-  constructor(props) {
-    super();
-  }
-
   state = {
     email: "",
     password: "",
@@ -17,10 +13,6 @@ class LoginForm extends React.Component {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
-
   updatePassword(password) {
     this.setState({ password });
   }
@@ -28,10 +20,15 @@ class LoginForm extends React.Component {
   updateEmail(email) {
     this.setState({ email });
   }
+
+  handleLogin(e, state) {
+    e.preventDefault();
+    console.log(state);
+  }
   render() {
     return (
       <div className="Login">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={e => this.handleLogin(e, this.state)}>
           <FormGroup controlId="email" className="emailInp">
             <FormControl
               autoFocus
@@ -47,7 +44,7 @@ class LoginForm extends React.Component {
               placeholder="password"
             />
           </FormGroup>
-          <Button variant="outline-secondary">Button</Button>
+          <Button variant="outline-secondary" type="submit">Submit</Button>
         </form>
       </div >
     );

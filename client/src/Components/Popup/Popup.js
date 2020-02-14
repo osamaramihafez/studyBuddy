@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginForm from '../Login/Login'
+import RegisterationFrom from '../Register/Register.js'
 import './Popup.css'
 
 class Navi extends React.Component {
@@ -9,7 +10,8 @@ class Navi extends React.Component {
         <h1 className="title">Welcome</h1>
         <h2 className="subtitle">StudyBuddy</h2>
         <LoginForm></LoginForm>
-        <a href="#" className="special-link">Not registered? Register here</a>
+        <button onClick={console.log("test")} className="special-link">Not registered? Register here</button>
+        <RegisterationFrom />
       </div>
     )
   }
