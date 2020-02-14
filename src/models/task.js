@@ -14,6 +14,10 @@ const taskSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
+    hyperlink: {
+        type: String,
+        required: false,
+    },
     timestamps: true
 })
 
