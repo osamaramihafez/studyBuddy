@@ -1,4 +1,6 @@
 import React from 'react'
+import UIfx from 'uifx'
+import mp3File from './beep.mp3'
 
 class Timer extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -7,13 +9,15 @@ class Timer extends React.Component ***REMOVED***
     this.state = ***REMOVED***
       seconds: 0,
       beginning: 0,
-      disabled : false
+      disabled : false,
+      sound: true,  //play the sound whenever reset
     }
 
+    this.beep =  new UIfx(mp3File);
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
-    
+
 
     this.decrease = this.decrease.bind(this);
   }
@@ -22,18 +26,25 @@ class Timer extends React.Component ***REMOVED***
     if (this.state.disabled) ***REMOVED***
         return;
     }
+
+    if (this.state.sound) ***REMOVED***
+      this.beep.play();
+    }
+
     let beginning = setInterval(this.decrease, 1000)
 
     this.setState(***REMOVED***
         beginning: beginning,
-        disabled: true
+        disabled: true,
+        sound: false
     })
   }
 
   stop()***REMOVED***
       clearInterval(this.state.beginning)
       this.setState(***REMOVED***
-        disabled: false
+        disabled: false,
+
     })
   }
 
@@ -41,7 +52,8 @@ class Timer extends React.Component ***REMOVED***
       this.stop();
       this.props.resetTimer()
       this.setState(***REMOVED***
-        seconds: 0
+        seconds: 0,
+        sound: true
       })
   }
 
@@ -49,6 +61,7 @@ class Timer extends React.Component ***REMOVED***
     switch (this.state.seconds) ***REMOVED***
       case 0:
           if ( this.props.timerMinute === 0 && this.state.seconds === 0 )***REMOVED***
+              this.beep.play();
               break;
           }
         this.props.updateTimer();
@@ -81,13 +94,13 @@ class Timer extends React.Component ***REMOVED***
           </span>
         </section>
         <section>
-          <button ref="btn" class="button start" onClick=***REMOVED***this.start}>
+          <button ref="btn" className="button start" onClick=***REMOVED***this.start}>
             Start
           </button>
-          <button class="button stop" onClick=***REMOVED***this.stop}>
+          <button className="button stop" onClick=***REMOVED***this.stop}>
             Stop
           </button>
-          <button class="button reset" onClick=***REMOVED***this.reset}>
+          <button className="button reset" onClick=***REMOVED***this.reset}>
             Reset
           </button>
         </section>
