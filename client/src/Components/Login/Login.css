@@ -1,0 +1,12 @@
+.emailInp {
+    width: 100%;
+    margin-top: 75px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+
+.pwdInp {
+    width: 100%;
+    margin-bottom: 100px;
+}
