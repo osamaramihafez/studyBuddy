@@ -29,7 +29,7 @@ Harmful Practices
 
 Not communicating efficiently or having comments on written code, this confuses members on existing code and causes strife in the groups.
 
-Best/Worse Experiences
+Best/Worst Experiences
 -------------------------------------------------
 
 Best experiences that group members felt was enjoying coding in CSS and HTML. The worst experiences was constantly trying to balance other school work and keep up with the project and assignment.
