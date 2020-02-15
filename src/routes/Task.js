@@ -58,4 +58,19 @@ router.delete('/delete/task/:_id', auth, async (req, res, next) => {
     }
 });
 
+//Gonna use this one to add a hyperlink
+router.route('/add/task/hyperlink/:id').post((req, res) => {
+    task.findById(req.params.id)
+    .then(task => {
+        task.title = req.body.title;
+        task.description = req.body.description;
+        task.completed = req.body.completed;
+        tasl.hyperlink = req.body.hyperlink;
+        task.save()
+        .then(() => res.json('Task Updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router

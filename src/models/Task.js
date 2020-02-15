@@ -13,7 +13,13 @@ const taskSchema = new mongoose.Schema({
   },
   completed: {
     type: Boolean,
-  }
+  },
+  hyperlink: {
+        type: String,
+        required: false,
+    },
+    timestamps: true
+
 })
 
 const Task = mongoose.model("Task", taskSchema);
