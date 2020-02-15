@@ -32,7 +32,7 @@ Not communicating efficiently or having comments on written code, this confuses 
 Best/Worse Experiences
 -------------------------------------------------
 
-Best experiences that group members felt was enjoying coding in CSS and HTML. Th worst experiences was 
+Best experiences that group members felt was enjoying coding in CSS and HTML. The worst experiences was constantly trying to balance other school work and keep up with the project and assignment.
 
 Participants
 -------------------------------------------------
