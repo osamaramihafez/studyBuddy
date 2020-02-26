@@ -2,6 +2,7 @@ import React from "react";
 import ***REMOVED*** FormGroup, FormControl } from "react-bootstrap";
 import Button from 'react-bootstrap/Button'
 import "./Login.css";
+import axios from 'axios';
 
 class LoginForm extends React.Component ***REMOVED***
   state = ***REMOVED***
@@ -21,9 +22,16 @@ class LoginForm extends React.Component ***REMOVED***
     this.setState(***REMOVED*** email ***REMOVED***
   }
 
-  handleLogin(e, state) ***REMOVED***
+  async handleLogin(e, state) ***REMOVED***
     e.preventDefault();
     console.log(state);
+    const res = await axios.post("localhost:3000/user/login", state);
+    if(res.status === '200') ***REMOVED***
+      // Load the other stuff
+    }
+    else ***REMOVED***
+      // send a popup to tell the user the login failed
+    }
   }
   render() ***REMOVED***
     return (
