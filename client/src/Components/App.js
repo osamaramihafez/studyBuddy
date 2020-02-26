@@ -2,16 +2,19 @@ import React from 'react'
 import logo from './logo.svg'
 import '../App.css'
 import Timer from './Timer'
+import Tasks from './Tasks/Tasks'
 
 class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
-      timerMinute: 25,
+      timerMinute: 25
     }
     this.updateTimer = this.updateTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
+
+      
   }
 
   updateTimer() {
@@ -32,7 +35,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" /> {/* Instead of image here, it can be the task. */}
+          <Tasks />
+          <img src={logo} className="App-logo" alt="logo" />
           <p>
             <Timer
               timerMinute={this.state.timerMinute}
