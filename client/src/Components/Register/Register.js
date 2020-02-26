@@ -24,6 +24,14 @@ class RegistrationForm extends React.Component {
 
     handleRegistration(e, state) {
         e.preventDefault();
+        const res = await axios.post("localhost:3000/user/create", state);
+        if(res.status === '201') {
+          // Load the other stuff
+          // send emails etc
+        }
+        else {
+          // send a popup to tell the user the registartion failed status code and everything
+        }
     }
     render() {
         return (

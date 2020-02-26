@@ -8,6 +8,7 @@ class App extends React.Component {
     super()
 
     this.state = {
+      loggedIn: false,
       timerMinute: 25,
     }
     this.updateTimer = this.updateTimer.bind(this);
@@ -22,6 +23,10 @@ class App extends React.Component {
     })
   }
 
+  isLoggedIn() {
+    
+  }
+
   resetTimer() {
     this.setState({
       timerMinute: 25
@@ -32,23 +37,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" /> {/* Instead of image here, it can be the task. */}
-          <p>
+          {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute={this.state.timerMinute}
               updateTimer={this.updateTimer}
               resetTimer={this.resetTimer}
             />
-          </p>
-          POMODORO TIMER.
-          {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          POMODORO TIMER
-       </a>*/}
+          <p>POMODORO TIMER</p>
         </header>
       </div>
     )

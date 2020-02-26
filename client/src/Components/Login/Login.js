@@ -2,6 +2,7 @@ import React from "react";
 import { FormGroup, FormControl } from "react-bootstrap";
 import Button from 'react-bootstrap/Button'
 import "./Login.css";
+import axios from 'axios';
 
 class LoginForm extends React.Component {
   state = {
@@ -21,9 +22,16 @@ class LoginForm extends React.Component {
     this.setState({ email });
   }
 
-  handleLogin(e, state) {
+  async handleLogin(e, state) {
     e.preventDefault();
     console.log(state);
+    const res = await axios.post("localhost:3000/user/login", state);
+    if(res.status === '200') {
+      // Load the other stuff
+    }
+    else {
+      // send a popup to tell the user the login failed
+    }
   }
   render() {
     return (
