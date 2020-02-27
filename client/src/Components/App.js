@@ -24,8 +24,6 @@ class App extends React.Component ***REMOVED***
     })
   }
 
-  
-
   resetTimer() ***REMOVED***
     this.setState(***REMOVED***
       timerMinute: 25
