@@ -3,8 +3,7 @@ import logo from './logo.svg'
 import '../App.css'
 import Timer from './Timer'
 import Fullscreen from "react-full-screen";
-
-//Fullscreen inspired from: https://www.npmjs.com/package/react-full-screen
+import ClearBtn from './ClearDoneTasks'
 
 class App extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -45,6 +44,7 @@ class App extends React.Component ***REMOVED***
               updateTimer=***REMOVED***this.updateTimer}
               resetTimer=***REMOVED***this.resetTimer}
             />
+            <ClearBtn/>
           </p>
           POMODORO TIMER.
           <button onClick=***REMOVED***this.goFull}>
