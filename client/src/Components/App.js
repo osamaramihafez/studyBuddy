@@ -4,7 +4,7 @@ import '../App.css'
 import Timer from './Timer'
 import ClearBtn from './ClearDoneTasks'
 import LoginForm from './Login/Login'
-
+import SessionList from './SessionList';
 class App extends React.Component ***REMOVED***
   constructor() ***REMOVED***
     super()
@@ -75,6 +75,20 @@ class App extends React.Component ***REMOVED***
       </div>
     )
   }
+  render()***REMOVED***
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>
+          <h2>
+            <Timer timerMinute=***REMOVED***this.state.timerMinute}/>
+          </h2>
+        </p>
+        <p>POMODORO TIMER. </p>
+      </header>
+    </div>
+  );
+}
 }
 
 export default App
