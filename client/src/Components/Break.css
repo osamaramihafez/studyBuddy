@@ -1,0 +1,23 @@
+  
+.break-interval-container ***REMOVED***
+  width: 250px;
+  text-align: center;
+}
+
+.break-time-interval ***REMOVED***
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.break-time ***REMOVED***
+margin: 0 20px;
+font-size: 2.2rem;
+font-weight: 500;
+}
+
+h4 ***REMOVED***
+font-size: 2rem;
+color: #263646;
+margin-bottom: 10px;
+}

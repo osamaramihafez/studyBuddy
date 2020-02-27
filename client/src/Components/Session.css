@@ -1,0 +1,17 @@
+.session-interval-container ***REMOVED***
+  width: 250px;
+  text-align: center;
+  margin-left: 50px;
+}
+
+.session-interval ***REMOVED***
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.session-time ***REMOVED***
+margin: 0 20px;
+font-size: 2.2rem;
+font-weight: 500;
+}
