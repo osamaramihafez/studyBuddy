@@ -2,6 +2,7 @@ import React from 'react'
 import logo from './logo.svg'
 import '../App.css'
 import Timer from './Timer'
+import ClearBtn from './ClearDoneTasks'
 
 class App extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -39,6 +40,7 @@ class App extends React.Component ***REMOVED***
               updateTimer=***REMOVED***this.updateTimer}
               resetTimer=***REMOVED***this.resetTimer}
             />
+            <ClearBtn/>
           </p>
           POMODORO TIMER.
           ***REMOVED***/* <a
