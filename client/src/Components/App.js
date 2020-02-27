@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import '../App.css';
 import Timer from './Timer';
+import SessionList from './SessionList';
+
 
 class App extends React.Component ***REMOVED***
   constructor()***REMOVED***
@@ -32,6 +34,7 @@ class App extends React.Component ***REMOVED***
           POMODORO TIMER
        </a>*/}
       </header>
+      <SessionList />
     </div>
   );
 }
