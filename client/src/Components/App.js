@@ -38,7 +38,7 @@ class App extends React.Component ***REMOVED***
     return (
         <div className="App">
         <header className="App-header">
-          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> ***REMOVED***/* Instead of image here, it can be the task. */}
+          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> 
           <p>
             <Timer
               timerMinute=***REMOVED***this.state.timerMinute}
@@ -50,21 +50,12 @@ class App extends React.Component ***REMOVED***
           <button onClick=***REMOVED***this.goFull}>
           Go Fullscreen
         </button>
-
-          ***REMOVED***/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          POMODORO TIMER
-       </a>*/}
         </header>
         <Fullscreen
           enabled=***REMOVED***this.state.isFull}
           onChange=***REMOVED***isFull => this.setState(***REMOVED***isFull})}>
                     <header className="App-header">
-          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> ***REMOVED***/* Instead of image here, it can be the task. */}
+          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> 
           <p>
             <Timer
               timerMinute=***REMOVED***this.state.timerMinute}
@@ -76,19 +67,7 @@ class App extends React.Component ***REMOVED***
           <button onClick=***REMOVED***this.goFull}>
           Go Fullscreen
         </button>
-
-          ***REMOVED***/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          POMODORO TIMER
-       </a>*/}
         </header>
-          ***REMOVED***/* <div className="full-screenable-node">
-            This is now in Fullscreen
-          </div> */}
         </Fullscreen>
       </div>
     )
