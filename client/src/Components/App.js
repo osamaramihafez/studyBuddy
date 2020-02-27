@@ -2,23 +2,20 @@ import React from 'react'
 import logo from './logo.svg'
 import '../App.css'
 import Timer from './Timer'
-import Fullscreen from "react-full-screen";
-import ClearBtn from './ClearDoneTasks'
+import LoginForm from './Login/Login'
 
 class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
+      loggedIn: false,
       timerMinute: 25,
-      isFull:false,
     }
     this.updateTimer = this.updateTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
   }
-  goFull = () => {
-    this.setState({ isFull: true });
-  }
+
   updateTimer() {
     this.setState( (prevState) => {
       return {
@@ -35,7 +32,7 @@ class App extends React.Component {
 
   render() {
     return (
-        <div className="App">
+      <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" /> 
           <p>
@@ -57,6 +54,8 @@ class App extends React.Component {
                     <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" /> 
           <p>
+          <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
+          {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute={this.state.timerMinute}
               updateTimer={this.updateTimer}
@@ -69,6 +68,8 @@ class App extends React.Component {
         </button>
         </header>
         </Fullscreen>
+          <p>POMODORO TIMER</p>
+        </header>
       </div>
     )
   }
