@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
         <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" /> {/* Instead of image here, it can be the task. */}
+          <img src={logo} className="App-logo" alt="logo" /> 
           <p>
             <Timer
               timerMinute={this.state.timerMinute}
@@ -50,21 +50,12 @@ class App extends React.Component {
           <button onClick={this.goFull}>
           Go Fullscreen
         </button>
-
-          {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          POMODORO TIMER
-       </a>*/}
         </header>
         <Fullscreen
           enabled={this.state.isFull}
           onChange={isFull => this.setState({isFull})}>
                     <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" /> {/* Instead of image here, it can be the task. */}
+          <img src={logo} className="App-logo" alt="logo" /> 
           <p>
             <Timer
               timerMinute={this.state.timerMinute}
@@ -76,19 +67,7 @@ class App extends React.Component {
           <button onClick={this.goFull}>
           Go Fullscreen
         </button>
-
-          {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          POMODORO TIMER
-       </a>*/}
         </header>
-          {/* <div className="full-screenable-node">
-            This is now in Fullscreen
-          </div> */}
         </Fullscreen>
       </div>
     )
