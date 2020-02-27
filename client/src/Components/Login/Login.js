@@ -3,15 +3,13 @@ import { FormGroup, FormControl } from "react-bootstrap";
 import Button from 'react-bootstrap/Button'
 import "./Login.css";
 import axios from 'axios';
+import decode from 'jwt-decode';
 
 class LoginForm extends React.Component {
+  
   state = {
     email: "",
     password: "",
-  }
-
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
   updatePassword(password) {
@@ -22,20 +20,41 @@ class LoginForm extends React.Component {
     this.setState({ email });
   }
 
+  getToken() {
+    return localStorage.getItem('id_token')
+  }
+
+  isLoggedIn() {
+    try {
+      const tk = this.getToken();
+      const decoded = decode(tk);
+      if(decoded.exp < Date.now() / 1000) {
+          return false;
+        }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  setHeader() {
+    Headers['Authorization'] = 'Bearer ' + this.getToken();
+  }
   async handleLogin(e, state) {
     e.preventDefault();
     console.log(state);
-    const res = await axios.post("localhost:3000/user/login", state);
-    if(res.status === '200') {
-      // Load the other stuff
-    }
-    else {
-      // send a popup to tell the user the login failed
-    }
+    axios.post("http://localhost:8000/user/login", state)
+    .then(res => {
+      console.log(res.data.tk);
+      localStorage.setItem('id_token', res.data.tk);
+      this.setHeader();
+    })
+    .catch(res => console.log(res.tk));
   }
   render() {
     return (
       <div className="Login">
+        <h1>Welcome to StudyBuddy!</h1>
         <form onSubmit={e => this.handleLogin(e, this.state)}>
           <FormGroup controlId="email" className="emailInp">
             <FormControl
