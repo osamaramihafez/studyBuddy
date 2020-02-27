@@ -2,12 +2,14 @@ import React from 'react'
 import logo from './logo.svg'
 import '../App.css'
 import Timer from './Timer'
+import LoginForm from './Login/Login'
 
 class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
+      loggedIn: false,
       timerMinute: 25,
     }
     this.updateTimer = this.updateTimer.bind(this);
@@ -32,23 +34,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" /> {/* Instead of image here, it can be the task. */}
-          <p>
+          <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
+          {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute={this.state.timerMinute}
               updateTimer={this.updateTimer}
               resetTimer={this.resetTimer}
             />
-          </p>
-          POMODORO TIMER.
-          {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          POMODORO TIMER
-       </a>*/}
+          <p>POMODORO TIMER</p>
         </header>
       </div>
     )

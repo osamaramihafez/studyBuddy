@@ -1,11 +1,16 @@
 const express = require('express');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const userRouter = require("./routes/user");
 const taskRouter = require('./routes/Task');
-
 require("./utils/DbSetup");
 
 const app = express();
+
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type');
+    next();
+});
 
 app.use(express.json());
 app.use(userRouter);
