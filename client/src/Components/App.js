@@ -2,6 +2,7 @@ import React from 'react'
 import logo from './logo.svg'
 import '../App.css'
 import Timer from './Timer'
+import LoginForm from './Login/Login'
 
 class App extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -23,9 +24,7 @@ class App extends React.Component ***REMOVED***
     })
   }
 
-  isLoggedIn() ***REMOVED***
-    
-  }
+  
 
   resetTimer() ***REMOVED***
     this.setState(***REMOVED***
@@ -37,6 +36,7 @@ class App extends React.Component ***REMOVED***
     return (
       <div className="App">
         <header className="App-header">
+          <LoginForm loggedIn=***REMOVED***this.state.loggedIn}></LoginForm>
           ***REMOVED***/* <img src=***REMOVED***logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute=***REMOVED***this.state.timerMinute}

@@ -21,17 +21,34 @@ class RegistrationForm extends React.Component ***REMOVED***
     updateEmail(email) ***REMOVED***
         this.setState(***REMOVED*** email ***REMOVED***
     }
+    
+    setHeader() ***REMOVED***
+        Headers['Authorization'] = 'Bearer ' + this.getToken();
+    }
+
+    handleLogin(e, state) ***REMOVED***
+        e.preventDefault();
+        console.log(state);
+        axios.post("http://localhost:8000/user/login", state)
+        .then(res => ***REMOVED***
+          console.log(res.data.tk);
+          localStorage.setItem('id_token', res.data.tk);
+          this.setHeader();
+        })
+        .catch(res => console.log(res.tk));
+    }
 
     handleRegistration(e, state) ***REMOVED***
         e.preventDefault();
-        const res = await axios.post("localhost:3000/user/create", state);
-        if(res.status === '201') ***REMOVED***
-          // Load the other stuff
-          // send emails etc
-        }
-        else ***REMOVED***
-          // send a popup to tell the user the registartion failed status code and everything
-        }
+        console.log(state);
+        axios.post("http://localhost:8000/create/user", state)
+        .then(res => ***REMOVED***
+            console.log(res.tk);
+        })
+        .catch(res => ***REMOVED***
+            console.log(res.tk);
+        ***REMOVED***
+    
     }
     render() ***REMOVED***
         return (
