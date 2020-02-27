@@ -35,6 +35,26 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" /> 
+          <p>
+            <Timer
+              timerMinute={this.state.timerMinute}
+              updateTimer={this.updateTimer}
+              resetTimer={this.resetTimer}
+            />
+            <ClearBtn/>
+          </p>
+          POMODORO TIMER.
+          <button onClick={this.goFull}>
+          Go Fullscreen
+        </button>
+        </header>
+        <Fullscreen
+          enabled={this.state.isFull}
+          onChange={isFull => this.setState({isFull})}>
+                    <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" /> 
+          <p>
           <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
           {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
@@ -43,6 +63,13 @@ class App extends React.Component {
               resetTimer={this.resetTimer}
             />
             <ClearBtn/>
+          </p>
+          POMODORO TIMER.
+          <button onClick={this.goFull}>
+          Go Fullscreen
+        </button>
+        </header>
+        </Fullscreen>
           <p>POMODORO TIMER</p>
         </header>
       </div>
