@@ -2,6 +2,7 @@ import React from 'react'
 import logo from './logo.svg'
 import '../App.css'
 import Timer from './Timer'
+import ClearBtn from './ClearDoneTasks'
 import LoginForm from './Login/Login'
 
 class App extends React.Component ***REMOVED***
@@ -61,6 +62,7 @@ class App extends React.Component ***REMOVED***
               updateTimer=***REMOVED***this.updateTimer}
               resetTimer=***REMOVED***this.resetTimer}
             />
+            <ClearBtn/>
           </p>
           POMODORO TIMER.
           <button onClick=***REMOVED***this.goFull}>
