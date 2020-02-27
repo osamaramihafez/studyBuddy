@@ -24,8 +24,6 @@ class App extends React.Component {
     })
   }
 
-  
-
   resetTimer() {
     this.setState({
       timerMinute: 25
