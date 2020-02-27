@@ -1,3 +1,23 @@
+import ***REMOVED*** ButtonToolbar } from "react-bootstrap";
+
+class Fullscreen extends React.Component***REMOVED***
+    render() ***REMOVED***
+        return (
+          <div className="fullscreen">
+              <ButtonToolbar>
+              <Button variant="outline-primary" active onclick="">
+                  Fullscreen
+                  </Button>
+              </ButtonToolbar>
+          </div>
+        )
+      }
+}
+
+
+
+//Inspired from https://zinoui.com/blog/javascript-fullscreen-api
+
 document.addEventListener("fullscreenchange", function (event) ***REMOVED***
     if (document.fullscreenElement) ***REMOVED***
         // fullscreen is activated
