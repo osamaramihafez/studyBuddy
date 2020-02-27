@@ -18,7 +18,11 @@ const taskSchema = new mongoose.Schema(***REMOVED***
         type: String,
         required: false,
     },
-    timestamps: true
+    timestamps:***REMOVED***
+    type: Boolean,
+    required: true
+    }
+    
 
 })
 
