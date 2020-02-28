@@ -4,12 +4,16 @@ import '../App.css'
 import Timer from './Timer'
 import Break from './Break'
 import Session from './Session'
+import ClearBtn from './ClearDoneTasks'
+import LoginForm from './Login/Login'
+import SessionList from './SessionList';
 
 class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
+      loggedIn: false,
       timerMinute: 25,
       break: 5,
       session: 25,
@@ -90,9 +94,28 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" /> {/* Instead of image here, it can be the task. */}
-          <h4> { this.state.flipper === true ? "Session": "Break" } </h4>
+          <img src={logo} className="App-logo" alt="logo" /> 
           <p>
+            <Timer
+              timerMinute={this.state.timerMinute}
+              updateTimer={this.updateTimer}
+              resetTimer={this.resetTimer}
+            />
+            <ClearBtn/>
+          </p>
+          POMODORO TIMER.
+          <button onClick={this.goFull}>
+          Go Fullscreen
+        </button>
+        </header>
+        <Fullscreen
+          enabled={this.state.isFull}
+          onChange={isFull => this.setState({isFull})}>
+                    <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" /> 
+          <p>
+          <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
+          {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute={this.state.timerMinute}
               updateTimer={this.updateTimer}
@@ -112,10 +135,32 @@ class App extends React.Component {
             </section>
           </p>
           POMODORO TIMER.
+          </p>
+            <ClearBtn/>
+          <button onClick={this.goFull}>
+          Go Fullscreen
+        </button>
+        </header>
+        </Fullscreen>
+          <p>POMODORO TIMER</p>
         </header>
       </div>
     )
   }
+  render(){
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>
+          <h2>
+            <Timer timerMinute={this.state.timerMinute}/>
+          </h2>
+        </p>
+        <p>POMODORO TIMER. </p>
+      </header>
+    </div>
+  );
+}
 }
 
 export default App
