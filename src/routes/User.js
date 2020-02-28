@@ -26,6 +26,7 @@ router.post('/user/login', async (req, res) => ***REMOVED***
         const tk = await user.genJWT();
         res.send(***REMOVED***user, tk})
     } catch (error) ***REMOVED***
+        console.log(error);
         res.status(400).send();
     }
     

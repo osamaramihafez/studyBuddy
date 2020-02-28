@@ -4,12 +4,16 @@ import '../App.css'
 import Timer from './Timer'
 import Break from './Break'
 import Session from './Session'
+import ClearBtn from './ClearDoneTasks'
+import LoginForm from './Login/Login'
+import SessionList from './SessionList';
 
 class App extends React.Component ***REMOVED***
   constructor() ***REMOVED***
     super()
 
     this.state = ***REMOVED***
+      loggedIn: false,
       timerMinute: 25,
       break: 5,
       session: 25,
@@ -90,9 +94,28 @@ class App extends React.Component ***REMOVED***
     return (
       <div className="App">
         <header className="App-header">
-          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> ***REMOVED***/* Instead of image here, it can be the task. */}
-          <h4> ***REMOVED*** this.state.flipper === true ? "Session": "Break" } </h4>
+          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> 
           <p>
+            <Timer
+              timerMinute=***REMOVED***this.state.timerMinute}
+              updateTimer=***REMOVED***this.updateTimer}
+              resetTimer=***REMOVED***this.resetTimer}
+            />
+            <ClearBtn/>
+          </p>
+          POMODORO TIMER.
+          <button onClick=***REMOVED***this.goFull}>
+          Go Fullscreen
+        </button>
+        </header>
+        <Fullscreen
+          enabled=***REMOVED***this.state.isFull}
+          onChange=***REMOVED***isFull => this.setState(***REMOVED***isFull})}>
+                    <header className="App-header">
+          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> 
+          <p>
+          <LoginForm loggedIn=***REMOVED***this.state.loggedIn}></LoginForm>
+          ***REMOVED***/* <img src=***REMOVED***logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute=***REMOVED***this.state.timerMinute}
               updateTimer=***REMOVED***this.updateTimer}
@@ -112,10 +135,32 @@ class App extends React.Component ***REMOVED***
             </section>
           </p>
           POMODORO TIMER.
+          </p>
+            <ClearBtn/>
+          <button onClick=***REMOVED***this.goFull}>
+          Go Fullscreen
+        </button>
+        </header>
+        </Fullscreen>
+          <p>POMODORO TIMER</p>
         </header>
       </div>
     )
   }
+  render()***REMOVED***
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>
+          <h2>
+            <Timer timerMinute=***REMOVED***this.state.timerMinute}/>
+          </h2>
+        </p>
+        <p>POMODORO TIMER. </p>
+      </header>
+    </div>
+  );
+}
 }
 
 export default App
