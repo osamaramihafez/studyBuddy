@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Task = require('../models/task');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
 
 //Output all tasks
 router.get('/', auth, (req, res) => {
@@ -45,6 +45,7 @@ router.post('/create/task', auth, async (req, res, next) => {
         res.status(400).send(e);
     }
 });
+
 //An entry for a post request to delete a task
 router.delete('/delete/task/:_id', auth, async (req, res, next) => {
     const _id = req.params.id;
