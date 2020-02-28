@@ -26,6 +26,7 @@ router.post('/user/login', async (req, res) => {
         const tk = await user.genJWT();
         res.send({user, tk})
     } catch (error) {
+        console.log(error);
         res.status(400).send();
     }
     

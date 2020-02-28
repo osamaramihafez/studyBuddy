@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     lowercase: true,
     trim: true,
+    unique: true
   },
   password: {
     type: String,
@@ -50,16 +51,12 @@ userSchema.pre("save", async function (next) {
   }
   next();
 });
-userSchema.statics.validatePass = async (pw) => {
-  const user = this;
-  const isValid = await bcrypt.compare(pw, user.password)
-  return isValid;
-}
 
 userSchema.statics.login = async (email, password) => {
-  const user = await this.findOne({ email });
+  const user = await User.findOne({ email });
+  console.log(user);
   if (!user) throw new Error("Unable to login");
-  const isValid = await user.validatePass(password);
+  const isValid = await bcrypt.compare(password, user.password)
   if (!isValid) throw new Error("Unable to login");
   else return user;
 }

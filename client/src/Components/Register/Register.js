@@ -21,9 +21,34 @@ class RegistrationForm extends React.Component {
     updateEmail(email) {
         this.setState({ email });
     }
+    
+    setHeader() {
+        Headers['Authorization'] = 'Bearer ' + this.getToken();
+    }
+
+    handleLogin(e, state) {
+        e.preventDefault();
+        console.log(state);
+        axios.post("http://localhost:8000/user/login", state)
+        .then(res => {
+          console.log(res.data.tk);
+          localStorage.setItem('id_token', res.data.tk);
+          this.setHeader();
+        })
+        .catch(res => console.log(res.tk));
+    }
 
     handleRegistration(e, state) {
         e.preventDefault();
+        console.log(state);
+        axios.post("http://localhost:8000/create/user", state)
+        .then(res => {
+            console.log(res.tk);
+        })
+        .catch(res => {
+            console.log(res.tk);
+        });
+    
     }
     render() {
         return (
