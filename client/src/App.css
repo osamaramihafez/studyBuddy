@@ -61,10 +61,6 @@ h4***REMOVED***
   transition-duration: 0.4s;
 }
 
-.start***REMOVED***
-
-}
-
 .stop***REMOVED***
   background-color: white; 
   color: black; 
@@ -93,4 +89,18 @@ h4***REMOVED***
 .start:hover ***REMOVED***
   background-color: #008000;
   color: white;
+}
+
+.interval-container ***REMOVED***
+  display: flex;
+  justify-content: center;
+}
+
+.counter-btn, .counter-btn ***REMOVED***
+  text-align: center;
+  text-decoration: none;
+  display: ruby-base-container;
+  font-size: 10px;
+  margin: 4px ;
+  transition-duration: 0.4s;
 }

@@ -18,7 +18,6 @@ class Timer extends React.Component ***REMOVED***
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
 
-
     this.decrease = this.decrease.bind(this);
   }
 
@@ -38,19 +37,21 @@ class Timer extends React.Component ***REMOVED***
         disabled: true,
         sound: false
     })
+    this.props.countdown(true);
   }
 
   stop()***REMOVED***
       clearInterval(this.state.beginning)
       this.setState(***REMOVED***
         disabled: false,
-
     })
+    this.props.countdown(false);
   }
 
   reset()***REMOVED***
       this.stop();
       this.props.resetTimer()
+      this.props.countdown(false);
       this.setState(***REMOVED***
         seconds: 0,
         sound: true
@@ -61,9 +62,12 @@ class Timer extends React.Component ***REMOVED***
     switch (this.state.seconds) ***REMOVED***
       case 0:
           if ( this.props.timerMinute === 0 && this.state.seconds === 0 )***REMOVED***
+           
               this.beep.play();
+              this.props.timerMinute = this.props.break;
               break;
-          }
+            }
+           
         this.props.updateTimer();
         this.setState(***REMOVED***
           seconds: 59
@@ -82,7 +86,7 @@ class Timer extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       <section>
-        <section className="timer-design">
+        <section>
           <span className="timer">***REMOVED***this.props.timerMinute}</span>
           <span className="timer">:</span>
           <span className="timer">
