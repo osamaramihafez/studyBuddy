@@ -15,12 +15,15 @@ We plan to accomplish the betterment of the user experience by:
 3. Being able to drag and drop tasks between lists
 
 Lastly, we  want only authenticated users to be able to use our application, so we will be hiding all elements behind a login and registration wall
+
 ---------------------------------
 
 ## Spikes
 
 1. None of us are designers, so coming up with a colour scheme that is accessible for users as well as attractive will be slightly out of our comfort zone.
 2. We are all still a little new to our front-end technology (React), so achieving a cohesive user experience may take a little more work than usual.
+
+---------------------------------
 
 ## Team Capacity
 

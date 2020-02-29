@@ -21,6 +21,8 @@
 1. Midterms and assignments from other courses that are due right after/during the reading week break.
 2. We are still very new to the stack (MERN), so working with it takes longer, especially when we run into errors.
 
+---------------------------------
+
 ## Team Capacity
 
 For this sprint, we esimated our team capacity to be at around the previous projected team capactiy which was 72.
