@@ -11,7 +11,6 @@ const Container = styled.div`
 class SessionList extends React.Component {
   state = initialData;
 
-
   onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
 
