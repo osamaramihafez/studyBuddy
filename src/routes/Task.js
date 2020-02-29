@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Task = require('../models/task');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
 
 //Output all tasks
 router.get('/', auth, (req, res) => ***REMOVED***
@@ -23,6 +23,8 @@ router.post('/task/update/:id', auth, (req, res) => ***REMOVED***
             task.title = req.body.title;
             task.description = req.body.description;
             task.completed = req.body.completed;
+            task.hyperlink = req.body.hyperlink;
+            task.img = req.body.img;
             task.save()
                 .then(() => res.json('Task Updated!'))
                 .catch(err => res.status(400).json('Error: ' + err));
@@ -43,6 +45,7 @@ router.post('/create/task', auth, async (req, res, next) => ***REMOVED***
         res.status(400).send(e);
     }
 ***REMOVED***
+
 //An entry for a post request to delete a task
 router.delete('/delete/task/:_id', auth, async (req, res, next) => ***REMOVED***
     const _id = req.params.id;
@@ -56,21 +59,6 @@ router.delete('/delete/task/:_id', auth, async (req, res, next) => ***REMOVED***
     } catch (e) ***REMOVED***
         res.status(500).send(e);
     }
-***REMOVED***
-
-//Gonna use this one to add a hyperlink
-router.route('/add/task/hyperlink/:id').post((req, res) => ***REMOVED***
-    task.findById(req.params.id)
-    .then(task => ***REMOVED***
-        task.title = req.body.title;
-        task.description = req.body.description;
-        task.completed = req.body.completed;
-        tasl.hyperlink = req.body.hyperlink;
-        task.save()
-        .then(() => res.json('Task Updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
 ***REMOVED***
 
 module.exports = router

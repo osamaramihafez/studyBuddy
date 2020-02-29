@@ -18,8 +18,11 @@ const taskSchema = new mongoose.Schema(***REMOVED***
         type: String,
         required: false,
     },
-    timestamps: Boolean
-
+  img: ***REMOVED***
+    data: Buffer,
+    contentType: String
+  },
+  timestamps: true
 })
 
 const Task = mongoose.model("Task", taskSchema);
