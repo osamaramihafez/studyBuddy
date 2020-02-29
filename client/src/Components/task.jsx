@@ -13,6 +13,22 @@ const Container = styled.div`
 
 
 export default class Task extends React.Component {
+
+  updateTask(e, state) {
+    //This will allow the user to update the task within the actual database.
+    //This cannot be completed until we allow the user physically manipulate how the task looks
+    // i.e. Add an image, add a hyperlink, 
+    e.preventDefault();
+    console.log(state);
+    axios.post("http://localhost:8000/task/update", state)
+    .then(res => {
+      console.log(res.data.tk);
+      localStorage.setItem('id_token', res.data.tk);
+      this.setHeader();
+    })
+    .catch(res => console.log(res.tk));
+  }
+
   render() {
     return (
       <Draggable draggableId={this.props.task.id} index={this.props.index}>
