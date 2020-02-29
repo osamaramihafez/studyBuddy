@@ -11,7 +11,6 @@ const Container = styled.div`
 class SessionList extends React.Component ***REMOVED***
   state = initialData;
 
-
   onDragEnd = result => ***REMOVED***
     const ***REMOVED*** destination, source, draggableId, type } = result;
 
