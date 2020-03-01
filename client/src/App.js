@@ -1,12 +1,12 @@
 import React from 'react'
 import logo from './Components/logo.svg'
 import './App.css'
-import Timer from './Components/Timer'
-import Break from './Components/Break'
-import Session from './Components/Session'
-import ClearBtn from './Components/ClearDoneTasks'
+import Timer from './Components/Timer/Timer'
+import Break from './Components/Break/Break'
+import Session from './Components/List/Session'
+import ClearBtn from './Components/ClearButton/ClearDoneTasks'
 import LoginForm from './Components/Login/Login'
-import SessionList from './Components/SessionList';
+import SessionList from './Components/List/SessionList';
 
 class App extends React.Component {
   constructor() {
@@ -42,7 +42,6 @@ class App extends React.Component {
       counter: boolean
     })
   }
-
   resetTimer() {
     this.setState({
       timerMinute: 25,
@@ -50,9 +49,7 @@ class App extends React.Component {
       session: 25,
     })
   }
-  
   changeBreak(breaktwo) {
-
       if (this.counter === true){
         this.setState({
           break: breaktwo
@@ -66,10 +63,6 @@ class App extends React.Component {
           timerMinute: breaktwo
         })
       }
-    
-     
-    
-    
   }
 
   changeSession(newsession) {
@@ -93,21 +86,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-          <img src={logo} className="App-logo" alt="logo" /> 
-          <p>
-            <Timer
-              timerMinute={this.state.timerMinute}
-              updateTimer={this.updateTimer}
-              resetTimer={this.resetTimer}
-            />
-            <ClearBtn/>
-          </p>
-          POMODORO TIMER.
-          <button onClick={this.goFull}>
-          Go Fullscreen
-        </button>
-      <goFull></goFull>
-          <img src={logo} className="App-logo" alt="logo" /> 
           <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
           {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
@@ -117,6 +95,7 @@ class App extends React.Component {
               countdown={this.countdown}
               break = {this.break}
             />
+              <ClearBtn/>
             <section className="interval-container">
               <Break
               changeBreak = {this.changeBreak}
