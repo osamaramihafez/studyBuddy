@@ -1,12 +1,12 @@
 import React from 'react'
 import logo from './Components/logo.svg'
 import './App.css'
-import Timer from './Components/Timer'
-import Break from './Components/Break'
-import Session from './Components/Session'
-import ClearBtn from './Components/ClearDoneTasks'
+import Timer from './Components/Timer/Timer'
+import Break from './Components/Break/Break'
+import Session from './Components/List/Session'
+import ClearBtn from './Components/ClearButton/ClearDoneTasks'
 import LoginForm from './Components/Login/Login'
-import SessionList from './Components/SessionList';
+import SessionList from './Components/List/SessionList';
 
 class App extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -42,7 +42,6 @@ class App extends React.Component ***REMOVED***
       counter: boolean
     })
   }
-
   resetTimer() ***REMOVED***
     this.setState(***REMOVED***
       timerMinute: 25,
@@ -50,9 +49,7 @@ class App extends React.Component ***REMOVED***
       session: 25,
     })
   }
-  
   changeBreak(breaktwo) ***REMOVED***
-
       if (this.counter === true)***REMOVED***
         this.setState(***REMOVED***
           break: breaktwo
@@ -66,10 +63,6 @@ class App extends React.Component ***REMOVED***
           timerMinute: breaktwo
         })
       }
-    
-     
-    
-    
   }
 
   changeSession(newsession) ***REMOVED***
@@ -93,21 +86,6 @@ class App extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       <div className="App">
-          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> 
-          <p>
-            <Timer
-              timerMinute=***REMOVED***this.state.timerMinute}
-              updateTimer=***REMOVED***this.updateTimer}
-              resetTimer=***REMOVED***this.resetTimer}
-            />
-            <ClearBtn/>
-          </p>
-          POMODORO TIMER.
-          <button onClick=***REMOVED***this.goFull}>
-          Go Fullscreen
-        </button>
-      <goFull></goFull>
-          <img src=***REMOVED***logo} className="App-logo" alt="logo" /> 
           <LoginForm loggedIn=***REMOVED***this.state.loggedIn}></LoginForm>
           ***REMOVED***/* <img src=***REMOVED***logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
@@ -117,6 +95,7 @@ class App extends React.Component ***REMOVED***
               countdown=***REMOVED***this.countdown}
               break = ***REMOVED***this.break}
             />
+              <ClearBtn/>
             <section className="interval-container">
               <Break
               changeBreak = ***REMOVED***this.changeBreak}
