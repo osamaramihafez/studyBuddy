@@ -35,6 +35,7 @@ router.post('/task/update/:id', auth, (req, res) => ***REMOVED***
 
 //An entry for a post request to create a task
 router.post('/create/task', auth, async (req, res, next) => ***REMOVED***
+    console.log("HERE");
     const task = new Task(***REMOVED***
         ...req.body,
     })

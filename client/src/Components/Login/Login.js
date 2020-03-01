@@ -1,17 +1,21 @@
 import React from "react";
-import ***REMOVED*** FormGroup, FormControl } from "react-bootstrap";
-import Button from 'react-bootstrap/Button'
+import ***REMOVED*** Button, Form, Spinner, Container, Row } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
 import decode from 'jwt-decode';
+import Cookies from 'universal-cookie';
 
 class LoginForm extends React.Component ***REMOVED***
   
   state = ***REMOVED***
     email: "",
     password: "",
+    buttonText: "Login"
   }
 
+  updateText(buttonText) ***REMOVED***
+    this.setState(***REMOVED***buttonText})
+  }
   updatePassword(password) ***REMOVED***
     this.setState(***REMOVED*** password ***REMOVED***
   }
@@ -21,7 +25,9 @@ class LoginForm extends React.Component ***REMOVED***
   }
 
   getToken() ***REMOVED***
-    return localStorage.getItem('id_token')
+    const cookies = new Cookies();
+    const cookie = cookies.get('Authorization');
+    return cookie;
   }
 
   isLoggedIn() ***REMOVED***
@@ -37,43 +43,61 @@ class LoginForm extends React.Component ***REMOVED***
     }
   }
 
-  setHeader() ***REMOVED***
-    Headers['Authorization'] = 'Bearer ' + this.getToken();
+  sendReq = async () =>  ***REMOVED***
+    const post = ***REMOVED***
+      title: "Test",
+      description: "test123"
+    }
+    try ***REMOVED***
+      const res = await axios.post('http://localhost:8000/create/task', post, ***REMOVED***
+        headers: ***REMOVED***
+          Authorization: this.getToken()
+        }
+      })
+      console.log(res);
+    } catch (error) ***REMOVED***
+      console.log(error);
+    }
   }
   async handleLogin(e, state) ***REMOVED***
     e.preventDefault();
     console.log(state);
-    axios.post("http://localhost:8000/user/login", state)
-    .then(res => ***REMOVED***
-      console.log(res.data.tk);
-      localStorage.setItem('id_token', res.data.tk);
-      this.setHeader();
-    })
-    .catch(res => console.log(res.tk));
+    try ***REMOVED***
+      const res = await axios.post("http://localhost:8000/user/login", state)
+      const cookies = new Cookies();
+      cookies.set('Authorization', 'Bearer ' + res.data.tk);
+    } catch (error) ***REMOVED***
+      console.log(error);
+    }
   }
   render() ***REMOVED***
     return (
-      <div className="Login">
-        <h1>Welcome to StudyBuddy!</h1>
-        <form onSubmit=***REMOVED***e => this.handleLogin(e, this.state)}>
-          <FormGroup controlId="email" className="emailInp">
-            <FormControl
-              autoFocus
+      <Container className="Login">
+        <Form onSubmit=***REMOVED***e => this.handleLogin(e, this.state)}>
+            <Form.Group controlId="email">
+            <Form.Control
               type="email"
               onChange=***REMOVED***e => this.updateEmail(e.target.value)}
-              placeholder="email"
+              placeholder="Email"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
             />
-          </FormGroup>
-          <FormGroup controlId="password" className="pwdInp">
-            <FormControl
+        </Form.Group>
+          <Form.Group controlId="formBasicPassword" className="pwdInp">
+            <Form.Control
               onChange=***REMOVED***e => this.updatePassword(e.target.value)}
               type="password"
               placeholder="password"
             />
-          </FormGroup>
-          <Button variant="outline-secondary" type="submit" className="login-button">Submit</Button>
-        </form>
-      </div >
+        <br/>
+          <Button className="loginButton" variant="success" type="submit" className="login-button">
+            Login
+           </Button>
+          </Form.Group>
+          <Row>
+          </Row>
+        </Form>
+      </Container>
     );
   }
 }
