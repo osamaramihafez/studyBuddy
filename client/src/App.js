@@ -1,12 +1,12 @@
 import React from 'react'
-import logo from './logo.svg'
-import '../App.css'
-import Timer from './Timer'
-import Break from './Break'
-import Session from './Session'
-import ClearBtn from './ClearDoneTasks'
-import LoginForm from './Login/Login'
-import SessionList from './SessionList';
+import logo from './Components/logo.svg'
+import './App.css'
+import Timer from './Components/Timer'
+import Break from './Components/Break'
+import Session from './Components/Session'
+import ClearBtn from './Components/ClearDoneTasks'
+import LoginForm from './Components/Login/Login'
+import SessionList from './Components/SessionList';
 
 class App extends React.Component {
   constructor() {
@@ -93,7 +93,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" /> 
           <p>
             <Timer
@@ -107,13 +106,8 @@ class App extends React.Component {
           <button onClick={this.goFull}>
           Go Fullscreen
         </button>
-        </header>
-        <Fullscreen
-          enabled={this.state.isFull}
-          onChange={isFull => this.setState({isFull})}>
-                    <header className="App-header">
+      <goFull></goFull>
           <img src={logo} className="App-logo" alt="logo" /> 
-          <p>
           <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
           {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
@@ -124,43 +118,23 @@ class App extends React.Component {
               break = {this.break}
             />
             <section className="interval-container">
-            <Break
-            changeBreak = {this.changeBreak}
-            break = {this.state.break}
-            />
-            <Session
-            changeSession = {this.changeSession}
-            session = {this.state.session}
-            />
+              <Break
+              changeBreak = {this.changeBreak}
+              break = {this.state.break}
+              />
+              <Session
+              changeSession = {this.changeSession}
+              session = {this.state.session}
+              />
             </section>
-          </p>
-          POMODORO TIMER.
-          </p>
             <ClearBtn/>
-          <button onClick={this.goFull}>
+          <button 
+            onClick={this.goFull}>
           Go Fullscreen
         </button>
-        </header>
-        </Fullscreen>
-          <p>POMODORO TIMER</p>
-        </header>
-      </div>
+        </div>
     )
   }
-  render(){
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          <h2>
-            <Timer timerMinute={this.state.timerMinute}/>
-          </h2>
-        </p>
-        <p>POMODORO TIMER. </p>
-      </header>
-    </div>
-  );
-}
 }
 
 export default App
