@@ -34,14 +34,7 @@ function Break(props) ***REMOVED***
             className="counter-btn">+</button>
           </section>
         </section>
-      )
-
-
-
-
-
-
-
+    )
 }
 
 
