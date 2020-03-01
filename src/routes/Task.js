@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Task = require('../models/task');
+const Task = require('../models/Task');
 const auth = require('../middleware/auth');
 
 //Output all tasks

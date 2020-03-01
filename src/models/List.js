@@ -21,7 +21,6 @@ const listSchema = new mongoose.Schema({
                 type: Boolean,
                 required: true
             },
-            timestamps: true
         }
     }],
 })
