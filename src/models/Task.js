@@ -22,7 +22,6 @@ const taskSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
-  timestamps: true
 })
 
 const Task = mongoose.model("Task", taskSchema);
