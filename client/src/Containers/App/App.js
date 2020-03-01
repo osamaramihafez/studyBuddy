@@ -1,12 +1,13 @@
 import React from 'react'
-import logo from './Components/logo.svg'
+import Cookies from 'universal-cookie'
+import decode from 'jwt-decode'
+
 import './App.css'
-import Timer from './Components/Timer/Timer'
-import Break from './Components/Break/Break'
-import Session from './Components/List/Session'
-import ClearBtn from './Components/ClearButton/ClearDoneTasks'
-import LoginForm from './Components/Login/Login'
-import SessionList from './Components/List/SessionList';
+import Timer from '../../Components/Timer/Timer'
+import Break from '../../Components/Break/Break'
+import Session from '../../Components/List/Session'
+import ClearBtn from '../../Components/ClearButton/ClearDoneTasks'
+import SessionList from '../../Components/List/SessionList';
 
 class App extends React.Component {
   constructor() {
@@ -82,12 +83,29 @@ class App extends React.Component {
     }
   }
 
+  getToken() {
+    const cookies = new Cookies();
+    const cookie = cookies.get('Authorization');
+    return cookie;
+  }
+
+  isLoggedIn() {
+    try {
+      const tk = this.getToken();
+      const decoded = decode(tk);
+      if(decoded.exp < Date.now() / 1000) {
+          return false;
+        }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 
   render() {
+    console.log(this.getToken());
     return (
       <div className="App">
-          <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
-          {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute={this.state.timerMinute}
               updateTimer={this.updateTimer}

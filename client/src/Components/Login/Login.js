@@ -1,17 +1,21 @@
 import React from "react";
-import { FormGroup, FormControl } from "react-bootstrap";
-import Button from 'react-bootstrap/Button'
+import { Button, Form, Spinner, Container, Row } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
 import decode from 'jwt-decode';
+import Cookies from 'universal-cookie';
 
 class LoginForm extends React.Component {
   
   state = {
     email: "",
     password: "",
+    buttonText: "Login"
   }
 
+  updateText(buttonText) {
+    this.setState({buttonText})
+  }
   updatePassword(password) {
     this.setState({ password });
   }
@@ -21,7 +25,9 @@ class LoginForm extends React.Component {
   }
 
   getToken() {
-    return localStorage.getItem('id_token')
+    const cookies = new Cookies();
+    const cookie = cookies.get('Authorization');
+    return cookie;
   }
 
   isLoggedIn() {
@@ -37,43 +43,61 @@ class LoginForm extends React.Component {
     }
   }
 
-  setHeader() {
-    Headers['Authorization'] = 'Bearer ' + this.getToken();
+  sendReq = async () =>  {
+    const post = {
+      title: "Test",
+      description: "test123"
+    }
+    try {
+      const res = await axios.post('http://localhost:8000/create/task', post, {
+        headers: {
+          Authorization: this.getToken()
+        }
+      })
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   }
   async handleLogin(e, state) {
     e.preventDefault();
     console.log(state);
-    axios.post("http://localhost:8000/user/login", state)
-    .then(res => {
-      console.log(res.data.tk);
-      localStorage.setItem('id_token', res.data.tk);
-      this.setHeader();
-    })
-    .catch(res => console.log(res.tk));
+    try {
+      const res = await axios.post("http://localhost:8000/user/login", state)
+      const cookies = new Cookies();
+      cookies.set('Authorization', 'Bearer ' + res.data.tk);
+    } catch (error) {
+      console.log(error);
+    }
   }
   render() {
     return (
-      <div className="Login">
-        <h1>Welcome to StudyBuddy!</h1>
-        <form onSubmit={e => this.handleLogin(e, this.state)}>
-          <FormGroup controlId="email" className="emailInp">
-            <FormControl
-              autoFocus
+      <Container className="Login">
+        <Form onSubmit={e => this.handleLogin(e, this.state)}>
+            <Form.Group controlId="email">
+            <Form.Control
               type="email"
               onChange={e => this.updateEmail(e.target.value)}
-              placeholder="email"
+              placeholder="Email"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
             />
-          </FormGroup>
-          <FormGroup controlId="password" className="pwdInp">
-            <FormControl
+        </Form.Group>
+          <Form.Group controlId="formBasicPassword" className="pwdInp">
+            <Form.Control
               onChange={e => this.updatePassword(e.target.value)}
               type="password"
               placeholder="password"
             />
-          </FormGroup>
-          <Button variant="outline-secondary" type="submit" className="login-button">Submit</Button>
-        </form>
-      </div >
+        <br/>
+          <Button className="loginButton" variant="success" type="submit" className="login-button">
+            Login
+           </Button>
+          </Form.Group>
+          <Row>
+          </Row>
+        </Form>
+      </Container>
     );
   }
 }
