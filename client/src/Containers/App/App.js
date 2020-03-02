@@ -1,137 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
-
+import Auth from '../../HOC/Auth'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css'
-import Timer from '../../Components/Timer/Timer'
-import Break from '../../Components/Break/Break'
-import Session from '../../Components/List/Session'
-import ClearBtn from '../../Components/ClearButton/ClearDoneTasks'
-import SessionList from '../../Components/List/SessionList';
+import AuthPage from '../AuthPage/AuthPage'
+import Dashboard from '../../Components/Dashboard/Dashboard';
 
-class App extends React.Component {
-  constructor() {
-    super()
+const App = () => {
+ 
+  const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => Auth.getAuth() ? 
+      (<Component {...props} />) : 
+      (<Redirect to={{pathname: "/login"}}/>)}/>);
 
-    this.state = {
-      loggedIn: false,
-      timerMinute: 25,
-      break: 5,
-      session: 25,
-      flipper: true,
-      counter : false
-    }
-    this.updateTimer = this.updateTimer.bind(this);
-    this.resetTimer = this.resetTimer.bind(this);
-    this.changeBreak = this.changeBreak.bind(this);
-    this.changeSession = this.changeSession.bind(this);
-    this.countdown = this.countdown.bind(this);
-  }
-
-
-  updateTimer() {
-    this.setState( (prevState) => {
-      return {
-        timerMinute: prevState.timerMinute - 1
-      }
-    })
-    
-  }
-
-  countdown(boolean) {
-    this.setState({
-      counter: boolean
-    })
-  }
-  resetTimer() {
-    this.setState({
-      timerMinute: 25,
-      break: 5,
-      session: 25,
-    })
-  }
-  changeBreak(breaktwo) {
-      if (this.counter === true){
-        this.setState({
-          break: breaktwo
-        })
-      }
-      else{
-        this.setState({
-          counter: false,
-          flipper: false,
-          break: breaktwo,
-          timerMinute: breaktwo
-        })
-      }
-  }
-
-  changeSession(newsession) {
-    
-    if (this.counter === true){
-      this.setState({
-        session: newsession
-      })
-    }
-    else{
-      this.setState({
-        counter: false,
-        flipper: true,
-        session: newsession,
-        timerMinute: newsession
-      })
-    }
-  }
-
-  getToken() {
-    const cookies = new Cookies();
-    const cookie = cookies.get('Authorization');
-    return cookie;
-  }
-
-  isLoggedIn() {
-    try {
-      const tk = this.getToken();
-      const decoded = decode(tk);
-      if(decoded.exp < Date.now() / 1000) {
-          return false;
-        }
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  render() {
-    console.log(this.getToken());
     return (
       <div className="App">
-            <Timer
-              timerMinute={this.state.timerMinute}
-              updateTimer={this.updateTimer}
-              resetTimer={this.resetTimer}
-              countdown={this.countdown}
-              break = {this.break}
-            />
-              <ClearBtn/>
-            <section className="interval-container">
-              <Break
-              changeBreak = {this.changeBreak}
-              break = {this.state.break}
-              />
-              <Session
-              changeSession = {this.changeSession}
-              session = {this.state.session}
-              />
-            </section>
-            <ClearBtn/>
-          <button 
-            onClick={this.goFull}>
-          Go Fullscreen
-        </button>
+        <Router>
+          <Route exact path='/login' component={AuthPage} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        </Router>
         </div>
     )
   }
-}
 
-export default App
+export default App;

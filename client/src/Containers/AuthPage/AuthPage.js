@@ -1,14 +1,16 @@
 import React from 'react'
 import './AuthPage.css'
 import Popup from '../../Components/Popup/Popup';
-import LoginForm from '../../Components/Login/Login';
 
 class AuthPage extends React.Component {
-
+  constructor(props) {
+    super();
+    this.user = props.user;
+  }
   render() {
     return (
       <div className="container">
-          <Popup></Popup>
+          <Popup loginHandler={this.props.loginHandler}></Popup>
         </div>
     )
   }

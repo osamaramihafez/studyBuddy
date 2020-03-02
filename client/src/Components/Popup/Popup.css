@@ -33,7 +33,6 @@
     text-align: center;
     color: black;
     font-size: 20px;
-    /* padding-bottom: 5px; */
 }
 
 .special-link {
@@ -41,7 +40,6 @@
     color: rgb(151, 151, 151);
     text-decoration: none;
     margin: auto;
-    padding-left: 20px;
 }
 
 .special-link:hover { 

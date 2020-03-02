@@ -6,6 +6,10 @@ import decode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 
 class LoginForm extends React.Component {
+
+  constructor(props) {
+    super();
+  }
   
   state = {
     email: "",
@@ -90,7 +94,7 @@ class LoginForm extends React.Component {
               placeholder="password"
             />
         <br/>
-          <Button className="loginButton" variant="success" type="submit" className="login-button">
+          <Button className="loginButton" variant="success" type="submit" className="login-button" onClick={this.props.handler}>
             Login
            </Button>
           </Form.Group>

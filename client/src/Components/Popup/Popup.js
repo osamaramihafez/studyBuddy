@@ -5,6 +5,10 @@ import {Container} from 'reactstrap'
 import './Popup.css'
 
 class Popup extends React.Component {
+
+  constructor(props) {
+    super();
+  }
   render() {
     return (
       <Container className="background">
@@ -12,7 +16,7 @@ class Popup extends React.Component {
           <h1 className="title">Welcome</h1>
           <h2 className="subtitle">StudyBuddy</h2>
           <br />
-          <LoginForm className="loginPage"></LoginForm>
+          <LoginForm handler={this.props.loginHandler} className="loginPage"></LoginForm>
           <a href="/register" className="special-link">Not registered? Register here</a>
         </div>
       </Container>
