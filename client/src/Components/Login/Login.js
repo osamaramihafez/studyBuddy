@@ -4,11 +4,13 @@ import "./Login.css";
 import axios from 'axios';
 import decode from 'jwt-decode';
 import Cookies from 'universal-cookie';
+import Auth from '../../HOC/Auth';
 
 class LoginForm extends React.Component {
 
   constructor(props) {
     super();
+    // this.handleLogin = this.login.bind(this);
   }
   
   state = {
@@ -70,6 +72,7 @@ class LoginForm extends React.Component {
       const res = await axios.post("http://localhost:8000/user/login", state)
       const cookies = new Cookies();
       cookies.set('Authorization', 'Bearer ' + res.data.tk);
+      Auth.authenticate();
     } catch (error) {
       console.log(error);
     }

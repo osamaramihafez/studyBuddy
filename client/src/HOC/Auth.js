@@ -1,6 +1,3 @@
-import decode from 'jwt-decode';
-import Cookies from 'universal-cookie';
-
 const Auth = {
     isAuthenticated: false,
     authenticate() {
