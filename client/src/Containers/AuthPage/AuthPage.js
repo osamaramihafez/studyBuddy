@@ -4,7 +4,7 @@ import Popup from '../../Components/Popup/Popup';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Button, Form, Spinner, Container, Row, Alert } from "react-bootstrap";
-
+import LoginForm from '../../Components/Login/Login.js'
 
 class AuthPage extends React.Component {
   constructor() {
@@ -18,15 +18,16 @@ class AuthPage extends React.Component {
     this.updateEmail = this.updateEmail.bind(this);
   }
 
-  updatePassword(password) {
-    this.setState({ password: password.target.value });
+  updatePassword(e) {
+    this.setState({ password: e.target.value });
   }
 
-  updateEmail(email) {
-    this.setState({ email: email.target.value });
+  updateEmail(e) {
+    this.setState({ email: e.target.value });
 
   }
-  async handleLogin() {
+  async handleLogin(e) {
+    e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8000/user/login", {
         email: this.state.email,
@@ -41,11 +42,11 @@ class AuthPage extends React.Component {
   render() {
     return (
       <div className="container">
-        <Popup
+        <LoginForm
           loginHandler={this.handleLogin}
           updateEmail={this.updateEmail}
           updatePassword={this.updatePassword}>
-        </Popup>
+        </LoginForm>
       </div >
     )
   }
