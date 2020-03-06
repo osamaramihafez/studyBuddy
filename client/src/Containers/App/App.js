@@ -1,8 +1,8 @@
 import React from 'react'
 import Auth from '../../HOC/Auth'
 import ***REMOVED*** BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import './App.css'
 import AuthPage from '../AuthPage/AuthPage'
+import RegistrationFrom from '../../Components/Register/Register.js'
 import Dashboard from '../../Components/Dashboard/Dashboard';
 
 const App = () => ***REMOVED***
@@ -16,7 +16,9 @@ const App = () => ***REMOVED***
     <div className="App">
       <Router>
         <Route exact path='/login' component=***REMOVED***AuthPage} />
+        <Route exact path='/register' component=***REMOVED***RegistrationFrom} />
         <PrivateRoute exact path="/dashboard" component=***REMOVED***Dashboard} />
+        <PrivateRoute exact path="/" component=***REMOVED***Dashboard} />
       </Router>
     </div>
   )

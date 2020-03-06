@@ -1,5 +1,4 @@
 body ***REMOVED***
-    background: #EC6F66; 
-    background: -webkit-linear-gradient(to top, #F3A183, #EC6F66);
-    background: linear-gradient(to top, #F3A183, #EC6F66);
+    background-color: #FAACA8;
+    background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);    
 }
