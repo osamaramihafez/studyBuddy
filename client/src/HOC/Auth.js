@@ -1,5 +1,5 @@
-import decode from 'jwt-decode';
 import Cookies from 'universal-cookie';
+import decode from 'jwt-decode';
 
 const Auth = {
     isAuthenticated: false,

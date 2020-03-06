@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Form, Spinner, Container, Row, Alert } from "react-bootstrap";
+import { Button, Form, Container } from "react-bootstrap";
 import "./Login.css";
-
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -11,13 +10,6 @@ class LoginForm extends React.Component {
   render() {
     return (
       <Container className="Login">
-        {/* <Alert variant="success">Login successful! Please wait while we redirect you
-          <Spinner
-            animation="border"
-            role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner> 
-        </Alert> */}
         <Form onSubmit={this.props.loginHandler}>
           <Form.Group controlId="email">
             <Form.Control
