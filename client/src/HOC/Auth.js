@@ -3,14 +3,31 @@ import Cookies from 'universal-cookie';
 
 const Auth = {
     isAuthenticated: false,
-    authenticate() {
-        this.isAuthenticated = true;
+    getToken() {
+        const cookies = new Cookies();
+        const cookie = cookies.get('Authorization');
+        return cookie;
     },
-    signout() {
+    authenticate() {
+        try {
+            const tk = this.getToken();
+            const decoded = decode(tk);
+            console.log(decoded.iat);
+            console.log(Date.now() / 1000);
+
+            if (decoded.iat < Date.now() / 1000) {
+                return this.isAuthenticated = true;
+
+            }
+        } catch (error) {
+            return this.isAuthenticated = false;
+        }
+    },
+    logout() {
         this.isAuthenticated = false;
     },
     getAuth() {
         return this.isAuthenticated;
     }
 };
-    export default Auth;
+export default Auth;

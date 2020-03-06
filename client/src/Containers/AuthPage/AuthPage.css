@@ -1,3 +1,5 @@
 body {
-    background-color: aliceblue;
+    background: #EC6F66; 
+    background: -webkit-linear-gradient(to top, #F3A183, #EC6F66);
+    background: linear-gradient(to top, #F3A183, #EC6F66);
 }
