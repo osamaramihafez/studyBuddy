@@ -1,85 +1,123 @@
 import React from "react";
-import { Form, FormGroup, FormControl, Container } from "react-bootstrap";
-import Button from 'react-bootstrap/Button'
+import { Form, Container, Button, OverlayTrigger, Popover, Alert, Overlay } from "react-bootstrap";
 import axios from 'axios'
+import Cookies from 'universal-cookie';
 import "./Register.css";
 
 class RegistrationForm extends React.Component {
-    state = {
-        name: "",
-        email: "",
-        password: ""
+    constructor() {
+        super();
+        this.state = {
+            name: "",
+            email: "",
+            password: "",
+            valid: false,
+            alert: <div></div>
+        }
+        this.handleRegistration = this.handleRegistration.bind(this);
+        this.updatePassword = this.updatePassword.bind(this);
+        this.updateEmail = this.updateEmail.bind(this);
+        this.updateName = this.updateName.bind(this);
+        this.validateForm = this.validateForm.bind(this);
+
     }
 
     validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
+        var emailReg = /\S+@\S+/;
+        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
+        // console.log(re.test(this.state.email));
+        if ((this.state.name.length > 0 && emailReg.test(this.state.email)) && (passReg.test(this.state.password))) this.setState({ valid: true });
     }
 
-    updatePassword(password) {
-        this.setState({ password });
+    updateName(e) {
+        this.setState({ name: e.target.value });
+        this.validateForm();
     }
 
-    updateEmail(email) {
-        this.setState({ email });
+    updatePassword(e) {
+        this.setState({ password: e.target.value });
+        this.validateForm();
     }
 
-    setHeader() {
-        Headers['Authorization'] = 'Bearer ' + this.getToken();
+    updateEmail(e) {
+        this.setState({ email: e.target.value });
+        this.validateForm();
     }
 
-    handleLogin(e, state) {
+    handleRegistration(e) {
         e.preventDefault();
-        console.log(state);
-        axios.post("http://localhost:8000/user/login", state)
+        console.log(this.state);
+        axios.post("http://localhost:8000/create/user", {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        })
             .then(res => {
-                console.log(res.data.tk);
-                localStorage.setItem('id_token', res.data.tk);
-                this.setHeader();
-            })
-            .catch(res => console.log(res.tk));
-    }
-
-    handleRegistration(e, state) {
-        e.preventDefault();
-        console.log(state);
-        axios.post("http://localhost:8000/create/user", state)
-            .then(res => {
-                console.log(res.tk);
+                const cookies = new Cookies();
+                cookies.set('Authorization', 'Bearer ' + res.data.tk);
+                this.props.history.push('/dashboard');
             })
             .catch(res => {
-                console.log(res.tk);
+                this.setState({
+                    alert: (
+                        <Alert
+                            variant="danger">Unable to Register! There is an account that exists with that email
+                            </Alert>)
+                })
             });
 
     }
     render() {
         return (
-            <Container className="popup">
-                <h3 className="subtitle">Registration</h3>
-                <br></br>
-                <Form onSubmit={e => this.handleRegistration(e, this.state)}>
-                    <Form.Group controlId="name" className="inp-top">
-                        <Form.Control
-                            autoFocus
-                            type="text"
-                            onChange={e => this.updateEmail(e.target.value)}
-                            placeholder="name"
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="email" className="inp-mid">
-                        <Form.Control
-                            type="email"
-                            onChange={e => this.updateEmail(e.target.value)}
-                            placeholder="email"
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="password" className="inp-mid">
-                        <Form.Control
-                            type="password"
-                            onChange={e => this.updatePassword(e.target.value)}
-                            placeholder="password"
-                        />
-                    </Form.Group>
-                </Form>
+            <Container className="left-side-reg">
+                <Container className="inner-form">
+                    <h3 className="subtitle">Registration</h3>
+                    <br></br>
+                    <Form onSubmit={this.handleRegistration}>
+                        <Form.Group controlId="name" className="inp-top">
+                            <Form.Control
+                                autoFocus
+                                type="text"
+                                onChange={this.updateName}
+                                placeholder="name"
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="email" className="test">
+                            <Form.Control
+                                type="email"
+                                onChange={this.updateEmail}
+                                placeholder="email"
+                            />
+                        </Form.Group>
+                        <OverlayTrigger
+                            placement="right"
+                            trigger="focus"
+                            overlay={
+                                <Popover id={`popover-positioned-bottom`}>
+                                    <Popover.Title as="h3">Password Guidelines</Popover.Title>
+                                    <Popover.Content>
+                                        <ul>
+                                            <li>More than 5 characters</li>
+                                            <li>At least one number</li>
+                                            <li>At least one uppercase letter</li>
+                                            <li>At least one lowercase letter</li>
+                                        </ul>
+                                    </Popover.Content>
+                                </Popover>
+                            }>
+                            <Form.Group controlId="password" className="test1">
+                                <Form.Control
+                                    type="password"
+                                    onChange={this.updatePassword}
+                                    placeholder="password"
+                                />
+                            </Form.Group>
+                        </OverlayTrigger>
+                        <br></br>
+                        <Button variant="primary" type="submit" disabled={!this.state.valid}>Submit</Button>
+                        {this.state.alert}
+                    </Form>
+                </Container>
             </Container>
         );
     }
