@@ -1,10 +1,10 @@
 import React from 'react'
 import './AuthPage.css'
-import Popup from '../../Components/Popup/Popup';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { Button, Form, Spinner, Container, Row, Alert } from "react-bootstrap";
+import { Container, Alert } from "react-bootstrap";
 import LoginForm from '../../Components/Login/Login.js'
+
 
 class AuthPage extends React.Component {
   constructor() {
@@ -12,6 +12,7 @@ class AuthPage extends React.Component {
     this.state = {
       email: "",
       password: "",
+      test: <div></div>
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -26,6 +27,7 @@ class AuthPage extends React.Component {
     this.setState({ email: e.target.value });
 
   }
+
   async handleLogin(e) {
     e.preventDefault();
     try {
@@ -35,19 +37,22 @@ class AuthPage extends React.Component {
       })
       const cookies = new Cookies();
       cookies.set('Authorization', 'Bearer ' + res.data.tk);
+      this.props.history.push('/dashboard');
     } catch (error) {
-      throw new Error(error);
+      this.setState({ test: <Alert variant="warning">Unable to login, if you do not have an account, please create one here</Alert> })
     }
   }
   render() {
     return (
-      <div className="container">
+      <Container className="container">
         <LoginForm
           loginHandler={this.handleLogin}
           updateEmail={this.updateEmail}
-          updatePassword={this.updatePassword}>
+          updatePassword={this.updatePassword}
+          spinnerHandler={this.spinnerHandler}>
         </LoginForm>
-      </div >
+        {this.state.test}
+      </Container >
     )
   }
 }

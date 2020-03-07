@@ -11,7 +11,6 @@ const App = () => {
     <Route {...rest} render={props => Auth.authenticate() ?
       (<Component {...props} />) :
       (<Redirect to={{ pathname: "/login" }} />)} />);
-
   return (
     <div className="App">
       <Router>
