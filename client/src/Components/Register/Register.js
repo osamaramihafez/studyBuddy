@@ -1,85 +1,123 @@
 import React from "react";
-import ***REMOVED*** Form, FormGroup, FormControl, Container } from "react-bootstrap";
-import Button from 'react-bootstrap/Button'
+import ***REMOVED*** Form, Container, Button, OverlayTrigger, Popover, Alert, Overlay } from "react-bootstrap";
 import axios from 'axios'
+import Cookies from 'universal-cookie';
 import "./Register.css";
 
 class RegistrationForm extends React.Component ***REMOVED***
-    state = ***REMOVED***
-        name: "",
-        email: "",
-        password: ""
+    constructor() ***REMOVED***
+        super();
+        this.state = ***REMOVED***
+            name: "",
+            email: "",
+            password: "",
+            valid: false,
+            alert: <div></div>
+        }
+        this.handleRegistration = this.handleRegistration.bind(this);
+        this.updatePassword = this.updatePassword.bind(this);
+        this.updateEmail = this.updateEmail.bind(this);
+        this.updateName = this.updateName.bind(this);
+        this.validateForm = this.validateForm.bind(this);
+
     }
 
     validateForm() ***REMOVED***
-        return this.state.email.length > 0 && this.state.password.length > 0;
+        var emailReg = /\S+@\S+/;
+        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.***REMOVED***6,})/;
+        // console.log(re.test(this.state.email));
+        if ((this.state.name.length > 0 && emailReg.test(this.state.email)) && (passReg.test(this.state.password))) this.setState(***REMOVED*** valid: true ***REMOVED***
     }
 
-    updatePassword(password) ***REMOVED***
-        this.setState(***REMOVED*** password ***REMOVED***
+    updateName(e) ***REMOVED***
+        this.setState(***REMOVED*** name: e.target.value ***REMOVED***
+        this.validateForm();
     }
 
-    updateEmail(email) ***REMOVED***
-        this.setState(***REMOVED*** email ***REMOVED***
+    updatePassword(e) ***REMOVED***
+        this.setState(***REMOVED*** password: e.target.value ***REMOVED***
+        this.validateForm();
     }
 
-    setHeader() ***REMOVED***
-        Headers['Authorization'] = 'Bearer ' + this.getToken();
+    updateEmail(e) ***REMOVED***
+        this.setState(***REMOVED*** email: e.target.value ***REMOVED***
+        this.validateForm();
     }
 
-    handleLogin(e, state) ***REMOVED***
+    handleRegistration(e) ***REMOVED***
         e.preventDefault();
-        console.log(state);
-        axios.post("http://localhost:8000/user/login", state)
+        console.log(this.state);
+        axios.post("http://localhost:8000/create/user", ***REMOVED***
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        })
             .then(res => ***REMOVED***
-                console.log(res.data.tk);
-                localStorage.setItem('id_token', res.data.tk);
-                this.setHeader();
-            })
-            .catch(res => console.log(res.tk));
-    }
-
-    handleRegistration(e, state) ***REMOVED***
-        e.preventDefault();
-        console.log(state);
-        axios.post("http://localhost:8000/create/user", state)
-            .then(res => ***REMOVED***
-                console.log(res.tk);
+                const cookies = new Cookies();
+                cookies.set('Authorization', 'Bearer ' + res.data.tk);
+                this.props.history.push('/dashboard');
             })
             .catch(res => ***REMOVED***
-                console.log(res.tk);
+                this.setState(***REMOVED***
+                    alert: (
+                        <Alert
+                            variant="danger">Unable to Register! There is an account that exists with that email
+                            </Alert>)
+                })
             ***REMOVED***
 
     }
     render() ***REMOVED***
         return (
-            <Container className="popup">
-                <h3 className="subtitle">Registration</h3>
-                <br></br>
-                <Form onSubmit=***REMOVED***e => this.handleRegistration(e, this.state)}>
-                    <Form.Group controlId="name" className="inp-top">
-                        <Form.Control
-                            autoFocus
-                            type="text"
-                            onChange=***REMOVED***e => this.updateEmail(e.target.value)}
-                            placeholder="name"
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="email" className="inp-mid">
-                        <Form.Control
-                            type="email"
-                            onChange=***REMOVED***e => this.updateEmail(e.target.value)}
-                            placeholder="email"
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="password" className="inp-mid">
-                        <Form.Control
-                            type="password"
-                            onChange=***REMOVED***e => this.updatePassword(e.target.value)}
-                            placeholder="password"
-                        />
-                    </Form.Group>
-                </Form>
+            <Container className="left-side-reg">
+                <Container className="inner-form">
+                    <h3 className="subtitle">Registration</h3>
+                    <br></br>
+                    <Form onSubmit=***REMOVED***this.handleRegistration}>
+                        <Form.Group controlId="name" className="inp-top">
+                            <Form.Control
+                                autoFocus
+                                type="text"
+                                onChange=***REMOVED***this.updateName}
+                                placeholder="name"
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="email" className="test">
+                            <Form.Control
+                                type="email"
+                                onChange=***REMOVED***this.updateEmail}
+                                placeholder="email"
+                            />
+                        </Form.Group>
+                        <OverlayTrigger
+                            placement="right"
+                            trigger="focus"
+                            overlay=***REMOVED***
+                                <Popover id=***REMOVED***`popover-positioned-bottom`}>
+                                    <Popover.Title as="h3">Password Guidelines</Popover.Title>
+                                    <Popover.Content>
+                                        <ul>
+                                            <li>More than 5 characters</li>
+                                            <li>At least one number</li>
+                                            <li>At least one uppercase letter</li>
+                                            <li>At least one lowercase letter</li>
+                                        </ul>
+                                    </Popover.Content>
+                                </Popover>
+                            }>
+                            <Form.Group controlId="password" className="test1">
+                                <Form.Control
+                                    type="password"
+                                    onChange=***REMOVED***this.updatePassword}
+                                    placeholder="password"
+                                />
+                            </Form.Group>
+                        </OverlayTrigger>
+                        <br></br>
+                        <Button variant="primary" type="submit" disabled=***REMOVED***!this.state.valid}>Submit</Button>
+                        ***REMOVED***this.state.alert}
+                    </Form>
+                </Container>
             </Container>
         );
     }

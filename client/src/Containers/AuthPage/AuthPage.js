@@ -2,7 +2,7 @@ import React from 'react'
 import './AuthPage.css'
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import ***REMOVED*** Container, Alert } from "react-bootstrap";
+import ***REMOVED*** Container, Alert, Modal, Button, Spinner } from "react-bootstrap";
 import LoginForm from '../../Components/Login/Login.js'
 
 
@@ -12,7 +12,8 @@ class AuthPage extends React.Component ***REMOVED***
     this.state = ***REMOVED***
       email: "",
       password: "",
-      test: <div></div>
+      alert: <div></div>,
+      showSpinner: false
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -39,19 +40,27 @@ class AuthPage extends React.Component ***REMOVED***
       cookies.set('Authorization', 'Bearer ' + res.data.tk);
       this.props.history.push('/dashboard');
     } catch (error) ***REMOVED***
-      this.setState(***REMOVED*** test: <Alert variant="warning">Unable to login, if you do not have an account, please create one here</Alert> })
+      this.setState(***REMOVED*** alert: <Alert variant="warning">Unable to login! Could not find a matching email and password</Alert> })
     }
   }
   render() ***REMOVED***
     return (
-      <Container className="container">
+      < Container className="container" >
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered>
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Modal>
         <LoginForm
           loginHandler=***REMOVED***this.handleLogin}
           updateEmail=***REMOVED***this.updateEmail}
           updatePassword=***REMOVED***this.updatePassword}
           spinnerHandler=***REMOVED***this.spinnerHandler}>
         </LoginForm>
-        ***REMOVED***this.state.test}
+        ***REMOVED***this.state.alert}
       </Container >
     )
   }

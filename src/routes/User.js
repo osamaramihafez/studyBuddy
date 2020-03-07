@@ -4,7 +4,7 @@ const auth = require('../middleware/auth')
 const User = require('../models/User')
 
 // Create an account
-router.post('/create/user', async (req, res, next) => ***REMOVED***  
+router.post('/create/user', async (req, res, next) => ***REMOVED***
     const user = new User(req.body);
     console.log(user);
     try ***REMOVED***
@@ -17,19 +17,19 @@ router.post('/create/user', async (req, res, next) => ***REMOVED***
     } catch (error) ***REMOVED***
         console.log(error);
         res.status(400).send(error);
-    }  
+    }
 ***REMOVED***
 // login to an existing account
 router.post('/user/login', async (req, res) => ***REMOVED***
     try ***REMOVED***
         const user = await User.login(req.body.email, req.body.password);
         const tk = await user.genJWT();
-        res.send(***REMOVED***user, tk})
+        res.send(***REMOVED*** user, tk })
     } catch (error) ***REMOVED***
         console.log(error);
         res.status(400).send();
     }
-    
+
 ***REMOVED***
 
 module.exports = router
