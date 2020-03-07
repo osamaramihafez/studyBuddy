@@ -1,5 +1,5 @@
 import React from "react";
-import ***REMOVED*** FormGroup, FormControl } from "react-bootstrap";
+import ***REMOVED*** Form, FormGroup, FormControl, Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import "./Register.css";
@@ -22,7 +22,7 @@ class RegistrationForm extends React.Component ***REMOVED***
     updateEmail(email) ***REMOVED***
         this.setState(***REMOVED*** email ***REMOVED***
     }
-    
+
     setHeader() ***REMOVED***
         Headers['Authorization'] = 'Bearer ' + this.getToken();
     }
@@ -31,54 +31,56 @@ class RegistrationForm extends React.Component ***REMOVED***
         e.preventDefault();
         console.log(state);
         axios.post("http://localhost:8000/user/login", state)
-        .then(res => ***REMOVED***
-          console.log(res.data.tk);
-          localStorage.setItem('id_token', res.data.tk);
-          this.setHeader();
-        })
-        .catch(res => console.log(res.tk));
+            .then(res => ***REMOVED***
+                console.log(res.data.tk);
+                localStorage.setItem('id_token', res.data.tk);
+                this.setHeader();
+            })
+            .catch(res => console.log(res.tk));
     }
 
     handleRegistration(e, state) ***REMOVED***
         e.preventDefault();
         console.log(state);
         axios.post("http://localhost:8000/create/user", state)
-        .then(res => ***REMOVED***
-            console.log(res.tk);
-        })
-        .catch(res => ***REMOVED***
-            console.log(res.tk);
-        ***REMOVED***
-    
+            .then(res => ***REMOVED***
+                console.log(res.tk);
+            })
+            .catch(res => ***REMOVED***
+                console.log(res.tk);
+            ***REMOVED***
+
     }
     render() ***REMOVED***
         return (
-            <div className="Register">
-                <form onSubmit=***REMOVED***e => this.handleRegistration(e, this.state)}>
-                    <FormGroup controlId="name" className="inp-top">
-                        <FormControl
+            <Container className="popup">
+                <h3 className="subtitle">Registration</h3>
+                <br></br>
+                <Form onSubmit=***REMOVED***e => this.handleRegistration(e, this.state)}>
+                    <Form.Group controlId="name" className="inp-top">
+                        <Form.Control
                             autoFocus
                             type="text"
                             onChange=***REMOVED***e => this.updateEmail(e.target.value)}
                             placeholder="name"
                         />
-                    </FormGroup>
-                    <FormGroup controlId="email" className="inp-mid">
-                        <FormControl
+                    </Form.Group>
+                    <Form.Group controlId="email" className="inp-mid">
+                        <Form.Control
                             type="email"
                             onChange=***REMOVED***e => this.updateEmail(e.target.value)}
                             placeholder="email"
                         />
-                    </FormGroup>
-                    <FormGroup controlId="password" className="inp-mid">
-                        <FormControl
+                    </Form.Group>
+                    <Form.Group controlId="password" className="inp-mid">
+                        <Form.Control
                             type="password"
                             onChange=***REMOVED***e => this.updatePassword(e.target.value)}
                             placeholder="password"
                         />
-                    </FormGroup>
-                </form>
-            </div>
+                    </Form.Group>
+                </Form>
+            </Container>
         );
     }
 }

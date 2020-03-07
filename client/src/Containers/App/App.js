@@ -11,7 +11,6 @@ const App = () => ***REMOVED***
     <Route ***REMOVED***...rest} render=***REMOVED***props => Auth.authenticate() ?
       (<Component ***REMOVED***...props} />) :
       (<Redirect to=***REMOVED******REMOVED*** pathname: "/login" }} />)} />);
-
   return (
     <div className="App">
       <Router>
