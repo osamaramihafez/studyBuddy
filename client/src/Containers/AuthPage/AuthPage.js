@@ -1,10 +1,10 @@
 import React from 'react'
 import './AuthPage.css'
-import Popup from '../../Components/Popup/Popup';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import ***REMOVED*** Button, Form, Spinner, Container, Row, Alert } from "react-bootstrap";
+import ***REMOVED*** Container, Alert, Modal, Button, Spinner } from "react-bootstrap";
 import LoginForm from '../../Components/Login/Login.js'
+
 
 class AuthPage extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -12,6 +12,8 @@ class AuthPage extends React.Component ***REMOVED***
     this.state = ***REMOVED***
       email: "",
       password: "",
+      alert: <div></div>,
+      showSpinner: false
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -26,6 +28,7 @@ class AuthPage extends React.Component ***REMOVED***
     this.setState(***REMOVED*** email: e.target.value ***REMOVED***
 
   }
+
   async handleLogin(e) ***REMOVED***
     e.preventDefault();
     try ***REMOVED***
@@ -35,19 +38,30 @@ class AuthPage extends React.Component ***REMOVED***
       })
       const cookies = new Cookies();
       cookies.set('Authorization', 'Bearer ' + res.data.tk);
+      this.props.history.push('/dashboard');
     } catch (error) ***REMOVED***
-      throw new Error(error);
+      this.setState(***REMOVED*** alert: <Alert variant="warning">Unable to login! Could not find a matching email and password</Alert> })
     }
   }
   render() ***REMOVED***
     return (
-      <div className="container">
+      < Container className="container" >
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered>
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Modal>
         <LoginForm
           loginHandler=***REMOVED***this.handleLogin}
           updateEmail=***REMOVED***this.updateEmail}
-          updatePassword=***REMOVED***this.updatePassword}>
+          updatePassword=***REMOVED***this.updatePassword}
+          spinnerHandler=***REMOVED***this.spinnerHandler}>
         </LoginForm>
-      </div >
+        ***REMOVED***this.state.alert}
+      </Container >
     )
   }
 }

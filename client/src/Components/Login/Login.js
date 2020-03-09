@@ -1,5 +1,5 @@
 import React from "react";
-import ***REMOVED*** Button, Form, Container } from "react-bootstrap";
+import ***REMOVED*** Button, Form, Container, Alert, Spinner } from "react-bootstrap";
 import "./Login.css";
 
 const LoginForm = (props) => ***REMOVED***
@@ -25,7 +25,7 @@ const LoginForm = (props) => ***REMOVED***
             placeholder="password"
           />
           <br />
-          <Button className="loginButton" variant="success" type="submit" className="login-button" onClick=***REMOVED***props.loginHandler}>
+          <Button className="loginButton" variant="success" type="submit" className="login-button" onSubmit=***REMOVED***props.loginHandler}>
             Login
            </Button>
           <br />
