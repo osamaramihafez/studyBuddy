@@ -32,4 +32,16 @@ router.post('/user/login', async (req, res) => ***REMOVED***
 
 ***REMOVED***
 
+router.post('/user/logout', auth, async (req, res) => ***REMOVED***
+    try ***REMOVED***
+        req.user.tokens = [];
+        await req.user.save();
+        res.status(200).send()
+    } catch (error) ***REMOVED***
+        console.log(error);
+        res.status(500).send();
+
+    }
+})
+
 module.exports = router

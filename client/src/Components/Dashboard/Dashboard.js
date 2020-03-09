@@ -8,6 +8,7 @@ import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
 import SessionList from '../List/SessionList';
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 class Dashboard extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -114,6 +115,7 @@ class Dashboard extends React.Component ***REMOVED***
               break = ***REMOVED***this.break}
             />
               <ClearBtn/>
+              <LogoutButton></LogoutButton>
             <section className="interval-container">
               <Break
               changeBreak = ***REMOVED***this.changeBreak}
