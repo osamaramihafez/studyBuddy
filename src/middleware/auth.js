@@ -5,6 +5,7 @@ const User = require('../models/User');
 const auth = async (req, res, next) => ***REMOVED***
     try ***REMOVED***
         const token = req.header('Authorization').replace('Bearer ', '');
+        console.log(token);
         const dec = jwt.verify(token, process.env.JWTS);
         const user = await User.findOne(***REMOVED***
             _id: dec._id,
@@ -16,6 +17,7 @@ const auth = async (req, res, next) => ***REMOVED***
     } catch (error) ***REMOVED***
         res.status(401).send(***REMOVED***message: "Please authenticate beforehand"})
     }
+    next();
 }
 
 module.exports = auth;

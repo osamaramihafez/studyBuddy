@@ -33,8 +33,9 @@ const userSchema = new mongoose.Schema(***REMOVED***
 userSchema.methods.genJWT = async function () ***REMOVED***
   const user = this;
   const token = jwt.sign(***REMOVED***
-    _id: user._id.toString()
-  }, "testing123");
+    _id: user._id.toString(),
+    expiresIn: '7d'
+  }, process.env.JWTS);
   user.tokens = user.tokens.concat(***REMOVED***
     token
   ***REMOVED***

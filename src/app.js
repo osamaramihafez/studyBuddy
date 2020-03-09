@@ -8,7 +8,7 @@ const app = express();
 
 app.use(function (req, res, next) ***REMOVED***
     res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization');
     next();
 ***REMOVED***
 

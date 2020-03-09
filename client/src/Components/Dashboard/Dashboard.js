@@ -1,14 +1,15 @@
 import React from 'react'
-import logo from './Components/logo.svg'
-import './App.css'
-import Timer from './Components/Timer/Timer'
-import Break from './Components/Break/Break'
-import Session from './Components/List/Session'
-import ClearBtn from './Components/ClearButton/ClearDoneTasks'
-import LoginForm from './Components/Login/Login'
-import SessionList from './Components/List/SessionList';
+import Cookies from 'universal-cookie'
+import decode from 'jwt-decode'
 
-class App extends React.Component ***REMOVED***
+import './Dashboard.css'
+import Timer from '../Timer/Timer'
+import Break from '../Break/Break'
+import Session from '../List/Session'
+import ClearBtn from '../ClearButton/ClearDoneTasks'
+import SessionList from '../List/SessionList';
+
+class Dashboard extends React.Component ***REMOVED***
   constructor() ***REMOVED***
     super()
 
@@ -82,12 +83,29 @@ class App extends React.Component ***REMOVED***
     }
   }
 
+  getToken() ***REMOVED***
+    const cookies = new Cookies();
+    const cookie = cookies.get('Authorization');
+    return cookie;
+  }
+
+  isLoggedIn() ***REMOVED***
+    try ***REMOVED***
+      const tk = this.getToken();
+      const decoded = decode(tk);
+      if(decoded.exp < Date.now() / 1000) ***REMOVED***
+          this.setState(***REMOVED***loggedIn: false})
+        }
+        this.setState(***REMOVED***loggedIn: true})
+      } catch (error) ***REMOVED***
+        this.setState(***REMOVED***loggedIn: false})
+      }
+  }
 
   render() ***REMOVED***
+    console.log(this.getToken());
     return (
       <div className="App">
-          <LoginForm loggedIn=***REMOVED***this.state.loggedIn}></LoginForm>
-          ***REMOVED***/* <img src=***REMOVED***logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
             <Timer
               timerMinute=***REMOVED***this.state.timerMinute}
               updateTimer=***REMOVED***this.updateTimer}
@@ -116,4 +134,4 @@ class App extends React.Component ***REMOVED***
   }
 }
 
-export default App
+export default Dashboard
