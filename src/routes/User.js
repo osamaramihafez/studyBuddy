@@ -31,5 +31,23 @@ router.post('/user/login', async (req, res) => ***REMOVED***
     }
 
 ***REMOVED***
+router.get('/:id', async (req, res) => ***REMOVED***
+    User.findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => res.status(400).json('Error: ' + err));
+***REMOVED***
+
+router.post('/update/:id', auth, (req, res) => ***REMOVED***
+    User.findById(req.params.id)
+        .then(user => ***REMOVED***
+            user.name = req.body.name;
+            user.email = req.body.email;
+            user.tokens = req.body.tokens;
+            user.save()
+                .then(() => res.json('User Updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+***REMOVED***
 
 module.exports = router
