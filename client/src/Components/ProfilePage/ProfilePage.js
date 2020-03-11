@@ -26,7 +26,7 @@ export default class ProfilePage extends Component ***REMOVED***
           console.log(error);
         })
     
-        axios.get('http://localhost:3000/User/' + this.props.match.params.id)
+        axios.get('http://localhost:3000/users/' + this.props.match.params.id)
           .then(response => ***REMOVED***
             if (response.data.length > 0) ***REMOVED***
               this.setState(***REMOVED***
@@ -70,8 +70,39 @@ export default class ProfilePage extends Component ***REMOVED***
       
   render() ***REMOVED***
     return (
-      <div>
-          <p>You are on the profile page!</p>
+        <div>
+        <h3>Profile Page</h3>
+        <form onSubmit=***REMOVED***this.onSubmit}>
+            <div className="form-group"> 
+                <label>Name: </label>
+                <input  type="text"
+                    required
+                    className="form-control"
+                    value=***REMOVED***this.state.name}
+                    onChange=***REMOVED***this.onChangeName}
+                    />
+            </div>
+          <div className="form-group"> 
+            <label>Email: </label>
+            <input  type="text"
+                required
+                className="form-control"
+                value=***REMOVED***this.state.email}
+                onChange=***REMOVED***this.onChangeEmail}
+                />
+          </div>
+          <div className="form-group">
+            <label>Tokens: </label>
+            <input 
+                type="text" 
+                className="form-control"
+                value=***REMOVED***this.state.tokens}
+                />
+          </div>
+          <div className="form-group">
+            <input type="submit" value="Edit Profile Page" className="btn btn-primary" />
+          </div>
+        </form>
       </div>
     );
   }
