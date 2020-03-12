@@ -1,5 +1,6 @@
 import React from 'react'
 import './Session.css'
+import Button from 'react-bootstrap/Button'
 
 function Session(props) {
 
@@ -23,14 +24,14 @@ function Session(props) {
         <section className="session-interval-container">
           <h4>Session Timer</h4>
           <section className="session-interval">
-            <button
+            <Button
             disabled = {props.isPlay ? "disabled" : ""}
             onClick = {decrease}
-            className="counter-btn">-</button>
+            className="counter-btn">-</Button>
             <p className="session-time">{props.session}</p>
-            <button
+            <Button
             onClick = {increase}
-            className="counter-btn">+</button>
+            className="counter-btn">+</Button>
           </section>
         </section>
       )

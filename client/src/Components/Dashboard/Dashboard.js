@@ -8,6 +8,8 @@ import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
 import SessionList from '../List/SessionList';
+import Button from 'react-bootstrap/Button'
+
 
 class Dashboard extends React.Component {
   constructor() {
@@ -125,10 +127,11 @@ class Dashboard extends React.Component {
               />
             </section>
             <ClearBtn/>
-          <button 
+            <br></br>
+          <Button id='fullscreen'
             onClick={this.goFull}>
           Go Fullscreen
-        </button>
+        </Button>
         </div>
     )
   }
