@@ -2,9 +2,15 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
 import Auth from '../../HOC/Auth';
+import Cookies from 'universal-cookie';
 
-const LogoutButton = (props) => {
-    const handleLogout = async () => {
+class LogoutButton extends React.Component {
+
+    constructor(props) {
+        super()
+        this.props = props;
+    }
+     async handleLogout () {
         const tk = Auth.getToken();
         try {
             axios.defaults.headers = {
@@ -12,15 +18,17 @@ const LogoutButton = (props) => {
             }        
             console.log(tk);
             await axios.post('http://localhost:8000/user/logout');
-            const res = await axios.post("http://localhost:8000/user/login"){
-                email: this.state.email,
-                password: this.state.password
-            };
+            const cookies = new Cookies();
+            cookies.remove('Authorization');
+            window.location.reload(false);
         } catch (error) {
             console.log(error);
         }
     }
-    return (<Button onClick={handleLogout}>Logout</Button>);
+    render () {
+
+        return (<Button onClick={this.handleLogout}>Logout</Button>);
+    }
 }
 
 export default LogoutButton;
