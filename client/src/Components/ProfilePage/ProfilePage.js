@@ -93,14 +93,6 @@ export default class ProfilePage extends Component ***REMOVED***
                 />
           </div>
           <div className="form-group">
-            <label>Tokens: </label>
-            <input 
-                type="text" 
-                className="form-control"
-                value=***REMOVED***this.state.tokens}
-                />
-          </div>
-          <div className="form-group">
             <input id='editprofpag' type="submit" value="Edit Profile Page" className="btn btn-primary" />
           </div>
         </form>
