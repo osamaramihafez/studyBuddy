@@ -24,7 +24,6 @@ function Session(props) ***REMOVED***
           <h4>Session Timer</h4>
           <section className="session-interval">
             <button
-            disabled = ***REMOVED***props.isPlay ? "disabled" : ""}
             onClick = ***REMOVED***decrease}
             className="counter-btn">-</button>
             <p className="session-time">***REMOVED***props.session}</p>
