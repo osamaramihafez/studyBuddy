@@ -31,6 +31,24 @@ router.post('/user/login', async (req, res) => {
     }
 
 });
+router.get('/:id', async (req, res) => {
+    User.findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.post('/update/:id', auth, (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            user.name = req.body.name;
+            user.email = req.body.email;
+            user.tokens = req.body.tokens;
+            user.save()
+                .then(() => res.json('User Updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
 router.post('/user/logout', auth, async (req, res) => {
     try {
