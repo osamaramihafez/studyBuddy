@@ -127,12 +127,13 @@ class Dashboard extends React.Component ***REMOVED***
               session = ***REMOVED***this.state.session}
               />
             </section>
-            <ClearBtn/>
+            ***REMOVED***/* <ClearBtn/> */}
             <br></br>
           <Button id='fullscreen'
             onClick=***REMOVED***this.goFull}>
           Go Fullscreen
         </Button>
+        <SessionList id="sessionList" ></SessionList>
         </div>
     )
   }

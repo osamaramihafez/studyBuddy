@@ -71,7 +71,8 @@ export default class ProfilePage extends Component ***REMOVED***
   render() ***REMOVED***
     return (
         <div>
-        <h3>Profile Page</h3>
+        <h3 id="profilepg">Profile Page</h3>
+        <hr color="white"></hr>
         <form onSubmit=***REMOVED***this.onSubmit}>
             <div className="form-group"> 
                 <label>Name: </label>
@@ -100,7 +101,7 @@ export default class ProfilePage extends Component ***REMOVED***
                 />
           </div>
           <div className="form-group">
-            <input type="submit" value="Edit Profile Page" className="btn btn-primary" />
+            <input id='editprofpag' type="submit" value="Edit Profile Page" className="btn btn-primary" />
           </div>
         </form>
       </div>
