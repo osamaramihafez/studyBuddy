@@ -1,13 +1,15 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
+import "bootstrap/dist/css/bootstrap.min.css";
+import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
 
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
-import SessionList from '../List/SessionList';
+import SessionList from '../List/SessionList';  
 
 class Dashboard extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -129,7 +131,7 @@ class Dashboard extends React.Component ***REMOVED***
             onClick=***REMOVED***this.goFull}>
           Go Fullscreen
         </button>
-        </div>
+      </div>
     )
   }
 }
