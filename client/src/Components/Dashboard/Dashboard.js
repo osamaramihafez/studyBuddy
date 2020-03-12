@@ -1,15 +1,16 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
-import SessionList from '../List/SessionList';
 import Button from 'react-bootstrap/Button'
-
+import SessionList from '../List/SessionList';
 
 class Dashboard extends React.Component {
   constructor() {

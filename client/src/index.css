@@ -6,19 +6,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: rgba(0,0,0,0.1); */
+  
 }
 
 #root{
   background: rgba(0,0,0,0.5);
   border-radius: 50px;
-  width: 80%;
+  width: 90%;
+  padding-bottom: 1%;
 }
 
 h1{
   padding-top: 2%;
-  padding-bottom: 5%;
-  background: rgba(0,0,0,0.2);
+  padding-bottom: 1%;
+  width: 90%;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background: rgba(0,0,0,0.5);
+  color: white;
 }
 
 code {
@@ -27,5 +32,5 @@ code {
 }
 
 #fullscreen{
-  margin: 1%;
+  margin-top: 1%;
 }
