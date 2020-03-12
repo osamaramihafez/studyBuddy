@@ -50,4 +50,16 @@ router.post('/update/:id', auth, (req, res) => ***REMOVED***
         .catch(err => res.status(400).json('Error: ' + err));
 ***REMOVED***
 
+router.post('/user/logout', auth, async (req, res) => ***REMOVED***
+    try ***REMOVED***
+        req.user.tokens = [];
+        await req.user.save();
+        res.status(200).send()
+    } catch (error) ***REMOVED***
+        console.log(error);
+        res.status(500).send();
+
+    }
+})
+
 module.exports = router
