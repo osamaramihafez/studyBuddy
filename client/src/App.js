@@ -8,12 +8,14 @@ import ClearBtn from './Components/ClearButton/ClearDoneTasks'
 import LoginForm from './Components/Login/Login'
 import SessionList from './Components/List/SessionList';
 
+
 class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
       loggedIn: false,
+      //isSession: true,
       timerMinute: 25,
       break: 5,
       session: 25,
@@ -34,7 +36,7 @@ class App extends React.Component {
         timerMinute: prevState.timerMinute - 1
       }
     })
-    
+
   }
 
   countdown(boolean) {
@@ -44,11 +46,12 @@ class App extends React.Component {
   }
   resetTimer() {
     this.setState({
-      timerMinute: 25,
+      timerMinute: 25, //NEEDS TO BE CHANGED so it isn't hardcoded
       break: 5,
       session: 25,
     })
   }
+
   changeBreak(breaktwo) {
       if (this.counter === true){
         this.setState({
@@ -66,7 +69,7 @@ class App extends React.Component {
   }
 
   changeSession(newsession) {
-    
+
     if (this.counter === true){
       this.setState({
         session: newsession
@@ -88,6 +91,7 @@ class App extends React.Component {
       <div className="App">
           <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
           {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
+            SESSION TIMER
             <Timer
               timerMinute={this.state.timerMinute}
               updateTimer={this.updateTimer}
@@ -106,8 +110,11 @@ class App extends React.Component {
               session = {this.state.session}
               />
             </section>
+            <section className="session-container">
+              <SessionList />
+            </section>
             <ClearBtn/>
-          <button 
+          <button
             onClick={this.goFull}>
           Go Fullscreen
         </button>

@@ -50,7 +50,7 @@ class Timer extends React.Component {
 
   reset(){
       this.stop();
-      this.props.resetTimer()
+      this.props.resetTimer();
       this.props.countdown(false);
       this.setState({
         seconds: 0,
@@ -62,12 +62,11 @@ class Timer extends React.Component {
     switch (this.state.seconds) {
       case 0:
           if ( this.props.timerMinute === 0 && this.state.seconds === 0 ){
-           
               this.beep.play();
-              this.props.timerMinute = this.props.break;
+              this.setState ({timerMinute: this.state.break});
               break;
             }
-           
+
         this.props.updateTimer();
         this.setState({
           seconds: 59
