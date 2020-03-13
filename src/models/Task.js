@@ -9,7 +9,8 @@ const taskSchema = new mongoose.Schema(***REMOVED***
   },
   description: ***REMOVED***
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   completed: ***REMOVED***
     type: Boolean,
