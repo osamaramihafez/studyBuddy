@@ -8,12 +8,14 @@ import ClearBtn from './Components/ClearButton/ClearDoneTasks'
 import LoginForm from './Components/Login/Login'
 import SessionList from './Components/List/SessionList';
 
+
 class App extends React.Component ***REMOVED***
   constructor() ***REMOVED***
     super()
 
     this.state = ***REMOVED***
       loggedIn: false,
+      //isSession: true,
       timerMinute: 25,
       break: 5,
       session: 25,
@@ -34,7 +36,7 @@ class App extends React.Component ***REMOVED***
         timerMinute: prevState.timerMinute - 1
       }
     })
-    
+
   }
 
   countdown(boolean) ***REMOVED***
@@ -44,11 +46,12 @@ class App extends React.Component ***REMOVED***
   }
   resetTimer() ***REMOVED***
     this.setState(***REMOVED***
-      timerMinute: 25,
+      timerMinute: 25, //NEEDS TO BE CHANGED so it isn't hardcoded
       break: 5,
       session: 25,
     })
   }
+
   changeBreak(breaktwo) ***REMOVED***
       if (this.counter === true)***REMOVED***
         this.setState(***REMOVED***
@@ -66,7 +69,7 @@ class App extends React.Component ***REMOVED***
   }
 
   changeSession(newsession) ***REMOVED***
-    
+
     if (this.counter === true)***REMOVED***
       this.setState(***REMOVED***
         session: newsession
@@ -88,6 +91,7 @@ class App extends React.Component ***REMOVED***
       <div className="App">
           <LoginForm loggedIn=***REMOVED***this.state.loggedIn}></LoginForm>
           ***REMOVED***/* <img src=***REMOVED***logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
+            SESSION TIMER
             <Timer
               timerMinute=***REMOVED***this.state.timerMinute}
               updateTimer=***REMOVED***this.updateTimer}
@@ -106,8 +110,11 @@ class App extends React.Component ***REMOVED***
               session = ***REMOVED***this.state.session}
               />
             </section>
+            <section className="session-container">
+              <SessionList />
+            </section>
             <ClearBtn/>
-          <button 
+          <button
             onClick=***REMOVED***this.goFull}>
           Go Fullscreen
         </button>
