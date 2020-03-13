@@ -1,13 +1,17 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
+import "bootstrap/dist/css/bootstrap.min.css";
+import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
 
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
-import SessionList from '../List/SessionList';
+import LogoutButton from '../LogoutButton/LogoutButton';
+import SessionList from '../List/SessionList';  
+
 
 class Dashboard extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -121,6 +125,7 @@ changeSession(newsession) ***REMOVED***
               timerRunning = ***REMOVED***this.state.timerRunning}
             />
               <ClearBtn/>
+              <LogoutButton></LogoutButton>
             <section className="interval-container">
               <Break
               changeBreak = ***REMOVED***this.changeBreak}
@@ -135,9 +140,8 @@ changeSession(newsession) ***REMOVED***
           <button 
             onClick=***REMOVED***this.goFull}>
           Go Fullscreen
-          </button>
-          
-        </div>
+        </button>
+      </div>
     )
   }
 }
