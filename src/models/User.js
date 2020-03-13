@@ -33,8 +33,9 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.genJWT = async function () {
   const user = this;
   const token = jwt.sign({
-    _id: user._id.toString()
-  }, "testing123");
+    _id: user._id.toString(),
+    expiresIn: '7d'
+  }, process.env.JWTS);
   user.tokens = user.tokens.concat({
     token
   });

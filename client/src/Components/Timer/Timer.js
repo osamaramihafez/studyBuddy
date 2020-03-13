@@ -9,11 +9,11 @@ class Timer extends React.Component {
     this.state = {
       seconds: 0,
       beginning: 0,
-      disabled : false,
+      disabled: false,
       sound: true,  //play the sound whenever reset
     }
 
-    this.beep =  new UIfx(mp3File);
+    this.beep = new UIfx(mp3File);
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
@@ -23,49 +23,47 @@ class Timer extends React.Component {
 
   start() {
     if (this.state.disabled) {
-        return;
+      return;
     }
 
     if (this.state.sound) {
       this.beep.play();
     }
 
+
     let beginning = setInterval(this.decrease, 1000)
 
     this.setState({
-        beginning: beginning,
-        disabled: true,
-        sound: false
+      beginning: beginning,
+      disabled: true,
+      sound: false,
     })
-    this.props.countdown(true);
   }
 
-  stop(){
-      clearInterval(this.state.beginning)
-      this.setState({
-        disabled: false,
+  stop() {
+    clearInterval(this.state.beginning)
+    this.setState({
+      disabled: false,
     })
-    this.props.countdown(false);
   }
 
-  reset(){
-      this.stop();
-      this.props.resetTimer();
-      this.props.countdown(false);
-      this.setState({
-        seconds: 0,
-        sound: true
-      })
+  reset() {
+    this.stop();
+    this.props.resetTimer();
+    this.setState({
+      seconds: 0,
+      sound: true
+    })
   }
 
   decrease() {
     switch (this.state.seconds) {
       case 0:
-          if ( this.props.timerMinute === 0 && this.state.seconds === 0 ){
-              this.beep.play();
-              this.setState ({timerMinute: this.state.break});
-              break;
-            }
+        if (this.props.timerMinute === 0 && this.state.seconds === 0) {
+          this.beep.play();
+          this.setState({ timerMinute: this.state.break });
+          break;
+        }
 
         this.props.updateTimer();
         this.setState({
@@ -73,7 +71,7 @@ class Timer extends React.Component {
         })
         break;
       default:
-        this.setState( (prevState) => {
+        this.setState((prevState) => {
           return {
             seconds: prevState.seconds - 1
           }
@@ -92,8 +90,8 @@ class Timer extends React.Component {
             {this.state.seconds === 0
               ? '00'
               : this.state.seconds < 10
-              ? '0' + this.state.seconds
-              : this.state.seconds}
+                ? '0' + this.state.seconds
+                : this.state.seconds}
           </span>
         </section>
         <section>
