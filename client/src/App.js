@@ -20,7 +20,7 @@ class App extends React.Component ***REMOVED***
       break: 5,
       session: 25,
       flipper: true,
-      counter : false
+      counter: false
     }
     this.updateTimer = this.updateTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
@@ -31,7 +31,7 @@ class App extends React.Component ***REMOVED***
 
 
   updateTimer() ***REMOVED***
-    this.setState( (prevState) => ***REMOVED***
+    this.setState((prevState) => ***REMOVED***
       return ***REMOVED***
         timerMinute: prevState.timerMinute - 1
       }
@@ -53,29 +53,29 @@ class App extends React.Component ***REMOVED***
   }
 
   changeBreak(breaktwo) ***REMOVED***
-      if (this.counter === true)***REMOVED***
-        this.setState(***REMOVED***
-          break: breaktwo
-        })
-      }
-      else***REMOVED***
-        this.setState(***REMOVED***
-          counter: false,
-          flipper: false,
-          break: breaktwo,
-          timerMinute: breaktwo
-        })
-      }
+    if (this.counter === true) ***REMOVED***
+      this.setState(***REMOVED***
+        break: breaktwo
+      })
+    }
+    else ***REMOVED***
+      this.setState(***REMOVED***
+        counter: false,
+        flipper: false,
+        break: breaktwo,
+        timerMinute: breaktwo
+      })
+    }
   }
 
   changeSession(newsession) ***REMOVED***
 
-    if (this.counter === true)***REMOVED***
+    if (this.counter === true) ***REMOVED***
       this.setState(***REMOVED***
         session: newsession
       })
     }
-    else***REMOVED***
+    else ***REMOVED***
       this.setState(***REMOVED***
         counter: false,
         flipper: true,
@@ -89,38 +89,38 @@ class App extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       <div className="App">
-          <LoginForm loggedIn=***REMOVED***this.state.loggedIn}></LoginForm>
-          ***REMOVED***/* <img src=***REMOVED***logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
-            SESSION TIMER
+        <LoginForm loggedIn=***REMOVED***this.state.loggedIn}></LoginForm>
+        ***REMOVED***/* <img src=***REMOVED***logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
+        SESSION TIMER
             <Timer
-              timerMinute=***REMOVED***this.state.timerMinute}
-              updateTimer=***REMOVED***this.updateTimer}
-              resetTimer=***REMOVED***this.resetTimer}
-              countdown=***REMOVED***this.countdown}
-              break = ***REMOVED***this.break}
-            />
-              <ClearBtn/>
-            <section className="interval-container">
-              <Break
-              changeBreak = ***REMOVED***this.changeBreak}
-              break = ***REMOVED***this.state.break}
-              />
-              <Session
-              changeSession = ***REMOVED***this.changeSession}
-              session = ***REMOVED***this.state.session}
-              />
-            </section>
-            <section className="session-container">
-              <SessionList />
-            </section>
-            <ClearBtn/>
-          <button
-            onClick=***REMOVED***this.goFull}>
+          timerMinute=***REMOVED***this.state.timerMinute}
+          updateTimer=***REMOVED***this.updateTimer}
+          resetTimer=***REMOVED***this.resetTimer}
+          countdown=***REMOVED***this.countdown}
+          break=***REMOVED***this.break}
+        />
+        <ClearBtn />
+        <section className="interval-container">
+          <Break
+            changeBreak=***REMOVED***this.changeBreak}
+            break=***REMOVED***this.state.break}
+          />
+          <Session
+            changeSession=***REMOVED***this.changeSession}
+            session=***REMOVED***this.state.session}
+          />
+        </section>
+        <section className="session-container">
+          <SessionList />
+        </section>
+        <ClearBtn />
+        <button
+          onClick=***REMOVED***this.goFull}>
           Go Fullscreen
         </button>
-        </div>
+      </div>
     )
   }
 }
 
-export default App
+export default App;
