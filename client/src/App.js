@@ -20,7 +20,7 @@ class App extends React.Component {
       break: 5,
       session: 25,
       flipper: true,
-      counter : false
+      counter: false
     }
     this.updateTimer = this.updateTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
@@ -31,7 +31,7 @@ class App extends React.Component {
 
 
   updateTimer() {
-    this.setState( (prevState) => {
+    this.setState((prevState) => {
       return {
         timerMinute: prevState.timerMinute - 1
       }
@@ -53,29 +53,29 @@ class App extends React.Component {
   }
 
   changeBreak(breaktwo) {
-      if (this.counter === true){
-        this.setState({
-          break: breaktwo
-        })
-      }
-      else{
-        this.setState({
-          counter: false,
-          flipper: false,
-          break: breaktwo,
-          timerMinute: breaktwo
-        })
-      }
+    if (this.counter === true) {
+      this.setState({
+        break: breaktwo
+      })
+    }
+    else {
+      this.setState({
+        counter: false,
+        flipper: false,
+        break: breaktwo,
+        timerMinute: breaktwo
+      })
+    }
   }
 
   changeSession(newsession) {
 
-    if (this.counter === true){
+    if (this.counter === true) {
       this.setState({
         session: newsession
       })
     }
-    else{
+    else {
       this.setState({
         counter: false,
         flipper: true,
@@ -89,38 +89,38 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-          <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
-          {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
-            SESSION TIMER
+        <LoginForm loggedIn={this.state.loggedIn}></LoginForm>
+        {/* <img src={logo} className="App-logo" alt="logo" /> Instead of image here, it can be the task. */}
+        SESSION TIMER
             <Timer
-              timerMinute={this.state.timerMinute}
-              updateTimer={this.updateTimer}
-              resetTimer={this.resetTimer}
-              countdown={this.countdown}
-              break = {this.break}
-            />
-              <ClearBtn/>
-            <section className="interval-container">
-              <Break
-              changeBreak = {this.changeBreak}
-              break = {this.state.break}
-              />
-              <Session
-              changeSession = {this.changeSession}
-              session = {this.state.session}
-              />
-            </section>
-            <section className="session-container">
-              <SessionList />
-            </section>
-            <ClearBtn/>
-          <button
-            onClick={this.goFull}>
+          timerMinute={this.state.timerMinute}
+          updateTimer={this.updateTimer}
+          resetTimer={this.resetTimer}
+          countdown={this.countdown}
+          break={this.break}
+        />
+        <ClearBtn />
+        <section className="interval-container">
+          <Break
+            changeBreak={this.changeBreak}
+            break={this.state.break}
+          />
+          <Session
+            changeSession={this.changeSession}
+            session={this.state.session}
+          />
+        </section>
+        <section className="session-container">
+          <SessionList />
+        </section>
+        <ClearBtn />
+        <button
+          onClick={this.goFull}>
           Go Fullscreen
         </button>
-        </div>
+      </div>
     )
   }
 }
 
-export default App
+export default App;
