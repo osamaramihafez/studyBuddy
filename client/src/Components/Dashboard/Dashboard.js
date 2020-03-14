@@ -9,8 +9,8 @@ import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
-import LogoutButton from '../LogoutButton/LogoutButton';
-import SessionList from '../List/SessionList';  
+import Button from 'react-bootstrap/Button'
+import SessionList from '../List/SessionList';
 
 
 class Dashboard extends React.Component {
@@ -136,12 +136,14 @@ changeSession(newsession) {
               session = {this.state.session}
               />
             </section>
-            <ClearBtn/>
-          <button 
+            {/* <ClearBtn/> */}
+            <br></br>
+          <Button id='fullscreen'
             onClick={this.goFull}>
           Go Fullscreen
-        </button>
-      </div>
+        </Button>
+        <SessionList id="sessionList" ></SessionList>
+        </div>
     )
   }
 }

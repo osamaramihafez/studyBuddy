@@ -1,6 +1,8 @@
 import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
+import Button from 'react-bootstrap/Button'
+
 
 class Timer extends React.Component {
   constructor() {
@@ -95,15 +97,16 @@ class Timer extends React.Component {
           </span>
         </section>
         <section>
-          <button ref="btn" className="button start" onClick={this.start}>
+
+          <Button ref="btn" className="button start" onClick={this.start}>
             Start
-          </button>
-          <button className="button stop" onClick={this.stop}>
+          </Button>
+          <Button className="button stop" onClick={this.stop}>
             Stop
-          </button>
-          <button className="button reset" onClick={this.reset}>
+          </Button>
+          <Button className="button reset" onClick={this.reset}>
             Reset
-          </button>
+          </Button>
         </section>
       </section>
     )
