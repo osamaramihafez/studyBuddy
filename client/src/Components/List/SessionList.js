@@ -96,7 +96,7 @@ class SessionList extends React.Component ***REMOVED***
       <DragDropContext onDragEnd=***REMOVED***this.onDragEnd}>
         <Droppable droppableId="all-columns" direction="horizontal" type="column">
           ***REMOVED***provided => (
-            <Container
+            <Container id="sessionList"
               ***REMOVED***...provided.droppableProps}
               ref=***REMOVED***provided.innerRef}
             >

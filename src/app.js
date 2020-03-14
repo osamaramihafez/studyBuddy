@@ -1,6 +1,6 @@
 const express = require('express');
 const PORT = process.env.PORT || 8000;
-const userRouter = require("./routes/user");
+const userRouter = require("./routes/User");
 const taskRouter = require('./routes/Task');
 require("./utils/DbSetup");
 
