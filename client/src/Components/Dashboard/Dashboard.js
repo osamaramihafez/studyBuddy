@@ -9,8 +9,8 @@ import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
-import Button from 'react-bootstrap/Button'
-import SessionList from '../List/SessionList';
+import Calendar from '../Calendar/Calendar';
+import Button from 'react-bootstrap/Button';
 
 class Dashboard extends React.Component {
   constructor() {
@@ -133,7 +133,7 @@ class Dashboard extends React.Component {
             onClick={this.goFull}>
           Go Fullscreen
         </Button>
-        <SessionList id="sessionList" ></SessionList>
+        <Calendar></Calendar>
         </div>
     )
   }
