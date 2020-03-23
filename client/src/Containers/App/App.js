@@ -20,6 +20,7 @@ const App = () => {
           <Navbar />
           <br/>
           <Route path="/user" component={ProfilePage} />
+          <Route path="/user" component={CalendarPage} />
         </div>
         <Route exact path='/login' component={AuthPage} />
         <Route exact path='/register' component={RegistrationFrom} />
