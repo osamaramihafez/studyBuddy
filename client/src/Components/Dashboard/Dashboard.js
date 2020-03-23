@@ -134,7 +134,6 @@ changeSession(newsession) {
               session = {this.state.session}
               />
             </section>
-            {/* <ClearBtn/> */}
             <br></br>
           <Button id='fullscreen'
             onClick={this.goFull}>
