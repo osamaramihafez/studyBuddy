@@ -2,6 +2,7 @@ import React from 'react'
 import UIfx from 'uifx'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
+import './ClearDoneTasks.css'
 //npm install axios
 
 class ClearDoneTasks extends React.Component ***REMOVED***
@@ -50,7 +51,7 @@ class ClearDoneTasks extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     return (
-        <Button ref="clearBtn" className="button clear" onClick=***REMOVED***this.clear}>
+        <Button ref="clearBtn" className="spaced-buton" onClick=***REMOVED***this.clear}>
             Clear
         </Button>
     )
