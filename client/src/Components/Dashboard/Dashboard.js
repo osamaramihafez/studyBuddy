@@ -134,7 +134,6 @@ changeSession(newsession) ***REMOVED***
               session = ***REMOVED***this.state.session}
               />
             </section>
-            ***REMOVED***/* <ClearBtn/> */}
             <br></br>
           <Button id='fullscreen'
             onClick=***REMOVED***this.goFull}>
