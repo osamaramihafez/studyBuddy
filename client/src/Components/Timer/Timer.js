@@ -2,7 +2,7 @@ import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
 import Button from 'react-bootstrap/Button'
-
+import { MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
 
 class Timer extends React.Component {
   constructor() {
@@ -98,14 +98,14 @@ class Timer extends React.Component {
         </section>
         <section>
 
-          <Button ref="btn" className="button start" onClick={this.start}>
-            Start
+          <Button ref="btn" onClick={this.start}>
+          <MdPlayArrow />
           </Button>
-          <Button className="button stop" onClick={this.stop}>
-            Stop
+          <Button onClick={this.stop}>
+            <MdPause />
           </Button>
-          <Button className="button reset" onClick={this.reset}>
-            Reset
+          <Button onClick={this.reset}>
+            <MdRefresh />
           </Button>
         </section>
       </section>
