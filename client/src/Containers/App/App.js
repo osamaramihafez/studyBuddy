@@ -20,6 +20,7 @@ const App = () => ***REMOVED***
           <Navbar />
           <br/>
           <Route path="/user" component=***REMOVED***ProfilePage} />
+          <Route path="/user" component=***REMOVED***CalendarPage} />
         </div>
         <Route exact path='/login' component=***REMOVED***AuthPage} />
         <Route exact path='/register' component=***REMOVED***RegistrationFrom} />
