@@ -84,3 +84,7 @@ h4{
   margin: 4px ;
   transition-duration: 0.4s;
 }
+.isFullScreen{
+  color: white;
+
+}
