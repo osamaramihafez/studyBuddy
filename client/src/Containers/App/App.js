@@ -6,6 +6,8 @@ import RegistrationFrom from '../../Components/Register/Register.js'
 import Dashboard from '../../Components/Dashboard/Dashboard';
 import Navbar from '../../Components/Navbar/Navbar';
 import ProfilePage from '../../Components/ProfilePage/ProfilePage';
+// import CalendarPage from '../Components/CalendarPage/CalendarPage.js';
+
 
 const App = () => ***REMOVED***
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
+import "bootstrap/dist/css/bootstrap.min.css";
+import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
@@ -10,6 +12,7 @@ import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import Navbar from '../Navbar/Navbar'
+import FullScreen, ***REMOVED*** fullScreenSupported } from 'react-request-fullscreen'
 
 class Dashboard extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -23,6 +26,7 @@ class Dashboard extends React.Component ***REMOVED***
       session: 25,
       counter : false,
       flipper: true,
+      FullScreen: false
   
     }
     this.updateTimer = this.updateTimer.bind(this);
@@ -31,6 +35,19 @@ class Dashboard extends React.Component ***REMOVED***
     this.changeSession = this.changeSession.bind(this);
     this.isTimerRunning = this.isTimerRunning.bind(this);
   }
+  onFullScreenChange (isFullScreen) ***REMOVED***
+    this.setState(***REMOVED***
+      isFullScreen
+    })
+  }
+  requestOrExitFullScreen () ***REMOVED***
+    this.fullScreenRef.fullScreen()
+  }
+ 
+  requestOrExitFullScreenByElement () ***REMOVED***
+    this.elFullScreenRef.fullScreen(this.elRef)
+  }
+ 
 
   isTimerRunning(timerRunning) ***REMOVED***
     this.setState(***REMOVED***
@@ -111,17 +128,11 @@ changeSession(newsession) ***REMOVED***
   }
 
   render() ***REMOVED***
+    const ***REMOVED*** isFullScreen } = this.state
     return (
       <div className="App">
-        <Navbar />
-         <h4> ***REMOVED*** this.state.flipper === true ? "Session": "Break" } </h4>
-            <Timer
-              timerMinute=***REMOVED***this.state.timerMinute}
-              updateTimer=***REMOVED***this.updateTimer}
-              resetTimer=***REMOVED***this.resetTimer}
-              break = ***REMOVED***this.break}
-              timerRunning = ***REMOVED***this.state.timerRunning}
-            />
+     
+            <Timer/>
               <ClearBtn/>
               <LogoutButton></LogoutButton>
             <section className="interval-container">
@@ -135,10 +146,24 @@ changeSession(newsession) ***REMOVED***
               />
             </section>
             <br></br>
-          <Button id='fullscreen'
-            onClick=***REMOVED***this.goFull}>
-          Go Fullscreen
-        </Button>
+            <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.fullScreenRef = ref }} onFullScreenChange=***REMOVED***this.onFullScreenChange.bind(this)}>
+          <div
+            className='rq'
+            onClick=***REMOVED***this.requestOrExitFullScreen.bind(this)}
+          >
+            <Button>
+            ***REMOVED***!isFullScreen ? 'Fullscreen' : 'Exit FullScreen'}
+            </Button>
+          </div>
+        </FullScreen>
+        <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.elFullScreenRef = ref }}>
+          <div
+            className='el-rq'
+            ref=***REMOVED***ref => ***REMOVED*** this.elRef = ref }}
+            onClick=***REMOVED***this.requestOrExitFullScreenByElement.bind(this)}
+          >
+          </div>
+        </FullScreen>
         <SessionList id="sessionList" ></SessionList>
         </div>
     )
