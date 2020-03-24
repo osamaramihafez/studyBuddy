@@ -6,7 +6,7 @@ import RegistrationFrom from '../../Components/Register/Register.js'
 import Dashboard from '../../Components/Dashboard/Dashboard';
 import Navbar from '../../Components/Navbar/Navbar';
 import ProfilePage from '../../Components/ProfilePage/ProfilePage';
-import CalendarPage from '../../Components/CalendarPage/CalendarPage'
+import CalendarPage from '../../Components/CalendarPage/CalendarPage;
 
 const App = () => {
 
@@ -20,7 +20,7 @@ const App = () => {
         <div className="container">
           <br/>
           <Route path="/user" component={ProfilePage} />
-          <Route path="/user" component={CalendarPage} />
+          {/* <Route path="/user" component={CalendarPage} /> */}
         </div>
         <Route exact path='/login' component={AuthPage} />
         <Route exact path='/register' component={RegistrationFrom} />

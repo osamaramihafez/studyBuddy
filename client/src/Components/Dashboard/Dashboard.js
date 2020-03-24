@@ -2,6 +2,7 @@ import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from '../Navbar/Navbar'
 import './Dashboard.css'
@@ -13,7 +14,8 @@ import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
 import LogoutButton from '../LogoutButton/LogoutButton'
 import CalendarPage from '../CalendarPage/CalendarPage'
-
+import LogoutButton from '../LogoutButton/LogoutButton';
+import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
 
 class Dashboard extends React.Component {
   constructor() {
@@ -27,6 +29,7 @@ class Dashboard extends React.Component {
       session: 25,
       counter : false,
       flipper: true,
+      FullScreen: false
   
     }
     this.updateTimer = this.updateTimer.bind(this);
@@ -35,6 +38,19 @@ class Dashboard extends React.Component {
     this.changeSession = this.changeSession.bind(this);
     this.isTimerRunning = this.isTimerRunning.bind(this);
   }
+  onFullScreenChange (isFullScreen) {
+    this.setState({
+      isFullScreen
+    })
+  }
+  requestOrExitFullScreen () {
+    this.fullScreenRef.fullScreen()
+  }
+ 
+  requestOrExitFullScreenByElement () {
+    this.elFullScreenRef.fullScreen(this.elRef)
+  }
+ 
 
   isTimerRunning(timerRunning) {
     this.setState({
@@ -115,21 +131,38 @@ changeSession(newsession) {
   }
 
   render() {
+    const { isFullScreen } = this.state
+
     console.log(this.getToken());
     return (
       <div className="App">
         <Navbar />
-            <Timer />
-              <ClearBtn/>
-              <LogoutButton></LogoutButton>
-            <section className="interval-container">
-
-            </section>
-            {/* <ClearBtn/> */}
+        <Timer />      
+         <ClearBtn/>
+         <LogoutButton></LogoutButton>
           <Button id='fullscreen'
             onClick={this.goFull}>
           Go Fullscreen
         </Button>
+            <br></br>
+            <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
+          <div
+            className='rq'
+            onClick={this.requestOrExitFullScreen.bind(this)}
+          >
+            <Button>
+            {!isFullScreen ? 'Fullscreen' : 'Exit FullScreen'}
+            </Button>
+          </div>
+        </FullScreen>
+        <FullScreen ref={ref => { this.elFullScreenRef = ref }}>
+          <div
+            className='el-rq'
+            ref={ref => { this.elRef = ref }}
+            onClick={this.requestOrExitFullScreenByElement.bind(this)}
+          >
+          </div>
+        </FullScreen>
         <SessionList id="sessionList" ></SessionList>
         </div>
     )
