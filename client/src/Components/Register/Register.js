@@ -3,6 +3,7 @@ import { Form, Container, Button, OverlayTrigger, Popover, Alert, Overlay } from
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 import "./Register.css";
+var nodemailer = require('nodemailer');
 
 class RegistrationForm extends React.Component {
     constructor() {
@@ -44,9 +45,35 @@ class RegistrationForm extends React.Component {
         this.validateForm();
     }
 
+    sendMail(e) {
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'studdybuddycsc301@gmail.com',
+              pass: 'Studdy123'
+            }
+          });
+          
+        var mailOptions = {
+            from: 'studdybuddycsc301@gmail.com',
+            to: 'dboyzinthehouse@gmail.com',
+            subject: 'Sending Email using Node.js',
+            text: `Hi , thank you for registering with Studdy Buddy!`      
+        };
+        
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    }
+
     handleRegistration(e) {
         e.preventDefault();
         console.log(this.state);
+
         axios.post("http://localhost:8000/create/user", {
             name: this.state.name,
             email: this.state.email,
@@ -73,7 +100,7 @@ class RegistrationForm extends React.Component {
                 <Container className="inner-form">
                     <h3 className="subtitle">Registration</h3>
                     <br></br>
-                    <Form onSubmit={this.handleRegistration}>
+                    <Form onSubmit={this.handleRegistration, this.sendMail}>
                         <Form.Group controlId="name" className="inp-top">
                             <Form.Control
                                 autoFocus
