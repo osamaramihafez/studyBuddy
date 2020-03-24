@@ -50,7 +50,7 @@ class ClearDoneTasks extends React.Component {
 
   render() {
     return (
-        <Button ref="clearBtn" className="button clear" onClick={this.clear}>
+        <Button ref="clearBtn" onClick={this.clear}>
             Clear
         </Button>
     )
