@@ -4,7 +4,7 @@ import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
-
+import Navbar from '../Navbar/Navbar'
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
@@ -12,11 +12,10 @@ import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
 import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
+import LogoutButton from '../LogoutButton/LogoutButton'
+import CalendarPage from '../CalendarPage/CalendarPage'
 import LogoutButton from '../LogoutButton/LogoutButton';
 import FullScreen, ***REMOVED*** fullScreenSupported } from 'react-request-fullscreen'
-
-
-
 
 class Dashboard extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -137,27 +136,14 @@ changeSession(newsession) ***REMOVED***
     console.log(this.getToken());
     return (
       <div className="App">
-      
-         <h4> ***REMOVED*** this.state.flipper === true ? "Session": "Break" } </h4>
-            <Timer
-              timerMinute=***REMOVED***this.state.timerMinute}
-              updateTimer=***REMOVED***this.updateTimer}
-              resetTimer=***REMOVED***this.resetTimer}
-              break = ***REMOVED***this.break}
-              timerRunning = ***REMOVED***this.state.timerRunning}
-            />
-              <ClearBtn/>
-              <LogoutButton></LogoutButton>
-            <section className="interval-container">
-              <Break
-              changeBreak = ***REMOVED***this.changeBreak}
-              break = ***REMOVED***this.state.break}
-              />
-              <Session
-              changeSession = ***REMOVED***this.changeSession}
-              session = ***REMOVED***this.state.session}
-              />
-            </section>
+        <Navbar />
+        <Timer />      
+         <ClearBtn/>
+         <LogoutButton></LogoutButton>
+          <Button id='fullscreen'
+            onClick=***REMOVED***this.goFull}>
+          Go Fullscreen
+        </Button>
             <br></br>
             <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.fullScreenRef = ref }} onFullScreenChange=***REMOVED***this.onFullScreenChange.bind(this)}>
           <div

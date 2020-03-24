@@ -1,0 +1,35 @@
+.timer ***REMOVED***
+    font-size: 100px;
+    border: none;
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    background-color: #FAACA8;
+    -webkit-appearance: none;
+}
+
+.timer:disabled ***REMOVED***
+    font-size: 100px;
+    border: none;
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    background-color: #FAACA8;
+    color: black;
+    -moz-appearance: textfield;
+}
+
+input[type="number"] ***REMOVED***
+    -moz-appearance: textfield;
+}
+
+.colon ***REMOVED***
+    font-size: 100px;
+    display: inline-block;
+    color: black;
+    height: auto;
+}
+
+.break ***REMOVED***
+    color: red;
+}
