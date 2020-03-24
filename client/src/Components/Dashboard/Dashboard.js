@@ -119,14 +119,7 @@ changeSession(newsession) {
     return (
       <div className="App">
         <Navbar />
-         <h4> { this.state.flipper === true ? "Session": "Break" } </h4>
-            <Timer
-              timerMinute={this.state.timerMinute}
-              updateTimer={this.updateTimer}
-              resetTimer={this.resetTimer}
-              break = {this.break}
-              timerRunning = {this.state.timerRunning}
-            />
+            <Timer />
               <ClearBtn/>
               <LogoutButton></LogoutButton>
             <section className="interval-container">

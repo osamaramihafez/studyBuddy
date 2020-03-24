@@ -22,7 +22,6 @@ function Session(props) {
 
     return (
         <section className="session-interval-container">
-          <h4>Session Timer</h4>
           <section className="session-interval">
             <Button
             disabled = {props.isPlay ? "disabled" : ""}

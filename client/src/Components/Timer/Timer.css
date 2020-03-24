@@ -29,3 +29,7 @@ input[type="number"] {
     color: black;
     height: auto;
 }
+
+.break {
+    color: red;
+}

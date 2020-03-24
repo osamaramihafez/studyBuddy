@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import { MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
 import Countdown from 'react-countdown';
 import './Timer.css'
+import { ThemeProvider } from 'styled-components';
 
 class Timer extends React.Component {
   constructor() {
@@ -13,9 +14,9 @@ class Timer extends React.Component {
     this.state = {
       minutes: "25",
       seconds: "00",
-      beginning: 0,
       disabled: false,
       sound: true,  //play the sound whenever reset
+      break: false 
     }
 
     this.beep = new UIfx(mp3File);
@@ -23,34 +24,47 @@ class Timer extends React.Component {
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
     this.updateMinutes = this.updateMinutes.bind(this);
+    this.formatMinutes = this.formatMinutes.bind(this);
     this.updateSeconds = this.updateSeconds.bind(this);
+    this.formatSeconds = this.formatSeconds.bind(this);
+    this.switchMode = this.switchMode.bind(this);
+
     this.tick = this.tick.bind(this);
+  }
+
+  switchMode() {
+    this.setState({
+      break: !this.state.break,
+    });
+    if(this.state.break === false) {
+      this.setState({
+        minutes: "05"
+      });
+      return;
+    }
+    this.setState({
+      minutes: "25"
+    });
   }
 
   updateMinutes(e) {
     let value = e.target.value;
+    console.log(value);
     if(value <= 0) {
       return;
     }
-    if(value < 10) {
-      value = "0" + e.target.value
-      this.setState({minutes: value});
+    if( value.length > 2) {
       return;
     }
-    else {
-      this.setState({minutes: value});
-    }
+    this.setState({minutes: value});
+
   }
   updateSeconds(e) {
     let value = e.target.value;
+    if( value.length >= 2) {
+      return;
+    }
     if(value <= 0) {
-      value = "00"
-    }
-    else if(value < 10) {
-      value = "0" + value;
-    }
-    if(value > 59) {
-      this.setState({seconds: 59});
       return;
     }
     this.setState({seconds: value});
@@ -73,7 +87,8 @@ class Timer extends React.Component {
     })
     }
     if (min === 0 & sec === 0) {
-      clearInterval(this.intervalHandle);
+      this.stop();
+      this.switchMode();
     }
     this.secondsRemaining--
   }
@@ -106,22 +121,50 @@ class Timer extends React.Component {
     this.setState({disabled: false})
   }
 
+  formatMinutes(e) {
+    const value = e.target.value;
+    if( value.length >= 2) {
+      return;
+    }
+    if(value < 10) {
+      this.setState({
+        minutes: "0" + value
+      })
+    }
+    return;
+  }
+
+  formatSeconds(e) {
+    const value = e.target.value;
+    if( value.length >= 2) {
+      return;
+    }
+    else if(value < 10) {
+      this.setState({
+        seconds: "0" + value
+      })
+      return;
+    }
+  }
+
   render() {
     return (
       <section>
-          <input disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
+          {this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
+          <input onBlur={this.formatMinutes} disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
           <p className="colon">:</p>
-          <input disabled={this.state.disabled} maxLength="2" max="59" className="timer" type="number" value={this.state.seconds} onChange={this.updateSeconds} />
+          <input onBlur={this.formatSeconds} disabled={this.state.disabled} maxLength="2" max="59" className="timer" type="number" value={this.state.seconds} onChange={this.updateSeconds} />
           <br />
           <Button ref="btn" onClick={this.start} disabled={this.state.disabled}>
           <MdPlayArrow />
           </Button>
-          <Button onClick={this.stop}>
+          <Button onClick={this.stop} disabled={!this.state.disabled}>
             <MdPause />
           </Button>
           <Button onClick={this.reset}>
             <MdRefresh />
           </Button>
+          <Button ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes</Button>
       </section>
     )
   }
