@@ -2,14 +2,17 @@ import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
 import Button from 'react-bootstrap/Button'
-
+import ***REMOVED*** MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
+import Countdown from 'react-countdown';
+import './Timer.css'
 
 class Timer extends React.Component ***REMOVED***
   constructor() ***REMOVED***
     super()
 
     this.state = ***REMOVED***
-      seconds: 0,
+      minutes: "25",
+      seconds: "00",
       beginning: 0,
       disabled: false,
       sound: true,  //play the sound whenever reset
@@ -19,95 +22,106 @@ class Timer extends React.Component ***REMOVED***
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
-
-    this.decrease = this.decrease.bind(this);
+    this.updateMinutes = this.updateMinutes.bind(this);
+    this.updateSeconds = this.updateSeconds.bind(this);
+    this.tick = this.tick.bind(this);
   }
 
-  start() ***REMOVED***
-    if (this.state.disabled) ***REMOVED***
+  updateMinutes(e) ***REMOVED***
+    let value = e.target.value;
+    if(value <= 0) ***REMOVED***
       return;
     }
-
-    if (this.state.sound) ***REMOVED***
-      this.beep.play();
+    if(value < 10) ***REMOVED***
+      value = "0" + e.target.value
+      this.setState(***REMOVED***minutes: value***REMOVED***
+      return;
     }
+    else ***REMOVED***
+      this.setState(***REMOVED***minutes: value***REMOVED***
+    }
+  }
+  updateSeconds(e) ***REMOVED***
+    let value = e.target.value;
+    if(value <= 0) ***REMOVED***
+      value = "00"
+    }
+    else if(value < 10) ***REMOVED***
+      value = "0" + value;
+    }
+    if(value > 59) ***REMOVED***
+      this.setState(***REMOVED***seconds: 59***REMOVED***
+      return;
+    }
+    this.setState(***REMOVED***seconds: value***REMOVED***
+  }
 
-
-    let beginning = setInterval(this.decrease, 1000)
-
+  tick() ***REMOVED***
+    const min = Math.floor(this.secondsRemaining / 60);
+    const sec = (this.secondsRemaining - (min * 60));
     this.setState(***REMOVED***
-      beginning: beginning,
-      disabled: true,
-      sound: false,
+      minutes: min,
+      seconds: sec
     })
+    if (sec < 10) ***REMOVED***
+      this.setState(***REMOVED***
+        seconds: "0" + this.state.seconds,
+      })
+    }
+    if (min < 10) ***REMOVED***this.setState(***REMOVED***
+      minutes: "0" + min,
+    })
+    }
+    if (min === 0 & sec === 0) ***REMOVED***
+      clearInterval(this.intervalHandle);
+    }
+    this.secondsRemaining--
   }
 
   stop() ***REMOVED***
-    clearInterval(this.state.beginning)
+    clearInterval(this.intervalHandle);
     this.setState(***REMOVED***
       disabled: false,
     })
   }
 
-  reset() ***REMOVED***
-    this.stop();
-    this.props.resetTimer();
+  start() ***REMOVED***
     this.setState(***REMOVED***
-      seconds: 0,
+      disabled: true,
       sound: true
     })
+    this.intervalHandle = setInterval(this.tick, 1000);
+    let time = this.state.minutes;
+    this.secondsRemaining = time * 60 + Number(this.state.seconds);
+
   }
 
-  decrease() ***REMOVED***
-    switch (this.state.seconds) ***REMOVED***
-      case 0:
-        if (this.props.timerMinute === 0 && this.state.seconds === 0) ***REMOVED***
-          this.beep.play();
-          this.setState(***REMOVED*** timerMinute: this.state.break ***REMOVED***
-          break;
-        }
-
-        this.props.updateTimer();
-        this.setState(***REMOVED***
-          seconds: 59
-        })
-        break;
-      default:
-        this.setState((prevState) => ***REMOVED***
-          return ***REMOVED***
-            seconds: prevState.seconds - 1
-          }
-        })
-        break;
-    }
+  reset() ***REMOVED***
+    this.stop();
+    this.setState(***REMOVED***
+      seconds: '00',
+      minutes: '25',
+      sound: true
+    ***REMOVED***
+    this.setState(***REMOVED***disabled: false})
   }
 
   render() ***REMOVED***
     return (
       <section>
-        <section>
-          <span className="timer">***REMOVED***this.props.timerMinute}</span>
-          <span className="timer">:</span>
-          <span className="timer">
-            ***REMOVED***this.state.seconds === 0
-              ? '00'
-              : this.state.seconds < 10
-                ? '0' + this.state.seconds
-                : this.state.seconds}
-          </span>
-        </section>
-        <section>
-
-          <Button ref="btn" className="button start" onClick=***REMOVED***this.start}>
-            Start
+          <input disabled=***REMOVED***this.state.disabled} maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
+          <p className="colon">:</p>
+          <input disabled=***REMOVED***this.state.disabled} maxLength="2" max="59" className="timer" type="number" value=***REMOVED***this.state.seconds} onChange=***REMOVED***this.updateSeconds} />
+          <br />
+          <Button ref="btn" onClick=***REMOVED***this.start} disabled=***REMOVED***this.state.disabled}>
+          <MdPlayArrow />
           </Button>
-          <Button className="button stop" onClick=***REMOVED***this.stop}>
-            Stop
+          <Button onClick=***REMOVED***this.stop}>
+            <MdPause />
           </Button>
-          <Button className="button reset" onClick=***REMOVED***this.reset}>
-            Reset
+          <Button onClick=***REMOVED***this.reset}>
+            <MdRefresh />
           </Button>
-        </section>
       </section>
     )
   }

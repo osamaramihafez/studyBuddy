@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
 import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
-
+import Navbar from '../Navbar/Navbar'
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
@@ -11,6 +11,8 @@ import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
 import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
+import LogoutButton from '../LogoutButton/LogoutButton'
+import CalendarPage from '../CalendarPage/CalendarPage'
 
 
 class Dashboard extends React.Component ***REMOVED***
@@ -116,6 +118,7 @@ changeSession(newsession) ***REMOVED***
     console.log(this.getToken());
     return (
       <div className="App">
+        <Navbar />
          <h4> ***REMOVED*** this.state.flipper === true ? "Session": "Break" } </h4>
             <Timer
               timerMinute=***REMOVED***this.state.timerMinute}
@@ -127,17 +130,9 @@ changeSession(newsession) ***REMOVED***
               <ClearBtn/>
               <LogoutButton></LogoutButton>
             <section className="interval-container">
-              <Break
-              changeBreak = ***REMOVED***this.changeBreak}
-              break = ***REMOVED***this.state.break}
-              />
-              <Session
-              changeSession = ***REMOVED***this.changeSession}
-              session = ***REMOVED***this.state.session}
-              />
+
             </section>
             ***REMOVED***/* <ClearBtn/> */}
-            <br></br>
           <Button id='fullscreen'
             onClick=***REMOVED***this.goFull}>
           Go Fullscreen

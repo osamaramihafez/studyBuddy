@@ -50,7 +50,7 @@ class ClearDoneTasks extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     return (
-        <Button ref="clearBtn" className="button clear" onClick=***REMOVED***this.clear}>
+        <Button ref="clearBtn" onClick=***REMOVED***this.clear}>
             Clear
         </Button>
     )
