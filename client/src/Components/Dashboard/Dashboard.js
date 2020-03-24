@@ -4,7 +4,7 @@ import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter as Router, Route} from "react-router-dom";
-
+import Navbar from '../Navbar/Navbar'
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
@@ -12,11 +12,10 @@ import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
 import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
+import LogoutButton from '../LogoutButton/LogoutButton'
+import CalendarPage from '../CalendarPage/CalendarPage'
 import LogoutButton from '../LogoutButton/LogoutButton';
 import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
-
-
-
 
 class Dashboard extends React.Component {
   constructor() {
@@ -137,27 +136,14 @@ changeSession(newsession) {
     console.log(this.getToken());
     return (
       <div className="App">
-      
-         <h4> { this.state.flipper === true ? "Session": "Break" } </h4>
-            <Timer
-              timerMinute={this.state.timerMinute}
-              updateTimer={this.updateTimer}
-              resetTimer={this.resetTimer}
-              break = {this.break}
-              timerRunning = {this.state.timerRunning}
-            />
-              <ClearBtn/>
-              <LogoutButton></LogoutButton>
-            <section className="interval-container">
-              <Break
-              changeBreak = {this.changeBreak}
-              break = {this.state.break}
-              />
-              <Session
-              changeSession = {this.changeSession}
-              session = {this.state.session}
-              />
-            </section>
+        <Navbar />
+        <Timer />      
+         <ClearBtn/>
+         <LogoutButton></LogoutButton>
+          <Button id='fullscreen'
+            onClick={this.goFull}>
+          Go Fullscreen
+        </Button>
             <br></br>
             <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
           <div
