@@ -2,6 +2,7 @@ import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from '../Navbar/Navbar'
 import './Dashboard.css'
@@ -13,7 +14,8 @@ import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
 import LogoutButton from '../LogoutButton/LogoutButton'
 import CalendarPage from '../CalendarPage/CalendarPage'
-
+import LogoutButton from '../LogoutButton/LogoutButton';
+import FullScreen, ***REMOVED*** fullScreenSupported } from 'react-request-fullscreen'
 
 class Dashboard extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -27,6 +29,7 @@ class Dashboard extends React.Component ***REMOVED***
       session: 25,
       counter : false,
       flipper: true,
+      FullScreen: false
   
     }
     this.updateTimer = this.updateTimer.bind(this);
@@ -35,6 +38,19 @@ class Dashboard extends React.Component ***REMOVED***
     this.changeSession = this.changeSession.bind(this);
     this.isTimerRunning = this.isTimerRunning.bind(this);
   }
+  onFullScreenChange (isFullScreen) ***REMOVED***
+    this.setState(***REMOVED***
+      isFullScreen
+    })
+  }
+  requestOrExitFullScreen () ***REMOVED***
+    this.fullScreenRef.fullScreen()
+  }
+ 
+  requestOrExitFullScreenByElement () ***REMOVED***
+    this.elFullScreenRef.fullScreen(this.elRef)
+  }
+ 
 
   isTimerRunning(timerRunning) ***REMOVED***
     this.setState(***REMOVED***
@@ -115,21 +131,38 @@ changeSession(newsession) ***REMOVED***
   }
 
   render() ***REMOVED***
+    const ***REMOVED*** isFullScreen } = this.state
+
     console.log(this.getToken());
     return (
       <div className="App">
         <Navbar />
-            <Timer />
-              <ClearBtn/>
-              <LogoutButton></LogoutButton>
-            <section className="interval-container">
-
-            </section>
-            ***REMOVED***/* <ClearBtn/> */}
+        <Timer />      
+         <ClearBtn/>
+         <LogoutButton></LogoutButton>
           <Button id='fullscreen'
             onClick=***REMOVED***this.goFull}>
           Go Fullscreen
         </Button>
+            <br></br>
+            <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.fullScreenRef = ref }} onFullScreenChange=***REMOVED***this.onFullScreenChange.bind(this)}>
+          <div
+            className='rq'
+            onClick=***REMOVED***this.requestOrExitFullScreen.bind(this)}
+          >
+            <Button>
+            ***REMOVED***!isFullScreen ? 'Fullscreen' : 'Exit FullScreen'}
+            </Button>
+          </div>
+        </FullScreen>
+        <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.elFullScreenRef = ref }}>
+          <div
+            className='el-rq'
+            ref=***REMOVED***ref => ***REMOVED*** this.elRef = ref }}
+            onClick=***REMOVED***this.requestOrExitFullScreenByElement.bind(this)}
+          >
+          </div>
+        </FullScreen>
         <SessionList id="sessionList" ></SessionList>
         </div>
     )
