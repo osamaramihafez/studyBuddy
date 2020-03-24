@@ -38,9 +38,7 @@ User Stories (Tracked in Jira) (Max 10 marks)
  [1 mark=two or more stories in Jira Backlog do not follow the template]
  [0 marks=the majority of stories in Jira Backlog do not follow the template or no stories at all]
 
-Your Mark: 1
-Marker notes:
-	- Your user stories are clear and concise. Some feedback, put your "As a user I want..." into the description. The title of the story should be a couple words describing the ticket (i.e. acceptance criteria).
+Your Mark: 2
 
 -Broken down into tasks 
  [2 marks=all Sprint 1 stories estimated, broken into tasks, tasks assigned to all team members]
@@ -111,7 +109,7 @@ Tracking on Jira:  (Max 20 marks)
   [1=at least one branch is not named after the associated single ticket number]
   [2=every team branch is named after the associated single ticket number]
 
-Your Mark: 15
+Your Mark: 17
 Marker notes: 
 	- https://mcsapps.utm.utoronto.ca/jira/browse/STUD-7 following story was removed from sprint, it was moved into sprint 3. There was no explanation provided to why it was moved.
 	- There was a team member that did not complete a task this sprint (in accordance with the Jira board and Git commit history). They did not complete the task assigned, but complete a task that was not in sprint.
@@ -121,7 +119,7 @@ Sprint Completion: (Max 20 marks)
 - With A Minimum Of 5 Stories
   [x = Percentage of story points completed * 20]
 
-Your Mark: 16
+Your Mark: 18
 Marker notes:
 	- Marks were lost because STUD-7 story was not completed (and no explanation was provided)
 	- Once you've commited to a sprint (i.e. planned your sprint and put stories in the sprint), you are expected to complete all of the issues that are within sprint. If something needs to be moved out, please provide a reason why, so we can allocate marks appropriately.
@@ -133,10 +131,7 @@ System Design - (PDF or MD file or another suitable format) (Max 10 marks)
   [1 mark: at least one is present]
   [0 marks: None present]
 
-Your Mark: 0
-Marker notes:
-	- Title page and cover pages are supposed to be separate pages (even in markdown). The system design md file is simply text about what is required (consider moving over to a PDF file if you cannot 
-
+Your Mark: 2
 - CRC Cards [or equivalent, if the team is not using CRC)
   [4 marks: Class names and Collaborators have matching names and responsibilities are stated clearly]
   [3 marks: At least one of the class names does not match the collaborator names or the responsibilities for at least one class are unclear]
@@ -163,7 +158,7 @@ Marker notes:
 	- Include system design and architecture in the same file
 
 
-Total Marks for Sprint 2: 59/74
+Total Marks for Sprint 2:66/74
 Marker notes:
 - Make sure that when you plan a task into sprint, you make sure it can be done. If you need to move it out, provide an explanation in the comments so we can adjust accordingly.
 - The task that was moved out did not have any commits or dev work associated with it (even though it said it was in-progress)
