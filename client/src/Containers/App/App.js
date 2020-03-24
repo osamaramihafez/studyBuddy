@@ -6,6 +6,8 @@ import RegistrationFrom from '../../Components/Register/Register.js'
 import Dashboard from '../../Components/Dashboard/Dashboard';
 import Navbar from '../../Components/Navbar/Navbar';
 import ProfilePage from '../../Components/ProfilePage/ProfilePage';
+// import CalendarPage from '../Components/CalendarPage/CalendarPage.js';
+
 
 const App = () => ***REMOVED***
 
@@ -20,7 +22,7 @@ const App = () => ***REMOVED***
           <Navbar />
           <br/>
           <Route path="/user" component=***REMOVED***ProfilePage} />
-          <Route path="/user" component=***REMOVED***CalendarPage} />
+          ***REMOVED***/* <Route path="/user" component=***REMOVED***CalendarPage} /> */}
         </div>
         <Route exact path='/login' component=***REMOVED***AuthPage} />
         <Route exact path='/register' component=***REMOVED***RegistrationFrom} />
