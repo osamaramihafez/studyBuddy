@@ -10,6 +10,8 @@ import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
 import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
+import LogoutButton from '../LogoutButton/LogoutButton'
+import CalendarPage from '../CalendarPage/CalendarPage'
 import LogoutButton from '../LogoutButton/LogoutButton';
 import Navbar from '../Navbar/Navbar'
 import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
@@ -131,20 +133,14 @@ changeSession(newsession) {
     const { isFullScreen } = this.state
     return (
       <div className="App">
-     
-            <Timer/>
-              <ClearBtn/>
-              <LogoutButton></LogoutButton>
-            <section className="interval-container">
-              <Break
-              changeBreak = {this.changeBreak}
-              break = {this.state.break}
-              />
-              <Session
-              changeSession = {this.changeSession}
-              session = {this.state.session}
-              />
-            </section>
+        <Navbar />
+        <Timer />      
+         <ClearBtn/>
+         <LogoutButton></LogoutButton>
+          <Button id='fullscreen'
+            onClick={this.goFull}>
+          Go Fullscreen
+        </Button>
             <br></br>
             <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
           <div
