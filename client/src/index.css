@@ -14,15 +14,6 @@ body ***REMOVED***
   /* padding-bottom: 1%; */
 }
 
-h1***REMOVED***
-  padding-top: 2%;
-  padding-bottom: 1%;
-  width: 90%;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  color: white;
-}
-
 #profilepg***REMOVED***
   background: none;
 }
@@ -31,26 +22,8 @@ h1***REMOVED***
   margin: 7px;
 }
 
-label***REMOVED***
-  color: white;
-}
-
-
-p***REMOVED***
-  color:white;
-}
-
-code ***REMOVED***
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-#fullscreen***REMOVED***
-  margin-top: 1%;
-}
-
-.timer***REMOVED***
-  color: white;
+.btn ***REMOVED***
+  margin: 9px;
 }
 
 /* #droppable***REMOVED***
@@ -63,16 +36,6 @@ code ***REMOVED***
   padding-top: 1%;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
-}
-
-.navbar***REMOVED***
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  padding: 10%;
-}
-
-input***REMOVED***
-  color: white;
 }
 
 #editprofpag***REMOVED***
