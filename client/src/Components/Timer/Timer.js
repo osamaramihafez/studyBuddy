@@ -187,7 +187,7 @@ class Timer extends React.Component ***REMOVED***
             color="primary"
           />
         }
-        label=***REMOVED***<p className="Label"> Continious Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
+        label=***REMOVED***<p className="Label">Continuous Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
       />
       </section>
     )
