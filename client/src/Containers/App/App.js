@@ -4,10 +4,7 @@ import ***REMOVED*** BrowserRouter as Router, Route, Redirect } from 'react-rout
 import AuthPage from '../AuthPage/AuthPage'
 import RegistrationFrom from '../../Components/Register/Register.js'
 import Dashboard from '../../Components/Dashboard/Dashboard';
-import Navbar from '../../Components/Navbar/Navbar';
 import ProfilePage from '../../Components/ProfilePage/ProfilePage';
-import CalendarPage from '../../Components/CalendarPage/CalendarPage;
-
 const App = () => ***REMOVED***
 
   const PrivateRoute = (***REMOVED*** component: Component, ...rest }) => (

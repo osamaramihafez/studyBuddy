@@ -1,10 +1,12 @@
 import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
-import Button from 'react-bootstrap/Button'
+import ***REMOVED***Button} from 'react-bootstrap'
 import ***REMOVED*** MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
 import './Timer.css'
-import ***REMOVED*** ThemeProvider } from 'styled-components';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 class Timer extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -15,7 +17,8 @@ class Timer extends React.Component ***REMOVED***
       seconds: "00",
       disabled: false,
       sound: true,  //play the sound whenever reset
-      break: false 
+      break: false,
+      continious: false
     }
 
     this.beep = new UIfx(mp3File);
@@ -27,6 +30,7 @@ class Timer extends React.Component ***REMOVED***
     this.updateSeconds = this.updateSeconds.bind(this);
     this.formatSeconds = this.formatSeconds.bind(this);
     this.switchMode = this.switchMode.bind(this);
+    this.switchContinue = this.switchContinue.bind(this);
 
     this.tick = this.tick.bind(this);
   }
@@ -35,7 +39,7 @@ class Timer extends React.Component ***REMOVED***
     this.setState(***REMOVED***
       break: !this.state.break,
     ***REMOVED***
-    if(this.state.break === false) ***REMOVED***
+    if(this.state.break) ***REMOVED***
       this.setState(***REMOVED***
         minutes: "05"
       ***REMOVED***
@@ -48,7 +52,6 @@ class Timer extends React.Component ***REMOVED***
 
   updateMinutes(e) ***REMOVED***
     let value = e.target.value;
-    console.log(value);
     if(value <= 0) ***REMOVED***
       return;
     }
@@ -88,6 +91,9 @@ class Timer extends React.Component ***REMOVED***
     if (min === 0 & sec === 0) ***REMOVED***
       this.stop();
       this.switchMode();
+      if(this.state.continious) ***REMOVED***
+        this.start()
+      }
     }
     this.secondsRemaining--
   }
@@ -115,7 +121,8 @@ class Timer extends React.Component ***REMOVED***
     this.setState(***REMOVED***
       seconds: '00',
       minutes: '25',
-      sound: true
+      sound: true,
+      break: false
     ***REMOVED***
     this.setState(***REMOVED***disabled: false})
   }
@@ -146,6 +153,12 @@ class Timer extends React.Component ***REMOVED***
     }
   }
 
+  switchContinue() ***REMOVED***
+    this.setState(***REMOVED***
+      continious: !this.state.continious
+    })
+  }
+
   render() ***REMOVED***
     return (
       <section>
@@ -163,7 +176,19 @@ class Timer extends React.Component ***REMOVED***
           <Button onClick=***REMOVED***this.reset}>
             <MdRefresh />
           </Button>
-          <Button ref="btn" onClick=***REMOVED***this.switchMode} disabled=***REMOVED***this.state.disabled}>Switch Modes</Button>
+    <Button ref="btn" onClick=***REMOVED***this.switchMode} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
+    <br />
+    <FormControlLabel
+        control=***REMOVED***
+          <Switch
+            checked=***REMOVED***this.state.continious}
+            onChange=***REMOVED***this.switchContinue}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label=***REMOVED***<p className="Label">Continuous Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
+      />
       </section>
     )
   }
