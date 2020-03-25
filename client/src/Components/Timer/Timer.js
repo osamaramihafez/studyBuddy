@@ -187,7 +187,7 @@ class Timer extends React.Component {
             color="primary"
           />
         }
-        label={<p className="Label"> Continious Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
+        label={<p className="Label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
       />
       </section>
     )
