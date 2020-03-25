@@ -12,7 +12,6 @@ import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
 import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
-import LogoutButton from '../LogoutButton/LogoutButton'
 import CalendarPage from '../CalendarPage/CalendarPage'
 import LogoutButton from '../LogoutButton/LogoutButton';
 import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
