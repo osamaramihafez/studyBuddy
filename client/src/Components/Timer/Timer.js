@@ -7,6 +7,7 @@ import './Timer.css'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import Notification from '../Notification'
 
 class Timer extends React.Component {
   constructor() {
@@ -89,6 +90,9 @@ class Timer extends React.Component {
     })
     }
     if (min === 0 & sec === 0) {
+      if (this.state.continious) {this.notification.showNotification('Timer Complete. New timer starting!');}
+      else {this.notification.showNotification('Timer Complete. Start your new timer!');}
+      
       this.stop();
       this.switchMode();
       if(this.state.continious) {
@@ -161,6 +165,7 @@ class Timer extends React.Component {
 
   render() {
     return (
+      
       <section>
           {this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
           <input onBlur={this.formatMinutes} disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
@@ -177,6 +182,7 @@ class Timer extends React.Component {
             <MdRefresh />
           </Button>
     <Button ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
+    <Notification ref={ref => (this.notification = ref)} />
     <br />
     <FormControlLabel
         control={
