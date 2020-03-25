@@ -17,11 +17,7 @@ const App = () => ***REMOVED***
   return (
     <div className="App">
       <Router>
-        <div className="container">
-          <br/>
-          <Route path="/user" component=***REMOVED***ProfilePage} />
-          ***REMOVED***/* <Route path="/user" component=***REMOVED***CalendarPage} /> */}
-        </div>
+        <Route path="/user" component=***REMOVED***ProfilePage} />
         <Route exact path='/login' component=***REMOVED***AuthPage} />
         <Route exact path='/register' component=***REMOVED***RegistrationFrom} />
         <PrivateRoute exact path="/dashboard" component=***REMOVED***Dashboard} />

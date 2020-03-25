@@ -3,7 +3,6 @@ import UIfx from 'uifx'
 import mp3File from './beep.mp3'
 import Button from 'react-bootstrap/Button'
 import ***REMOVED*** MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
-import Countdown from 'react-countdown';
 import './Timer.css'
 import ***REMOVED*** ThemeProvider } from 'styled-components';
 

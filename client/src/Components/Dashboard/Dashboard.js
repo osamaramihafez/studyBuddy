@@ -2,9 +2,7 @@ import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
-import Navbar from '../Navbar/Navbar'
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
@@ -15,6 +13,7 @@ import SessionList from '../List/SessionList';
 import LogoutButton from '../LogoutButton/LogoutButton'
 import CalendarPage from '../CalendarPage/CalendarPage'
 import LogoutButton from '../LogoutButton/LogoutButton';
+import Navbar from '../Navbar/Navbar'
 import FullScreen, ***REMOVED*** fullScreenSupported } from 'react-request-fullscreen'
 
 class Dashboard extends React.Component ***REMOVED***
@@ -132,8 +131,6 @@ changeSession(newsession) ***REMOVED***
 
   render() ***REMOVED***
     const ***REMOVED*** isFullScreen } = this.state
-
-    console.log(this.getToken());
     return (
       <div className="App">
         <Navbar />
