@@ -15,6 +15,7 @@ import LogoutButton from '../LogoutButton/LogoutButton';
 import Navbar from '../Navbar/Navbar'
 import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
 
+
 class Dashboard extends React.Component {
   constructor() {
     super()
@@ -27,8 +28,7 @@ class Dashboard extends React.Component {
       session: 25,
       counter : false,
       flipper: true,
-      FullScreen: false
-  
+      FullScreen: false,
     }
     this.updateTimer = this.updateTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
@@ -63,8 +63,8 @@ class Dashboard extends React.Component {
         timerMinute: prevState.timerMinute - 1
       }
     })
-    
   }
+
 
   resetTimer() {
     this.setState({
