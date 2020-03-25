@@ -7,6 +7,7 @@ import './Timer.css'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import Notification from '../Notification'
 
 class Timer extends React.Component ***REMOVED***
   constructor() ***REMOVED***
@@ -89,6 +90,9 @@ class Timer extends React.Component ***REMOVED***
     })
     }
     if (min === 0 & sec === 0) ***REMOVED***
+      if (this.state.continious) ***REMOVED***this.notification.showNotification('Timer Complete. New timer starting!');}
+      else ***REMOVED***this.notification.showNotification('Timer Complete. Start your new timer!');}
+      
       this.stop();
       this.switchMode();
       if(this.state.continious) ***REMOVED***
@@ -161,6 +165,7 @@ class Timer extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     return (
+      
       <section>
           ***REMOVED***this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
           <input onBlur=***REMOVED***this.formatMinutes} disabled=***REMOVED***this.state.disabled} maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
@@ -177,6 +182,7 @@ class Timer extends React.Component ***REMOVED***
             <MdRefresh />
           </Button>
     <Button ref="btn" onClick=***REMOVED***this.switchMode} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
+    <Notification ref=***REMOVED***ref => (this.notification = ref)} />
     <br />
     <FormControlLabel
         control=***REMOVED***
