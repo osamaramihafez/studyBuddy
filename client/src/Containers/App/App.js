@@ -17,11 +17,7 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <div className="container">
-          <br/>
-          <Route path="/user" component={ProfilePage} />
-          {/* <Route path="/user" component={CalendarPage} /> */}
-        </div>
+        <Route path="/user" component={ProfilePage} />
         <Route exact path='/login' component={AuthPage} />
         <Route exact path='/register' component={RegistrationFrom} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
