@@ -26,7 +26,7 @@ export default class ProfilePage extends Component {
           console.log(error);
         })
     
-        axios.get('http://localhost:3000/users/' + this.props.match.params.id)
+        axios.get('http://localhost:8000/User/' + this.props.match.params.id)
           .then(response => {
             if (response.data.length > 0) {
               this.setState({
@@ -64,15 +64,14 @@ export default class ProfilePage extends Component {
         }
     
         console.log(user);
-        axios.post('http://localhost:3000/User/update/' + this.props.match.params.id, user)
+        axios.post('http://localhost:3000/update/' + this.props.match.params.id, user)
             .then(res => console.log(res.data));
     }
       
   render() {
     return (
         <div>
-        <h3 id="profilepg">Profile Page</h3>
-        <hr color="white"></hr>
+        <h3>Profile Page</h3>
         <form onSubmit={this.onSubmit}>
             <div className="form-group"> 
                 <label>Name: </label>
@@ -93,7 +92,15 @@ export default class ProfilePage extends Component {
                 />
           </div>
           <div className="form-group">
-            <input id='editprofpag' type="submit" value="Edit Profile Page" className="btn btn-primary" />
+            <label>Tokens: </label>
+            <input 
+                type="text" 
+                className="form-control"
+                value={this.state.tokens}
+                />
+          </div>
+          <div className="form-group">
+            <input type="submit" value="Edit Profile Page" className="btn btn-primary" />
           </div>
         </form>
       </div>
