@@ -40,20 +40,20 @@ class Timer extends React.Component ***REMOVED***
     this.setState(***REMOVED***
       break: !this.state.break,
     ***REMOVED***
-    if(this.state.break) ***REMOVED***
+    if(!this.state.break) ***REMOVED***
       this.setState(***REMOVED***
         minutes: "05"
       ***REMOVED***
       return;
     }
-    this.setState(***REMOVED***
+    else this.setState(***REMOVED***
       minutes: "25"
     ***REMOVED***
   }
 
   updateMinutes(e) ***REMOVED***
     let value = e.target.value;
-    if(value <= 0) ***REMOVED***
+    if(value < 0) ***REMOVED***
       return;
     }
     if( value.length > 2) ***REMOVED***
@@ -64,10 +64,11 @@ class Timer extends React.Component ***REMOVED***
   }
   updateSeconds(e) ***REMOVED***
     let value = e.target.value;
-    if( value.length >= 2) ***REMOVED***
+    console.log(value);
+    if(value < 0) ***REMOVED***
       return;
     }
-    if(value <= 0) ***REMOVED***
+    if( value.length > 2) ***REMOVED***
       return;
     }
     this.setState(***REMOVED***seconds: value***REMOVED***
