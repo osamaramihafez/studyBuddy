@@ -3,7 +3,7 @@ import ***REMOVED*** Form, Container, Button, OverlayTrigger, Popover, Alert, Ov
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 import "./Register.css";
-var nodemailer = require('nodemailer');
+
 
 class RegistrationForm extends React.Component ***REMOVED***
     constructor() ***REMOVED***
@@ -45,34 +45,15 @@ class RegistrationForm extends React.Component ***REMOVED***
         this.validateForm();
     }
 
-    sendMail(e) ***REMOVED***
-        var transporter = nodemailer.createTransport(***REMOVED***
-            service: 'gmail',
-            auth: ***REMOVED***
-              user: 'studdybuddycsc301@gmail.com',
-              pass: 'Studdy123'
-            }
-          ***REMOVED***
-          
-        var mailOptions = ***REMOVED***
-            from: 'studdybuddycsc301@gmail.com',
-            to: 'dboyzinthehouse@gmail.com',
-            subject: 'Sending Email using Node.js',
-            text: `Hi , thank you for registering with Studdy Buddy!`      
-        };
-        
-        transporter.sendMail(mailOptions, function(error, info)***REMOVED***
-            if (error) ***REMOVED***
-                console.log(error);
-            } else ***REMOVED***
-                console.log('Email sent: ' + info.response);
-            }
-        ***REMOVED***
-    }
-
     handleRegistration(e) ***REMOVED***
         e.preventDefault();
         console.log(this.state);
+
+        axios.post("http://localhost:8000/send", ***REMOVED***
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        })
 
         axios.post("http://localhost:8000/create/user", ***REMOVED***
             name: this.state.name,
@@ -100,7 +81,7 @@ class RegistrationForm extends React.Component ***REMOVED***
                 <Container className="inner-form">
                     <h3 className="subtitle">Registration</h3>
                     <br></br>
-                    <Form onSubmit=***REMOVED***this.handleRegistration, this.sendMail}>
+                    <Form onSubmit=***REMOVED***this.handleRegistration} >
                         <Form.Group controlId="name" className="inp-top">
                             <Form.Control
                                 autoFocus
