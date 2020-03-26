@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const auth = require('../middleware/auth')
 const User = require('../models/User')
+var nodemailer = require('nodemailer');
 
 // Create an account
 router.post('/create/user', async (req, res, next) => ***REMOVED***
@@ -18,6 +19,32 @@ router.post('/create/user', async (req, res, next) => ***REMOVED***
         console.log(error);
         res.status(400).send(error);
     }
+***REMOVED***
+// Send email to the new user
+router.post('/send', async (req, res, next) => ***REMOVED***
+    var transporter = nodemailer.createTransport(***REMOVED***
+        service: 'gmail',
+        auth: ***REMOVED***
+          user: 'studdybuddycsc301@gmail.com',
+          pass: 'Studdy123'
+        }
+      ***REMOVED***
+      
+    var mailOptions = ***REMOVED***
+        from: 'studdybuddycsc301@gmail.com',
+        to: req.body.email,
+        subject: 'Welcome to StuddyBuddy!',
+        text: `Hi `+req.body.name+`, thank you for registering with Studdy Buddy! This is a confirmation email
+        to ensure you have registered with us. Welcome :)`      
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info)***REMOVED***
+        if (error) ***REMOVED***
+            console.log(error);
+        } else ***REMOVED***
+            console.log('Email sent: ' + info.response);
+        }
+    ***REMOVED***
 ***REMOVED***
 // login to an existing account
 router.post('/user/login', async (req, res) => ***REMOVED***

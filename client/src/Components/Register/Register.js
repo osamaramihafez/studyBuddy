@@ -4,6 +4,7 @@ import axios from 'axios'
 import Cookies from 'universal-cookie';
 import "./Register.css";
 
+
 class RegistrationForm extends React.Component ***REMOVED***
     constructor() ***REMOVED***
         super();
@@ -47,6 +48,13 @@ class RegistrationForm extends React.Component ***REMOVED***
     handleRegistration(e) ***REMOVED***
         e.preventDefault();
         console.log(this.state);
+
+        axios.post("http://localhost:8000/send", ***REMOVED***
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        })
+
         axios.post("http://localhost:8000/create/user", ***REMOVED***
             name: this.state.name,
             email: this.state.email,
@@ -73,7 +81,7 @@ class RegistrationForm extends React.Component ***REMOVED***
                 <Container className="inner-form">
                     <h3 className="subtitle">Registration</h3>
                     <br></br>
-                    <Form onSubmit=***REMOVED***this.handleRegistration}>
+                    <Form onSubmit=***REMOVED***this.handleRegistration} >
                         <Form.Group controlId="name" className="inp-top">
                             <Form.Control
                                 autoFocus
