@@ -40,20 +40,20 @@ class Timer extends React.Component {
     this.setState({
       break: !this.state.break,
     });
-    if(this.state.break) {
+    if(!this.state.break) {
       this.setState({
         minutes: "05"
       });
       return;
     }
-    this.setState({
+    else this.setState({
       minutes: "25"
     });
   }
 
   updateMinutes(e) {
     let value = e.target.value;
-    if(value <= 0) {
+    if(value < 0) {
       return;
     }
     if( value.length > 2) {
@@ -64,10 +64,11 @@ class Timer extends React.Component {
   }
   updateSeconds(e) {
     let value = e.target.value;
-    if( value.length >= 2) {
+    console.log(value);
+    if(value < 0) {
       return;
     }
-    if(value <= 0) {
+    if( value.length > 2) {
       return;
     }
     this.setState({seconds: value});
