@@ -8,18 +8,12 @@ import Timer from '../Timer/Timer'
 import Break from '../Break/Break'
 import Session from '../List/Session'
 import ClearBtn from '../ClearButton/ClearDoneTasks'
-<<<<<<< HEAD
-import Calendar from '../Calendar/Calendar';
-import Button from 'react-bootstrap/Button';
-=======
 import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
 import CalendarPage from '../CalendarPage/CalendarPage'
 import LogoutButton from '../LogoutButton/LogoutButton';
 import Navbar from '../Navbar/Navbar'
 import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
-
->>>>>>> master
 
 class Dashboard extends React.Component {
   constructor() {
