@@ -68,20 +68,20 @@ class Dashboard extends React.Component ***REMOVED***
     return (
       <div className="App">
         <Navbar />
-        <Timer />      
-         <ClearBtn/>
-         <LogoutButton></LogoutButton>
-            <br></br>
-            <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.fullScreenRef = ref }} onFullScreenChange=***REMOVED***this.onFullScreenChange.bind(this)}>
-          <div
-            className='rq'
-            onClick=***REMOVED***this.requestOrExitFullScreen.bind(this)}
-          >
-            <Button>
-            ***REMOVED***!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen'}
-            </Button>
-          </div>
-        </FullScreen>
+        <div className="timer-backdrop">
+          <Timer />      
+          <LogoutButton></LogoutButton>
+              <br></br>
+              <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.fullScreenRef = ref }} onFullScreenChange=***REMOVED***this.onFullScreenChange.bind(this)}>
+            <div
+              className='rq'
+            >
+              <Button onClick=***REMOVED***this.requestOrExitFullScreen.bind(this)}>
+              ***REMOVED***!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
+              </Button>
+            </div>
+          </FullScreen>
+        </div>
         ***REMOVED***/* <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.elFullScreenRef = ref }}>
           <div
             className='el-rq'
@@ -91,6 +91,7 @@ class Dashboard extends React.Component ***REMOVED***
           </div>
         </FullScreen> */}
         <SessionList id="sessionList" ></SessionList>
+        <ClearBtn>Clear completed tasks</ClearBtn>
         </div>
     )
   }
