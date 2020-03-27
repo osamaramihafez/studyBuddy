@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Form} from 'react-bootstrap'
+import { Container, Form, Button} from 'react-bootstrap'
 import './Gateway.css'
 
 export default class Gateway extends Component {
@@ -30,30 +30,26 @@ export default class Gateway extends Component {
                 <br></br>
                 <br></br>
                 <br></br>
-                <a href="/dashboard/solo">
+
                 <div className="container-left">
                     <h2 className="subtitle-left">
                         Solo Studying
                     </h2>
+                    
                     <p className="text">Study by yourself with just an adjustable timer and task manager.</p>
+                    <a href="/dashboard/solo">
+                        <Button className="test">Start Studying</Button>
+                    </a>
                 </div>
-                </a>
                 <div className="container-right">
                     <h2 className="subtitle-right">
                         Group Studying
                     </h2>
                     <p className="text">Study with your team with the standard timer and with an added group chat!</p>
-                    <Form onSubmit={this.submitCode}>
-                        <Form.Group controlId="test">
-                        <Form.Control
-                            type="string"
-                            onChange={this.groupHandler}
-                            placeholder="Group Code"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                        />
-                    </Form.Group>
-                    </Form>
+                    <Button className="test">Create a Room</Button>
+                    <Button className="test">Join a Room</Button>
+
+
                 </div>
             </Container>
         )

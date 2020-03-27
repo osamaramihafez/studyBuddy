@@ -68,20 +68,20 @@ class Dashboard extends React.Component {
     return (
       <div className="App">
         <Navbar />
-        <Timer />      
-         <ClearBtn/>
-         <LogoutButton></LogoutButton>
-            <br></br>
-            <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
-          <div
-            className='rq'
-            onClick={this.requestOrExitFullScreen.bind(this)}
-          >
-            <Button>
-            {!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen'}
-            </Button>
-          </div>
-        </FullScreen>
+        <div className="timer-backdrop">
+          <Timer />      
+          <LogoutButton></LogoutButton>
+              <br></br>
+              <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
+            <div
+              className='rq'
+            >
+              <Button onClick={this.requestOrExitFullScreen.bind(this)}>
+              {!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
+              </Button>
+            </div>
+          </FullScreen>
+        </div>
         {/* <FullScreen ref={ref => { this.elFullScreenRef = ref }}>
           <div
             className='el-rq'
@@ -91,6 +91,7 @@ class Dashboard extends React.Component {
           </div>
         </FullScreen> */}
         <SessionList id="sessionList" ></SessionList>
+        <ClearBtn>Clear completed tasks</ClearBtn>
         </div>
     )
   }
