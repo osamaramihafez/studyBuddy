@@ -14,6 +14,7 @@ import CalendarPage from '../CalendarPage/CalendarPage'
 import LogoutButton from '../LogoutButton/LogoutButton';
 import Navbar from '../Navbar/Navbar'
 import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
+import ApiCalendar from 'react-google-calendar-api';
 
 class Dashboard extends React.Component {
   constructor() {
@@ -34,6 +35,7 @@ class Dashboard extends React.Component {
     this.changeBreak = this.changeBreak.bind(this);
     this.changeSession = this.changeSession.bind(this);
     this.isTimerRunning = this.isTimerRunning.bind(this);
+    this.accessGoogleApi = this.accessGoogleApi.bind(this);
   }
   onFullScreenChange (isFullScreen) {
     this.setState({
@@ -127,6 +129,10 @@ changeSession(newsession) {
       }
   }
 
+  accessGoogleApi(event) {
+    ApiCalendar.handleAuthClick();
+  }
+
   render() {
     const { isFullScreen } = this.state
     return (
@@ -158,6 +164,10 @@ changeSession(newsession) {
           >
           </div>
         </FullScreen>
+        <Button id='calendar'
+            onClick={(e) => this.accessGoogleApi(e)}>
+          Calendar
+        </Button>
         <SessionList id="sessionList" ></SessionList>
         </div>
     )
