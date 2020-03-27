@@ -1,116 +1,200 @@
 import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
-import Button from 'react-bootstrap/Button'
-
+import {Button} from 'react-bootstrap'
+import { MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
+import './Timer.css'
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import Notification from '../Notification'
 
 class Timer extends React.Component {
   constructor() {
     super()
 
     this.state = {
-      seconds: 0,
-      beginning: 0,
-      disabled : false,
+      minutes: "25",
+      seconds: "00",
+      disabled: false,
       sound: true,  //play the sound whenever reset
+      break: false,
+      continious: false
     }
 
-    this.beep =  new UIfx(mp3File);
+    this.beep = new UIfx(mp3File);
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
+    this.updateMinutes = this.updateMinutes.bind(this);
+    this.formatMinutes = this.formatMinutes.bind(this);
+    this.updateSeconds = this.updateSeconds.bind(this);
+    this.formatSeconds = this.formatSeconds.bind(this);
+    this.switchMode = this.switchMode.bind(this);
+    this.switchContinue = this.switchContinue.bind(this);
 
-    this.decrease = this.decrease.bind(this);
+    this.tick = this.tick.bind(this);
+  }
+
+  switchMode() {
+    this.setState({
+      break: !this.state.break,
+    });
+    if(this.state.break) {
+      this.setState({
+        minutes: "05"
+      });
+      return;
+    }
+    this.setState({
+      minutes: "25"
+    });
+  }
+
+  updateMinutes(e) {
+    let value = e.target.value;
+    if(value <= 0) {
+      return;
+    }
+    if( value.length > 2) {
+      return;
+    }
+    this.setState({minutes: value});
+
+  }
+  updateSeconds(e) {
+    let value = e.target.value;
+    if( value.length >= 2) {
+      return;
+    }
+    if(value <= 0) {
+      return;
+    }
+    this.setState({seconds: value});
+  }
+
+  tick() {
+    const min = Math.floor(this.secondsRemaining / 60);
+    const sec = (this.secondsRemaining - (min * 60));
+    this.setState({
+      minutes: min,
+      seconds: sec
+    })
+    if (sec < 10) {
+      this.setState({
+        seconds: "0" + this.state.seconds,
+      })
+    }
+    if (min < 10) {this.setState({
+      minutes: "0" + min,
+    })
+    }
+    if (min === 0 & sec === 0) {
+      if (this.state.continious) {this.notification.showNotification('Timer Complete. New timer starting!');}
+      else {this.notification.showNotification('Timer Complete. Start your new timer!');}
+      
+      this.stop();
+      this.switchMode();
+      if(this.state.continious) {
+        this.start()
+      }
+    }
+    this.secondsRemaining--
+  }
+
+  stop() {
+    clearInterval(this.intervalHandle);
+    this.setState({
+      disabled: false,
+    })
   }
 
   start() {
-    if (this.state.disabled) {
-        return;
-    }
-
-    if (this.state.sound) {
-      this.beep.play();
-    }
-
-    let beginning = setInterval(this.decrease, 1000)
-
     this.setState({
-        beginning: beginning,
-        disabled: true,
-        sound: false
+      disabled: true,
+      sound: true
     })
-    this.props.countdown(true);
+    this.intervalHandle = setInterval(this.tick, 1000);
+    let time = this.state.minutes;
+    this.secondsRemaining = time * 60 + Number(this.state.seconds);
+
   }
 
-  stop(){
-      clearInterval(this.state.beginning)
-      this.setState({
-        disabled: false,
-    })
-    this.props.countdown(false);
+  reset() {
+    this.stop();
+    this.setState({
+      seconds: '00',
+      minutes: '25',
+      sound: true,
+      break: false
+    });
+    this.setState({disabled: false})
   }
 
-  reset(){
-      this.stop();
-      this.props.resetTimer()
-      this.props.countdown(false);
-      this.setState({
-        seconds: 0,
-        sound: true
-      })
-  }
-
-  decrease() {
-    switch (this.state.seconds) {
-      case 0:
-          if ( this.props.timerMinute === 0 && this.state.seconds === 0 ){
-           
-              this.beep.play();
-              this.props.timerMinute = this.props.break;
-              break;
-            }
-           
-        this.props.updateTimer();
-        this.setState({
-          seconds: 59
-        })
-        break;
-      default:
-        this.setState( (prevState) => {
-          return {
-            seconds: prevState.seconds - 1
-          }
-        })
-        break;
+  formatMinutes(e) {
+    const value = e.target.value;
+    if( value.length >= 2) {
+      return;
     }
+    if(value < 10) {
+      this.setState({
+        minutes: "0" + value
+      })
+    }
+    return;
+  }
+
+  formatSeconds(e) {
+    const value = e.target.value;
+    if( value.length >= 2) {
+      return;
+    }
+    else if(value < 10) {
+      this.setState({
+        seconds: "0" + value
+      })
+      return;
+    }
+  }
+
+  switchContinue() {
+    this.setState({
+      continious: !this.state.continious
+    })
   }
 
   render() {
     return (
+      
       <section>
-        <section>
-          <span className="timer">{this.props.timerMinute}</span>
-          <span className="timer">:</span>
-          <span className="timer">
-            {this.state.seconds === 0
-              ? '00'
-              : this.state.seconds < 10
-              ? '0' + this.state.seconds
-              : this.state.seconds}
-          </span>
-        </section>
-        <section>
-
-          <Button ref="btn" className="button start" onClick={this.start}>
-            Start
+          {this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
+          <input onBlur={this.formatMinutes} disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
+          <p className="colon">:</p>
+          <input onBlur={this.formatSeconds} disabled={this.state.disabled} maxLength="2" max="59" className="timer" type="number" value={this.state.seconds} onChange={this.updateSeconds} />
+          <br />
+          <Button ref="btn" onClick={this.start} disabled={this.state.disabled}>
+          <MdPlayArrow />
           </Button>
-          <Button className="button stop" onClick={this.stop}>
-            Stop
+          <Button onClick={this.stop} disabled={!this.state.disabled}>
+            <MdPause />
           </Button>
-          <Button className="button reset" onClick={this.reset}>
-            Reset
+          <Button onClick={this.reset}>
+            <MdRefresh />
           </Button>
-        </section>
+    <Button ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
+    <Notification ref={ref => (this.notification = ref)} />
+    <br />
+    <FormControlLabel
+        control={
+          <Switch
+            checked={this.state.continious}
+            onChange={this.switchContinue}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label={<p className="Label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
+      />
       </section>
     )
   }

@@ -6,54 +6,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgba(0,0,0,1);
 }
 
 #root{
-  background: rgba(0,0,0,0.9);
   border-radius: 50px;
   width: 90%;
   /* padding-bottom: 1%; */
-}
-
-h1{
-  padding-top: 2%;
-  padding-bottom: 1%;
-  width: 90%;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  background: rgba(0,0,0,0.9);
-  color: white;
 }
 
 #profilepg{
   background: none;
 }
 
-label{
-  color: white;
+.btn {
+  margin: 7px;
 }
 
-h2, h2, h3{
-  color: white;
-  background: rgba(0,0,0,0.4);
-}
-
-p{
-  color:white;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-#fullscreen{
-  margin-top: 1%;
-}
-
-.timer{
-  color: white;
+.btn {
+  margin: 9px;
 }
 
 /* #droppable{
@@ -64,19 +34,8 @@ code {
   padding-left: 8%;
   margin-top: 2%;
   padding-top: 1%;
-  background: rgba(0,100,150,0.5);
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
-}
-
-.navbar{
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  padding: 10%;
-}
-
-input{
-  color: white;
 }
 
 #editprofpag{

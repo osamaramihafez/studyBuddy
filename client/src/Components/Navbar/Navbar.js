@@ -12,6 +12,9 @@ export default class Navbar extends Component {
                 <li className="navbar-item">
                     <Link to="/user" className="nav-link">Profile</Link>
                 </li>
+                <li className="navbar-item">
+                    <Link to="/user" className="nav-link">Calendar</Link>
+                </li>
             </ul>
         </div>
       </nav>
