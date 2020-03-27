@@ -6,6 +6,7 @@ import RegistrationFrom from '../../Components/Register/Register.js'
 import Dashboard from '../../Components/Dashboard/Dashboard';
 import ProfilePage from '../../Components/ProfilePage/ProfilePage';
 import Gateway from '../Gateway/Gateway';
+import GroupStudy from '../../GroupStudy/GroupStudy';
 
 const App = () => {
 
@@ -23,7 +24,7 @@ const App = () => {
         <Route exact path='/register' component={RegistrationFrom} />
         <PrivateRoute exact path="/dashboard/solo" component={Dashboard} />
         <PrivateRoute exact path="/dashboard" component={Gateway} />
-        {/* <PrivateRoute exact path="/dashboard/group" component={Dashboard} /> */}
+        <PrivateRoute exact path="/dashboard/group" component={GroupStudy} />
       </Router>
     </div>
   )
