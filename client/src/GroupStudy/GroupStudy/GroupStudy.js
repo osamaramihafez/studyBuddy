@@ -30,7 +30,7 @@ class GroupStudy extends React.Component {
         return(
         <div>
             <Timer socket={socket}/>
-            <Chat></Chat>
+            <Chat socket={socket}/>
         </div>
         )
     }

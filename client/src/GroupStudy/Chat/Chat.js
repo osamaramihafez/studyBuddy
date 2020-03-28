@@ -7,11 +7,10 @@ const socket = openSocket('http://localhost:3001');
 class Chat extends React.Component {
     constructor(props) {
         super();
-        this.props = props
+        this.socket = props.socket
         this.state = {
             msg: "",
             chat: [],
-            room: this.props.room
         }
         socket.on("message", obj => {
 
@@ -20,11 +19,6 @@ class Chat extends React.Component {
     }
 
     componentDidMount = () => {
-        let urlObject = url.parse(window.location.href);
-        console.log(urlObject.query.split("=")[1]);
-        this.setState({
-            room: urlObject.query.split("=")[1]
-        })
     }
 
     renderChat() {
@@ -41,10 +35,6 @@ class Chat extends React.Component {
     onTextChange = e => {
         this.setState({ msg: e.target.value });
       };
-
-    componentDidMount() {
-
-      }
 
     handleSendMessage = () => {
         socket.emit("sendMessage", this.state.msg);
