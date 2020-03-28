@@ -1,15 +1,96 @@
-const io = require('socket.io')();
-
-io.on('connection', (client) => {
-    client.on('subscribeToTimer', (interval) => {
-      console.log('client is subscribing to timer with interval ', interval);
-      setInterval(() => {
-        client.emit('timer', new Date());
-      }, interval);
-    });
+const express = require("express");
+const http = require("http");
+const app = express();
+const socket = require('socket.io');
+const server = http.createServer(app);
+const io = socket(server, {
+  origins: '*:*'
+});
+const port = 3001;
+const { generateMessage } = require("./utils/messages")
+const {
+  getUser,
+  getUsersInRoom,
+  addUser,
+  removeUser
+} = require("./utils/users")
+// Timer implementation 
+io.on("connection", socket => {
+  socket.on('join', ({
+      username,
+      room
+  }, callback) => {
+      const {
+          error,
+          user
+      } = addUser({
+          id: socket.id,
+          username,
+          room
+      })
+      if (error) {
+          return callback(error);
+      }
+      socket.join(user.room);
+      socket.emit("message", generateMessage("Welcome", "Admin"));
+      socket.broadcast.to(user.room).emit("message", generateMessage(`${user.username} has joined!`, "Admin"));
+      io.to(user.room).emit("roomData", {
+          room: user.room,
+          users: getUsersInRoom(user.room)
+      })
+  });
+  socket.on("sendMessage", (msg, cb) => {
+      const user = getUser(socket.id);
+      console.log(user);
+      io.to(user.room).emit("message", generateMessage(msg, user.username));
+      cb("Message delivered");
   });
 
+  socket.on("sendPlay", () => {
+    const user = getUser(socket.id);
+    io.to(user.room).emit("play", socket.id);
+  });
 
-const port = 3001;
-io.listen(port);
-console.log('listening on port ', port);
+  socket.on("sendPause", () => {
+    const user = getUser(socket.id)
+    io.to(user.room).emit("pause", socket.id);
+  })
+
+  socket.on("sendReset", () => {
+    const user = getUser(socket.id)
+    io.to(user.room).emit("reset", socket.id);
+  })
+
+  socket.on("sendSwitchModes", () => {
+    const user = getUser(socket.id)
+    console.log("test");
+    io.to(user.room).emit("switchModes", socket.id);
+  })
+
+  socket.on("sendSwitchContinue", () => {
+    const user = getUser(socket.id)
+    console.log("test");
+    io.to(user.room).emit("switchContinue", socket.id);
+  })
+
+  socket.on("disconnect", () => {
+      const user = removeUser(socket.id);
+      if (user) {
+          io.to(user.room).emit('message', generateMessage(`${user.username} has disconnected`, "Admin"));
+          io.to(user.room).emit("roomData", {
+              room: user.room,
+              users: getUsersInRoom(user.room)
+          })
+      }
+  })
+});
+
+
+
+// Chat implementation
+
+
+console.log('listening on port', port);
+
+
+server.listen(port);

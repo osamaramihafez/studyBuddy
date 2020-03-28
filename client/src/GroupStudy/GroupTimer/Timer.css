@@ -1,0 +1,47 @@
+.timer {
+    font-size: 100px;
+    border: none;
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+
+.timer-backdrop {
+    margin-top: 100px;
+    padding: 50px
+    background-color;
+}
+
+.timer:disabled {
+    font-size: 100px;
+    border: none;
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    background-color: #F6F5F6;
+    color: black;
+    background-color: transparent;
+    -moz-appearance: textfield;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.colon {
+    font-size: 100px;
+    display: inline-block;
+    color: black;
+    height: auto;
+}
+
+.break {
+    color: red;
+}
+
+.Label {
+    color: black;
+    margin-bottom: auto;
+}
