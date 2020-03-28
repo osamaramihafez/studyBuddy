@@ -6,12 +6,21 @@
     text-align: center;
     background-color: transparent;
     -webkit-appearance: none;
+    color: white;
+
 }
 
 .timer-backdrop ***REMOVED***
     margin-top: 100px;
     padding: 50px
     background-color;
+}
+
+.controls ***REMOVED***
+    justify-content: space-between;
+    width: 20%;
+    margin: auto;
+    display: flex;
 }
 
 .timer:disabled ***REMOVED***
@@ -21,7 +30,7 @@
     width: 130px;
     text-align: center;
     background-color: #F6F5F6;
-    color: black;
+    color: white;
     background-color: transparent;
     -moz-appearance: textfield;
 }
@@ -33,15 +42,24 @@ input[type="number"] ***REMOVED***
 .colon ***REMOVED***
     font-size: 100px;
     display: inline-block;
-    color: black;
+    color: white;
     height: auto;
 }
 
 .break ***REMOVED***
+    font-family: sans-serif, 'Sen';
+    margin-bottom: auto;
     color: red;
+    font-weight: bold;
+}
+
+.status-box ***REMOVED***
+    border: 1px solid white;
 }
 
 .Label ***REMOVED***
-    color: black;
+    font-family: sans-serif, 'Sen';
     margin-bottom: auto;
+    color: white;
+    font-weight: bold;
 }

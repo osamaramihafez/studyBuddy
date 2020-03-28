@@ -84,12 +84,5 @@ io.on("connection", socket => ***REMOVED***
   })
 ***REMOVED***
 
-
-
-// Chat implementation
-
-
 console.log('listening on port', port);
-
-
 server.listen(port);

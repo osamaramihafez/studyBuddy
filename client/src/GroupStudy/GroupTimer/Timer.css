@@ -22,8 +22,7 @@
     display: inline-block;
     width: 130px;
     text-align: center;
-    background-color: #F6F5F6;
-    color: black;
+    color: white;
     background-color: transparent;
     -moz-appearance: textfield;
 }
@@ -35,7 +34,7 @@ input[type="number"] ***REMOVED***
 .colon ***REMOVED***
     font-size: 100px;
     display: inline-block;
-    color: black;
+    color: white;
     height: auto;
 }
 
@@ -44,6 +43,6 @@ input[type="number"] ***REMOVED***
 }
 
 .Label ***REMOVED***
-    color: black;
+    color: white;
     margin-bottom: auto;
 }
