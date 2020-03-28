@@ -9,6 +9,7 @@ class LogoutButton extends React.Component ***REMOVED***
     constructor(props) ***REMOVED***
         super()
         this.props = props;
+        this.handleLogout = this.handleLogout.bind(this);
     }
      async handleLogout () ***REMOVED***
         const tk = Auth.getToken();
@@ -20,7 +21,7 @@ class LogoutButton extends React.Component ***REMOVED***
             await axios.post('http://localhost:8000/user/logout');
             const cookies = new Cookies();
             cookies.remove('Authorization');
-            window.location.reload(false);
+            this.props.history.push('/');
         } catch (error) ***REMOVED***
             console.log(error);
         }

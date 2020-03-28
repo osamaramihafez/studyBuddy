@@ -1,0 +1,47 @@
+.timer ***REMOVED***
+    font-size: 100px;
+    border: none;
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+
+.timer-backdrop ***REMOVED***
+    margin-top: 100px;
+    padding: 50px
+    background-color;
+}
+
+.timer:disabled ***REMOVED***
+    font-size: 100px;
+    border: none;
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    background-color: #F6F5F6;
+    color: black;
+    background-color: transparent;
+    -moz-appearance: textfield;
+}
+
+input[type="number"] ***REMOVED***
+    -moz-appearance: textfield;
+}
+
+.colon ***REMOVED***
+    font-size: 100px;
+    display: inline-block;
+    color: black;
+    height: auto;
+}
+
+.break ***REMOVED***
+    color: red;
+}
+
+.Label ***REMOVED***
+    color: black;
+    margin-bottom: auto;
+}

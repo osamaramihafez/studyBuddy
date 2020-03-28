@@ -1,5 +1,5 @@
 import React, ***REMOVED*** Component } from 'react'
-import ***REMOVED*** Container, Form, Button} from 'react-bootstrap'
+import ***REMOVED*** Container, Button} from 'react-bootstrap'
 import './Gateway.css'
 
 export default class Gateway extends Component ***REMOVED***
@@ -30,7 +30,6 @@ export default class Gateway extends Component ***REMOVED***
                 <br></br>
                 <br></br>
                 <br></br>
-
                 <div className="container-left">
                     <h2 className="subtitle-left">
                         Solo Studying
@@ -46,8 +45,10 @@ export default class Gateway extends Component ***REMOVED***
                         Group Studying
                     </h2>
                     <p className="text">Study with your team with the standard timer and with an added group chat!</p>
-                    <Button className="test">Create a Room</Button>
-                    <Button className="test">Join a Room</Button>
+                        <Button className="test">Create a Room</Button>
+                    <a href="/dashboard/group/auth">
+                        <Button className="test">Join a Room</Button>
+                    </a>
 
 
                 </div>

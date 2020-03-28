@@ -1,9 +1,11 @@
 import openSocket from 'socket.io-client';
 const  socket = openSocket('http://localhost:3001');
 
-function subscribeToTimer(cb) ***REMOVED***
-  socket.on('timer', timestamp => cb(null, timestamp));
-  socket.emit('subscribeToTimer', 1000);
+function updateTimer(values) ***REMOVED***
+  socket.on('tick', values => ***REMOVED***
+    
+  ***REMOVED***
+  socket.emit('tick');
 }
 
-export ***REMOVED*** subscribeToTimer };
+export ***REMOVED*** updateTimer };

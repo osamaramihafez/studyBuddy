@@ -7,12 +7,12 @@ import './Timer.css'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import Notification from '../Notification'
+import Notification from '../../Components/Notification/index'
 
 class Timer extends React.Component ***REMOVED***
-  constructor() ***REMOVED***
+  constructor(props) ***REMOVED***
     super()
-
+    this.props = props;
     this.state = ***REMOVED***
       minutes: "25",
       seconds: "00",
@@ -21,6 +21,8 @@ class Timer extends React.Component ***REMOVED***
       break: false,
       continious: false
     }
+
+    this.socket = this.props.socket
 
     this.beep = new UIfx(mp3File);
     this.start = this.start.bind(this);
@@ -32,23 +34,80 @@ class Timer extends React.Component ***REMOVED***
     this.formatSeconds = this.formatSeconds.bind(this);
     this.switchMode = this.switchMode.bind(this);
     this.switchContinue = this.switchContinue.bind(this);
-
+    this.handleClickPlay = this.handleClickPlay.bind(this);
+    this.handleClickPause = this.handleClickPause.bind(this);
+    this.handleClickReset = this.handleClickReset.bind(this);
+    this.handleSwitchModes = this.handleSwitchModes.bind(this);
+    this.handleSwitchContinue = this.handleSwitchContinue.bind(this);
     this.tick = this.tick.bind(this);
   }
 
-  switchMode() ***REMOVED***
-    this.setState(***REMOVED***
-      break: !this.state.break,
+  componentDidMount() ***REMOVED***
+    this.socket.on('play', (id) => ***REMOVED***
+      if(id === this.socket.id) ***REMOVED***
+      } else ***REMOVED***
+        this.start();
+      }
     ***REMOVED***
-    if(!this.state.break) ***REMOVED***
+    this.socket.on('pause', (id) => ***REMOVED***
+      if(id === this.socket.id) ***REMOVED***
+      } else ***REMOVED***
+        this.stop();
+      }
+    ***REMOVED***
+    this.socket.on('reset', (id) => ***REMOVED***
+      if(id === this.socket.id) ***REMOVED***
+      } else ***REMOVED***
+        this.reset();
+      }
+    ***REMOVED***
+    this.socket.on('switchModes', (id) => ***REMOVED***
+      if(id === this.socket.id) ***REMOVED***
+      } else ***REMOVED***
+        console.log("Test")
+        this.switchMode();
+      }
+    ***REMOVED***
+    this.socket.on('switchContinue', (id) => ***REMOVED***
+      if(id === this.socket.id) ***REMOVED***
+      } else ***REMOVED***
+        console.log("Test")
+        this.switchContinue();
+      }
+    ***REMOVED***
+  }
+
+  switchMode() ***REMOVED***
+    // this.setState(***REMOVED***
+    //   break: !this.state.break,
+    // ***REMOVED***
+    // if(!this.state.break) ***REMOVED***
+    //   this.setState(***REMOVED***
+    //     minutes: "05"
+    //   ***REMOVED***
+    //   return;
+    // }
+    // else this.setState(***REMOVED***
+    //   minutes: "25"
+    // ***REMOVED***
+    if(this.state.break === true) ***REMOVED***
       this.setState(***REMOVED***
-        minutes: "05"
+          break: !this.state.break,
+        ***REMOVED***
+        this.setState(***REMOVED***
+        minutes: "25"
+        ***REMOVED***
+        return;
+    }
+    else ***REMOVED***
+      this.setState(***REMOVED***
+        break: !this.state.break,
+      ***REMOVED***
+      this.setState(***REMOVED***
+      minutes: "05"
       ***REMOVED***
       return;
     }
-    else this.setState(***REMOVED***
-      minutes: "25"
-    ***REMOVED***
   }
 
   updateMinutes(e) ***REMOVED***
@@ -110,6 +169,31 @@ class Timer extends React.Component ***REMOVED***
     })
   }
 
+  handleClickPlay() ***REMOVED***
+    this.socket.emit('sendPlay');
+    this.start();
+  }
+
+  handleClickPause() ***REMOVED***
+    this.socket.emit('sendPause');
+    this.stop();
+  }
+
+  handleClickReset() ***REMOVED***
+    this.socket.emit('sendReset');
+    this.reset();
+  }
+
+  handleSwitchModes() ***REMOVED***
+    this.socket.emit('sendSwitchModes');
+    this.switchMode();
+  }
+
+  handleSwitchContinue() ***REMOVED***
+    this.socket.emit('sendSwitchContinue');
+    this.switchContinue();
+  }
+
   start() ***REMOVED***
     this.setState(***REMOVED***
       disabled: true,
@@ -118,7 +202,7 @@ class Timer extends React.Component ***REMOVED***
     this.intervalHandle = setInterval(this.tick, 1000);
     let time = this.state.minutes;
     this.secondsRemaining = time * 60 + Number(this.state.seconds);
-
+    // this.socket.emit('sendPlay');
   }
 
   reset() ***REMOVED***
@@ -169,27 +253,27 @@ class Timer extends React.Component ***REMOVED***
       
       <section>
           ***REMOVED***this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
-          <input onBlur=***REMOVED***this.formatMinutes} disabled=***REMOVED***this.state.disabled} maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
+          <input onBlur=***REMOVED***this.formatMinutes} disabled maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
           <p className="colon">:</p>
-          <input onBlur=***REMOVED***this.formatSeconds} disabled=***REMOVED***this.state.disabled} maxLength="2" max="59" className="timer" type="number" value=***REMOVED***this.state.seconds} onChange=***REMOVED***this.updateSeconds} />
+          <input onBlur=***REMOVED***this.formatSeconds} disabled maxLength="2" max="59" className="timer" type="number" value=***REMOVED***this.state.seconds} onChange=***REMOVED***this.updateSeconds} />
           <br />
-          <Button ref="btn" onClick=***REMOVED***this.start} disabled=***REMOVED***this.state.disabled}>
+          <Button ref="btn" onClick=***REMOVED***this.handleClickPlay} disabled=***REMOVED***this.state.disabled}>
           <MdPlayArrow />
           </Button>
-          <Button onClick=***REMOVED***this.stop} disabled=***REMOVED***!this.state.disabled}>
+          <Button onClick=***REMOVED***this.handleClickPause} disabled=***REMOVED***!this.state.disabled}>
             <MdPause />
           </Button>
-          <Button onClick=***REMOVED***this.reset}>
+          <Button onClick=***REMOVED***this.handleClickReset}>
             <MdRefresh />
           </Button>
-          <Button ref="btn" onClick=***REMOVED***this.switchMode} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
+          <Button ref="btn" onClick=***REMOVED***this.handleSwitchModes} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
           <Notification ref=***REMOVED***ref => (this.notification = ref)} />
           <br />
           <FormControlLabel
               control=***REMOVED***
                 <Switch
                   checked=***REMOVED***this.state.continious}
-                  onChange=***REMOVED***this.switchContinue}
+                  onChange=***REMOVED***this.handleSwitchContinue}
                   name="checkedB"
                   color="primary"
                 />
