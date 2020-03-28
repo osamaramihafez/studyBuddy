@@ -39,11 +39,10 @@ io.on("connection", socket => ***REMOVED***
           users: getUsersInRoom(user.room)
       })
   ***REMOVED***
-  socket.on("sendMessage", (msg, cb) => ***REMOVED***
+  socket.on("sendMessage", (msg) => ***REMOVED***
       const user = getUser(socket.id);
-      console.log(user);
+      console.log("hello");
       io.to(user.room).emit("message", generateMessage(msg, user.username));
-      cb("Message delivered");
   ***REMOVED***
 
   socket.on("sendPlay", () => ***REMOVED***

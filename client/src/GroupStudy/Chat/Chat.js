@@ -1,60 +1,70 @@
 import './Chat.css'
 import React from 'react';
-import openSocket from 'socket.io-client';
-import url from 'url' 
-const socket = openSocket('http://localhost:3001');
+import ***REMOVED***Form, FormControl, Button} from 'react-bootstrap'
 
 class Chat extends React.Component ***REMOVED***
     constructor(props) ***REMOVED***
         super();
-        this.socket = props.socket
+        this.props = props;
         this.state = ***REMOVED***
             msg: "",
             chat: [],
         }
-        socket.on("message", obj => ***REMOVED***
-
-            console.log(obj)
-        })
+        this.socket = this.props.socket
     }
 
     componentDidMount = () => ***REMOVED***
+        this.socket.on("message", (obj) => ***REMOVED***
+            // Add new messages to existing messages in "chat"
+            this.setState(***REMOVED***
+                chat: this.state.chat.concat(***REMOVED***
+                    username: obj.username, 
+                    msg: obj.msg})
+            ***REMOVED***
+        ***REMOVED***
     }
 
     renderChat() ***REMOVED***
-        const ***REMOVED*** chat } = this.state;
-        return chat.map((***REMOVED*** id, msg }, idx) => (
-          <div key=***REMOVED***idx}>
-            <span style=***REMOVED******REMOVED*** color: "green" }}>***REMOVED***id}: </span>
-    
+        return this.state.chat.map((***REMOVED*** username, msg }, index) => (
+          <div key=***REMOVED***index}>
+            <span style=***REMOVED******REMOVED*** color: "blue" }}>***REMOVED***username}: </span>
             <span>***REMOVED***msg}</span>
           </div>
         ));
       }
     
-    onTextChange = e => ***REMOVED***
+      updateMessage = e => ***REMOVED***
         this.setState(***REMOVED*** msg: e.target.value ***REMOVED***
       };
 
-    handleSendMessage = () => ***REMOVED***
-        socket.emit("sendMessage", this.state.msg);
-        this.setState(***REMOVED*** msg: "" ***REMOVED***
-    }
-    handleRecieveMessage(e) ***REMOVED***
-
-    }
-    render()***REMOVED***
-        return(
-        <div className="Test">
-            <div>
-                <input onChange=***REMOVED***e => this.onTextChange(e)} value=***REMOVED***this.state.msg} />
-                    <button onClick=***REMOVED***this.handleSendMessage}>Send</button>
-                <div>***REMOVED***this.renderChat()}</div>
+      handleMessageSubmit = (e) => ***REMOVED***
+          e.preventDefault();
+          console.log("test")
+        if(!this.state.msg.length <= 0) ***REMOVED***
+            this.socket.emit("sendMessage", this.state.msg);
+            this.setState(***REMOVED*** msg: "" ***REMOVED***
+        }
+      };
+    render() ***REMOVED***
+        return (
+          <div>
+            <div className="message-box">
+            <Button variant="outline-primary" type="submit" className="send-button">Send</Button>
+            <Form className="mb-3" onSubmit=***REMOVED***this.handleMessageSubmit}>
+                    <FormControl
+                    placeholder="Your message"
+                    aria-label="Your message"
+                    aria-describedby="basic-addon2"
+                    className="message-inp"
+                    onChange=***REMOVED***this.updateMessage}
+                    value=***REMOVED***this.state.msg}
+                    />
+            </Form>
+            <div className="messages">***REMOVED***this.renderChat()}</div>
             </div>
-
-        </div>
-        )
-    }
+          </div>
+        );
+      }
 }
 
 export default Chat;

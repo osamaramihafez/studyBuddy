@@ -251,7 +251,7 @@ class Timer extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       
-      <section>
+      <section className="timer-backdrop">
           ***REMOVED***this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
           <input onBlur=***REMOVED***this.formatMinutes} disabled maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
           <p className="colon">:</p>

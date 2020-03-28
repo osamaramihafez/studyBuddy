@@ -10,8 +10,10 @@
 
 .timer-backdrop ***REMOVED***
     margin-top: 100px;
-    padding: 50px
-    background-color;
+    padding: 50px;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
 }
 
 .timer:disabled ***REMOVED***
