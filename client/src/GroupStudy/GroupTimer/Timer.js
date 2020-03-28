@@ -251,7 +251,7 @@ class Timer extends React.Component {
   render() {
     return (
       
-      <section>
+      <section className="timer-backdrop">
           {this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
           <input onBlur={this.formatMinutes} disabled maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
           <p className="colon">:</p>

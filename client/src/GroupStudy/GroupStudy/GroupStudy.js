@@ -1,3 +1,4 @@
+import './GroupStudy.css'
 import React from 'react';
 import Chat from '../Chat/Chat'
 import openSocket from 'socket.io-client';
@@ -21,7 +22,7 @@ class GroupStudy extends React.Component {
             if (error) {
               console.log(error);
               alert(error);
-              this.props.history("/dashboard")
+              this.props.history.push('/dashboard');
             }
           });
     }
@@ -29,7 +30,7 @@ class GroupStudy extends React.Component {
     render(){
         return(
         <div>
-            <Timer socket={socket}/>
+            <Timer socket={socket} className="timer-backdrop"/>
             <Chat socket={socket}/>
         </div>
         )

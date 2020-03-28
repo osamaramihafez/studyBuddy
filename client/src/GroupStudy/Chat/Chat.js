@@ -1,60 +1,70 @@
 import './Chat.css'
 import React from 'react';
-import openSocket from 'socket.io-client';
-import url from 'url' 
-const socket = openSocket('http://localhost:3001');
+import {Form, FormControl, Button} from 'react-bootstrap'
 
 class Chat extends React.Component {
     constructor(props) {
         super();
-        this.socket = props.socket
+        this.props = props;
         this.state = {
             msg: "",
             chat: [],
         }
-        socket.on("message", obj => {
-
-            console.log(obj)
-        })
+        this.socket = this.props.socket
     }
 
     componentDidMount = () => {
+        this.socket.on("message", (obj) => {
+            // Add new messages to existing messages in "chat"
+            this.setState({
+                chat: this.state.chat.concat({
+                    username: obj.username, 
+                    msg: obj.msg})
+            });
+        });
     }
 
     renderChat() {
-        const { chat } = this.state;
-        return chat.map(({ id, msg }, idx) => (
-          <div key={idx}>
-            <span style={{ color: "green" }}>{id}: </span>
-    
+        return this.state.chat.map(({ username, msg }, index) => (
+          <div key={index}>
+            <span style={{ color: "blue" }}>{username}: </span>
             <span>{msg}</span>
           </div>
         ));
       }
     
-    onTextChange = e => {
+      updateMessage = e => {
         this.setState({ msg: e.target.value });
       };
 
-    handleSendMessage = () => {
-        socket.emit("sendMessage", this.state.msg);
-        this.setState({ msg: "" });
-    }
-    handleRecieveMessage(e) {
-
-    }
-    render(){
-        return(
-        <div className="Test">
-            <div>
-                <input onChange={e => this.onTextChange(e)} value={this.state.msg} />
-                    <button onClick={this.handleSendMessage}>Send</button>
-                <div>{this.renderChat()}</div>
+      handleMessageSubmit = (e) => {
+          e.preventDefault();
+          console.log("test")
+        if(!this.state.msg.length <= 0) {
+            this.socket.emit("sendMessage", this.state.msg);
+            this.setState({ msg: "" });
+        }
+      };
+    render() {
+        return (
+          <div>
+            <div className="message-box">
+            <Button variant="outline-primary" type="submit" className="send-button">Send</Button>
+            <Form className="mb-3" onSubmit={this.handleMessageSubmit}>
+                    <FormControl
+                    placeholder="Your message"
+                    aria-label="Your message"
+                    aria-describedby="basic-addon2"
+                    className="message-inp"
+                    onChange={this.updateMessage}
+                    value={this.state.msg}
+                    />
+            </Form>
+            <div className="messages">{this.renderChat()}</div>
             </div>
-
-        </div>
-        )
-    }
+          </div>
+        );
+      }
 }
 
 export default Chat;
