@@ -1,13 +1,14 @@
 .timer ***REMOVED***
-    font-size: 100px;
+    font-size: 118px;
     border: none;
     display: inline-block;
-    width: 130px;
+    width: 135px;
     text-align: center;
     background-color: transparent;
     -webkit-appearance: none;
     color: white;
-
+    font-family: 'Sen', sans-serif;
+    font-weight: 600;
 }
 
 .timer-backdrop ***REMOVED***
@@ -24,15 +25,17 @@
 }
 
 .timer:disabled ***REMOVED***
-    font-size: 100px;
+    font-size: 118px;
     border: none;
     display: inline-block;
-    width: 130px;
+    width: 135px;
     text-align: center;
     background-color: #F6F5F6;
     color: white;
     background-color: transparent;
     -moz-appearance: textfield;
+    font-family: 'Sen', sans-serif;
+    font-weight: 600;
 }
 
 input[type="number"] ***REMOVED***
@@ -44,22 +47,42 @@ input[type="number"] ***REMOVED***
     display: inline-block;
     color: white;
     height: auto;
+    font-family: 'Sen', sans-serif;
+    font-weight: bold;
 }
 
 .break ***REMOVED***
-    font-family: sans-serif, 'Sen';
+    font-family: 'Sen', sans-serif;
     margin-bottom: auto;
     color: red;
     font-weight: bold;
 }
 
 .status-box ***REMOVED***
-    border: 1px solid white;
+    background-color: #E0E0E0;
+    border: 1px solid #E0E0E0;
+    border-radius: 20px;
+    padding: 15px;
+    width: 35%;
+    align-self: center;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.switch-label ***REMOVED***
+    font-family: 'Sen', sans-serif;
+    margin-bottom: auto;
+    color: white;
+}
+.sub-controls ***REMOVED***
+    justify-content: space-between;
+    width: 35%;
+    margin: auto;
+    display: flex;
 }
 
 .Label ***REMOVED***
-    font-family: sans-serif, 'Sen';
+    color: black;
     margin-bottom: auto;
-    color: white;
-    font-weight: bold;
+    font-weight: 2000px;
 }

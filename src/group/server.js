@@ -32,7 +32,7 @@ io.on("connection", socket => ***REMOVED***
           return callback(error);
       }
       socket.join(user.room);
-      socket.emit("message", generateMessage("Welcome", "Admin"));
+      socket.emit("message", generateMessage("Welcome", "Server"));
       socket.broadcast.to(user.room).emit("message", generateMessage(`$***REMOVED***user.username} has joined!`, "Admin"));
       io.to(user.room).emit("roomData", ***REMOVED***
           room: user.room,

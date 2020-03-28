@@ -3,6 +3,8 @@ import initialData from './initial-data';
 import Column from './column';
 import ***REMOVED*** DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import ClearBtn from '../ClearButton/ClearDoneTasks';
+import './List.css'
 
 
 const Container = styled.div`
@@ -93,10 +95,14 @@ class SessionList extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     return (
+      <div  id="sessionList">
+      <div className="list-controls">
+        <ClearBtn></ClearBtn>
+      </div>
       <DragDropContext onDragEnd=***REMOVED***this.onDragEnd}>
         <Droppable droppableId="all-columns" direction="horizontal" type="column">
           ***REMOVED***provided => (
-            <Container id="sessionList"
+            <Container
               ***REMOVED***...provided.droppableProps}
               ref=***REMOVED***provided.innerRef}
             >
@@ -111,6 +117,7 @@ class SessionList extends React.Component ***REMOVED***
           )}
         </Droppable>
       </DragDropContext>
+      </div>
     );
   }
 }

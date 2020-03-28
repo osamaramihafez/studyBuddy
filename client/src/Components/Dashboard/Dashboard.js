@@ -2,18 +2,12 @@ import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
-import ***REMOVED*** BrowserRouter as Router, Route} from "react-router-dom";
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
-import Break from '../Break/Break'
-import Session from '../List/Session'
-import ClearBtn from '../ClearButton/ClearDoneTasks'
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button';
 import SessionList from '../List/SessionList';
-import CalendarPage from '../CalendarPage/CalendarPage'
-import LogoutButton from '../LogoutButton/LogoutButton';
 import Navbar from '../Navbar/Navbar'
-import FullScreen, ***REMOVED*** fullScreenSupported } from 'react-request-fullscreen'
+import FullScreen from 'react-request-fullscreen'
 
 
 class Dashboard extends React.Component ***REMOVED***
@@ -70,28 +64,16 @@ class Dashboard extends React.Component ***REMOVED***
         <Navbar />
         <div className="timer-backdrop">
           <Timer />      
-          <LogoutButton></LogoutButton>
               <br></br>
               <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.fullScreenRef = ref }} onFullScreenChange=***REMOVED***this.onFullScreenChange.bind(this)}>
-            <div
-              className='rq'
-            >
-              <Button onClick=***REMOVED***this.requestOrExitFullScreen.bind(this)}>
-              ***REMOVED***!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
-              </Button>
-            </div>
+                  <div className='rq'>
+                    <Button onClick=***REMOVED***this.requestOrExitFullScreen.bind(this)} variant="contained">
+                    ***REMOVED***!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
+                    </Button>
+                  </div>
           </FullScreen>
         </div>
-        ***REMOVED***/* <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.elFullScreenRef = ref }}>
-          <div
-            className='el-rq'
-            ref=***REMOVED***ref => ***REMOVED*** this.elRef = ref }}
-            onClick=***REMOVED***this.requestOrExitFullScreenByElement.bind(this)}
-          >
-          </div>
-        </FullScreen> */}
         <SessionList id="sessionList" ></SessionList>
-        <ClearBtn>Clear completed tasks</ClearBtn>
         </div>
     )
   }

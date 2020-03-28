@@ -1,5 +1,5 @@
 import React from 'react';
-import ***REMOVED***Button} from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Auth from '../../HOC/Auth';
 import Cookies from 'universal-cookie';
@@ -28,7 +28,7 @@ class LogoutButton extends React.Component ***REMOVED***
     }
     render () ***REMOVED***
 
-        return (<Button onClick=***REMOVED***this.handleLogout}>Logout</Button>);
+        return (<Button variant="contained" onClick=***REMOVED***this.handleLogout}>Logout</Button>);
     }
 }
 

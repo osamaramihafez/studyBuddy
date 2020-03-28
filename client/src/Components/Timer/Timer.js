@@ -167,9 +167,6 @@ class Timer extends React.Component ***REMOVED***
     return (
       
       <section>
-          <div classname="status-box"> 
-            ***REMOVED***this.state.break === false ? <h1 className="Label">ACTIVE</h1> : <h1 className="break">BREAK</h1>}
-          </div>
           <input onBlur=***REMOVED***this.formatMinutes} disabled=***REMOVED***this.state.disabled} maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
           <p className="colon">:</p>
           <input onBlur=***REMOVED***this.formatSeconds} disabled=***REMOVED***this.state.disabled} maxLength="2" max="59" className="timer" type="number" value=***REMOVED***this.state.seconds} onChange=***REMOVED***this.updateSeconds} />
@@ -186,9 +183,7 @@ class Timer extends React.Component ***REMOVED***
             </Button>
           </div>
           <br />
-          <Button variant="contained" ref="btn" onClick=***REMOVED***this.switchMode} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
-          <Notification ref=***REMOVED***ref => (this.notification = ref)} />
-          <br />
+          <div >
           <FormControlLabel
               control=***REMOVED***
                 <Switch
@@ -198,8 +193,12 @@ class Timer extends React.Component ***REMOVED***
                   color="default"
                 />
               }
-              label=***REMOVED***<p className="Label">Continuous Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
+              label=***REMOVED***<p className="switch-label">Continuous Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
             />
+            <br />
+          <Button variant="contained" ref="btn" onClick=***REMOVED***this.switchMode} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
+          </div>
+          <Notification ref=***REMOVED***ref => (this.notification = ref)} />
       </section>
     )
   }
