@@ -7,11 +7,10 @@ const socket = openSocket('http://localhost:3001');
 class Chat extends React.Component ***REMOVED***
     constructor(props) ***REMOVED***
         super();
-        this.props = props
+        this.socket = props.socket
         this.state = ***REMOVED***
             msg: "",
             chat: [],
-            room: this.props.room
         }
         socket.on("message", obj => ***REMOVED***
 
@@ -20,11 +19,6 @@ class Chat extends React.Component ***REMOVED***
     }
 
     componentDidMount = () => ***REMOVED***
-        let urlObject = url.parse(window.location.href);
-        console.log(urlObject.query.split("=")[1]);
-        this.setState(***REMOVED***
-            room: urlObject.query.split("=")[1]
-        })
     }
 
     renderChat() ***REMOVED***
@@ -41,10 +35,6 @@ class Chat extends React.Component ***REMOVED***
     onTextChange = e => ***REMOVED***
         this.setState(***REMOVED*** msg: e.target.value ***REMOVED***
       };
-
-    componentDidMount() ***REMOVED***
-
-      }
 
     handleSendMessage = () => ***REMOVED***
         socket.emit("sendMessage", this.state.msg);
