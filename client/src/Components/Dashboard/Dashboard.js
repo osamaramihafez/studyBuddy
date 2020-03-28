@@ -2,18 +2,12 @@ import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route} from "react-router-dom";
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
-import Break from '../Break/Break'
-import Session from '../List/Session'
-import ClearBtn from '../ClearButton/ClearDoneTasks'
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button';
 import SessionList from '../List/SessionList';
-import CalendarPage from '../CalendarPage/CalendarPage'
-import LogoutButton from '../LogoutButton/LogoutButton';
 import Navbar from '../Navbar/Navbar'
-import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
+import FullScreen from 'react-request-fullscreen'
 
 
 class Dashboard extends React.Component {
@@ -70,28 +64,16 @@ class Dashboard extends React.Component {
         <Navbar />
         <div className="timer-backdrop">
           <Timer />      
-          <LogoutButton></LogoutButton>
               <br></br>
               <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
-            <div
-              className='rq'
-            >
-              <Button onClick={this.requestOrExitFullScreen.bind(this)}>
-              {!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
-              </Button>
-            </div>
+                  <div className='rq'>
+                    <Button onClick={this.requestOrExitFullScreen.bind(this)} variant="contained">
+                    {!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
+                    </Button>
+                  </div>
           </FullScreen>
         </div>
-        {/* <FullScreen ref={ref => { this.elFullScreenRef = ref }}>
-          <div
-            className='el-rq'
-            ref={ref => { this.elRef = ref }}
-            onClick={this.requestOrExitFullScreenByElement.bind(this)}
-          >
-          </div>
-        </FullScreen> */}
         <SessionList id="sessionList" ></SessionList>
-        <ClearBtn>Clear completed tasks</ClearBtn>
         </div>
     )
   }

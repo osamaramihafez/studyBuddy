@@ -1,5 +1,6 @@
 import './Chat.css'
 import React from 'react';
+import Moment from 'react-moment';
 import {Form, FormControl, Button} from 'react-bootstrap'
 
 class Chat extends React.Component {
@@ -16,19 +17,22 @@ class Chat extends React.Component {
     componentDidMount = () => {
         this.socket.on("message", (obj) => {
             // Add new messages to existing messages in "chat"
+            console.log(obj);
             this.setState({
                 chat: this.state.chat.concat({
                     username: obj.username, 
-                    msg: obj.msg})
+                    msg: obj.msg,
+                    createdAt: obj.createdAt})
             });
         });
     }
 
-    renderChat() {
-        return this.state.chat.map(({ username, msg }, index) => (
+    renderMessages() {
+        return this.state.chat.map((obj, index) => (
           <div key={index}>
-            <span style={{ color: "blue" }}>{username}: </span>
-            <span>{msg}</span>
+            <span className="username">{obj.username}: </span>
+            <span className="message">{obj.msg} </span>
+            <Moment format="HH:mm" className="date">{obj.createdAt}</Moment>
           </div>
         ));
       }
@@ -39,7 +43,6 @@ class Chat extends React.Component {
 
       handleMessageSubmit = (e) => {
           e.preventDefault();
-          console.log("test")
         if(!this.state.msg.length <= 0) {
             this.socket.emit("sendMessage", this.state.msg);
             this.setState({ msg: "" });
@@ -60,7 +63,7 @@ class Chat extends React.Component {
                     value={this.state.msg}
                     />
             </Form>
-            <div className="messages">{this.renderChat()}</div>
+            <div className="messages">{this.renderMessages()}</div>
             </div>
           </div>
         );

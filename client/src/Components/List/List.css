@@ -1,0 +1,5 @@
+.list-controls {
+    justify-content: space-between;
+    width: 20%;
+    display: flex;
+}

@@ -167,9 +167,6 @@ class Timer extends React.Component {
     return (
       
       <section>
-          <div classname="status-box"> 
-            {this.state.break === false ? <h1 className="Label">ACTIVE</h1> : <h1 className="break">BREAK</h1>}
-          </div>
           <input onBlur={this.formatMinutes} disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
           <p className="colon">:</p>
           <input onBlur={this.formatSeconds} disabled={this.state.disabled} maxLength="2" max="59" className="timer" type="number" value={this.state.seconds} onChange={this.updateSeconds} />
@@ -186,9 +183,7 @@ class Timer extends React.Component {
             </Button>
           </div>
           <br />
-          <Button variant="contained" ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
-          <Notification ref={ref => (this.notification = ref)} />
-          <br />
+          <div >
           <FormControlLabel
               control={
                 <Switch
@@ -198,8 +193,12 @@ class Timer extends React.Component {
                   color="default"
                 />
               }
-              label={<p className="Label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
+              label={<p className="switch-label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
             />
+            <br />
+          <Button variant="contained" ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
+          </div>
+          <Notification ref={ref => (this.notification = ref)} />
       </section>
     )
   }

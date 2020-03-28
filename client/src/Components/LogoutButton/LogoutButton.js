@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Auth from '../../HOC/Auth';
 import Cookies from 'universal-cookie';
@@ -28,7 +28,7 @@ class LogoutButton extends React.Component {
     }
     render () {
 
-        return (<Button onClick={this.handleLogout}>Logout</Button>);
+        return (<Button variant="contained" onClick={this.handleLogout}>Logout</Button>);
     }
 }
 
