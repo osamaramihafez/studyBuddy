@@ -84,12 +84,5 @@ io.on("connection", socket => {
   })
 });
 
-
-
-// Chat implementation
-
-
 console.log('listening on port', port);
-
-
 server.listen(port);

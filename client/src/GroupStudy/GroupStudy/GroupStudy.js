@@ -4,6 +4,7 @@ import Chat from '../Chat/Chat'
 import openSocket from 'socket.io-client';
 import Timer from '../GroupTimer/Timer';
 import url from 'url';
+import Navbar from '../../Components/Navbar/Navbar'
 const socket = openSocket('http://localhost:3001');
 
 class GroupStudy extends React.Component {
@@ -22,7 +23,7 @@ class GroupStudy extends React.Component {
             if (error) {
               console.log(error);
               alert(error);
-              this.props.history.push('/dashboard');
+              this.props.history.push('/dashboard/group/auth');
             }
           });
     }
@@ -30,6 +31,7 @@ class GroupStudy extends React.Component {
     render(){
         return(
         <div>
+            <Navbar />
             <Timer socket={socket} className="timer-backdrop"/>
             <Chat socket={socket}/>
         </div>
