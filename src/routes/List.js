@@ -1,33 +1,51 @@
 const express = require("express");
 const router = new express.Router();
 const auth = require('../middleware/auth');
-const user = require('../models/User');
-const list = require('../models/List');
+const User = require('../models/User');
+const List = require('../models/List');
+const Task = require('../models/Task');
 
 // Create a list
-router.post('/list/create', auth, async (req, res, next) => ***REMOVED***
+router.post('/list/create', auth, async (req, res) => ***REMOVED***
     const title = req.body.title;
-
-    const user = req.body.user;
+    console.log(title);
+    console.log(req.user.id);
     const newList = new List(***REMOVED***
         title,
-        user
+        userid: req.user.id
     })//need to get list id from mongo and then add to the User db
     //changed code here
     listId = newList._id;
-    await user.update(***REMOVED***name: user}, $push: ***REMOVED***lists: listId***REMOVED***
+    // await user.update(***REMOVED***name: user}, $push: ***REMOVED***lists: listId***REMOVED***
     //end of change
     newList.save()
     .then(() => res.json('List created!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => ***REMOVED***
+        console.log(err)
+        res.status(400).json('Error: ' + err);
+    })
 ***REMOVED***
 
-// Gets the existing list given the ID
-router.get('/list/get/:id', auth, async (req, res) => ***REMOVED***
+// Gets all existing lists givern the user ID
+router.get('/list/getAll/', auth, async (req, res) => ***REMOVED***
     try ***REMOVED***
-        const gotList = await user.findById(req.params.id)
-        res.status(200).send(***REMOVED***gotList***REMOVED***
+        const user = req.user
+        let lists = [];
+        console.log(user._id)
+        const listIds = await List.find(***REMOVED***userid: user._id***REMOVED***
+        // console.log(lists);
+        for(let i = 0; i < listIds.length; i++) ***REMOVED***
+            const tasks = await Task.find(***REMOVED*** listid: listIds[i]._id ***REMOVED***
+            const obj = ***REMOVED***
+                listId: listIds[i]._id,
+                tasks
+            };
+            lists.push(obj);
+        }
+        console.log(lists);
+        res.status(200).send(***REMOVED***lists***REMOVED***
     } catch (error) ***REMOVED***
+        console.log(error);
         res.status(404).send("Error: list not found")
     }
 ***REMOVED***
@@ -36,10 +54,10 @@ router.get('/list/get/:id', auth, async (req, res) => ***REMOVED***
 router.delete('/list/delete/:id', auth, async (req, res) => ***REMOVED***
     try ***REMOVED***
         ///changed code here
-        const user = req.params.user;
-        await list.update(***REMOVED***name: user}, $pull: ***REMOVED***lists: listId ***REMOVED***
-        //end of change
-        await list.findByIdAndDelete(req.params.id);
+        await Task.deleteMany(***REMOVED***
+            listid: req.params.id
+        })
+        await List.findByIdAndDelete(req.params.id);
         res.status(200).send();
     } catch (error) ***REMOVED***
         res.status(404).send();
@@ -48,23 +66,16 @@ router.delete('/list/delete/:id', auth, async (req, res) => ***REMOVED***
 
 
 // Adds a task to the list
-router.update('/list/addtask/:id', auth, async(req, res) => ***REMOVED***
-    const task = req.body.task;
-    try ***REMOVED***
-        const tasks = await list.addTask(task);
-        res.status(200).send(***REMOVED***tasks})
-    } catch (error) ***REMOVED***
-        res.status(400).send();
-    }
-})
-
 // Adds a list to the user's current lists (DO LATER)
-router.update('/list/addlist/:id', auth, async(req, res) => ***REMOVED***
-    const list = req.body.list;
-    try ***REMOVED***
-        const tasks = await list.addTask(task);
-        res.status(200).send(***REMOVED***tasks})
-    } catch (error) ***REMOVED***
-        res.status(400).send();
-    }
-})
+// router/('/list/addlist/:id', auth, async(req, res) => ***REMOVED***
+//     const list = req.body.list;
+//     try ***REMOVED***
+//         const tasks = await list.addTask(task);
+//         res.status(200).send(***REMOVED***tasks})
+//     } catch (error) ***REMOVED***
+//         res.status(400).send();
+//     }
+// })
+
+
+module.exports = router;

@@ -5,6 +5,7 @@ import ***REMOVED*** DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import AddTask from './AddTask';
 import axios from 'axios';
+import Auth from '../../HOC/Auth'
 
 
 const Container = styled.div`
@@ -14,29 +15,31 @@ class SessionList extends React.Component ***REMOVED***
   constructor(props)***REMOVED***
     super(props);
     this.createTask = this.createTask.bind(this);
-    this.createList = this.createList.bind(this);
+    // this.createList = this.createList.bind(this);
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.addList = this.addList.bind(this);
     this.deleteList = this.deleteList.bind(this);
+    this.handleListChange = this.handleListChange.bind(this)
   }
   state = ***REMOVED***
   userData: [],
   newList: '',
-  user: ''
+  user: '',
+  columnOrder: []
   }
 
   componentDidMount() ***REMOVED*** //need to do later 
-    axios.get(`http://localhost:3000/`, ***REMOVED***
-      params: ***REMOVED***
-        id: this.props.userId
-      }
-    })
-      .then(res => ***REMOVED***
+    // axios.get(`http://localhost:3000/`, ***REMOVED***
+    //   params: ***REMOVED***
+    //     id: this.props.userId
+    //   }
+    // })
+    //   .then(res => ***REMOVED***
         
-        this.setState(***REMOVED*** userData: res.data ***REMOVED***
-        this.setState(***REMOVED***user: res.data.user})
-      })
+    //     this.setState(***REMOVED*** userData: res.data ***REMOVED***
+    //     this.setState(***REMOVED***user: res.data.user})
+    //   })
   }
 
   onDragEnd = result => ***REMOVED***
@@ -119,15 +122,15 @@ class SessionList extends React.Component ***REMOVED***
   };
 
 createTask(text)***REMOVED***
-  axios.put(`http://localhost:3000/`, ***REMOVED***
-    params: ***REMOVED***
-      id: this.props.userId
-    }
-  })
-    .then(res => ***REMOVED***
-      const userLists = res.data;
-      this.setState(***REMOVED*** userData: userLists ***REMOVED***
-    })
+  // axios.put(`http://localhost:3000/`, ***REMOVED***
+  //   params: ***REMOVED***
+  //     id: this.props.userId
+  //   }
+  // })
+  //   .then(res => ***REMOVED***
+  //     const userLists = res.data;
+  //     this.setState(***REMOVED*** userData: userLists ***REMOVED***
+  //   })
 
 
 
@@ -149,15 +152,17 @@ handleListChange(event) ***REMOVED***
   this.setState(***REMOVED***newList: event.target.value***REMOVED***
 }
 
-addList()***REMOVED*** //add new list
-
-  axios.post('/list/create', ***REMOVED***
+addList(e)***REMOVED*** //add new list
+  e.preventDefault();
+  axios.defaults.headers = ***REMOVED***
+    Authorization: Auth.getToken()
+}     
+  axios.post('http://localhost:8000/list/create', ***REMOVED***
     title: this.state.newList,
-    user: this.state.user
   })
   .then(function (response) ***REMOVED***
     this.setState(***REMOVED***
-      newList: ' '
+      newList: ''
     ***REMOVED***
   })
   .catch(function (error) ***REMOVED***
@@ -190,7 +195,7 @@ deleteList()***REMOVED*** //delete the list permanently
             </Container>
           )}
         </Droppable>
-        <form onSubmit=***REMOVED***this.addList}> /* to add the new list */
+        <form onSubmit=***REMOVED***e => this.addList(e)}>
           <label>
             Add List
             <textarea value=***REMOVED***this.state.newList} onChange=***REMOVED***this.handleListChange} />

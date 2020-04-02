@@ -4,6 +4,7 @@ const User = require('../models/User');
 
 const auth = async (req, res, next) => ***REMOVED***
     try ***REMOVED***
+        console.log(req)
         const token = req.header('Authorization').replace('Bearer ', '');
         console.log(token);
         const dec = jwt.verify(token, process.env.JWTS);

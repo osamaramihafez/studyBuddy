@@ -12,13 +12,6 @@ const listSchema = new mongoose.Schema(***REMOVED***
     }
 })
 
-listSchema.methods.addTask = async function (task) ***REMOVED***
-    const list = this;
-    list.tasks = list.tasks.append(task._id)
-    await list.save();
-    return list.tasks;
-  };
-
 listSchema.virtual('listId').get(function() ***REMOVED***
     return this._id;
 ***REMOVED***
