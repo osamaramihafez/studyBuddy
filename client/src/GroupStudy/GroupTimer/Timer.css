@@ -20,12 +20,12 @@
     margin-top: 100px;
 }
 
-.controls {
+/* .controls {
     justify-content: space-between;
     width: 20%;
     margin: auto;
     display: flex;
-}
+} */
 
 
 .timer:disabled {
