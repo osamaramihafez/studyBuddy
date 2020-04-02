@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ***REMOVED*** Droppable, Draggable } from 'react-beautiful-dnd';
 import Task from './task';
-
+import AddTask from './AddTask';
 const Container = styled.div`
   margin: 8px;
   border: 1px solid lightgrey;
@@ -24,6 +24,19 @@ const TaskList = styled.div`
 `;
 
 export default class Column extends React.Component ***REMOVED***
+  constructor(props)***REMOVED***
+    super(props);
+    this.handleTaskChange.bind(this);
+  }
+
+  state = ***REMOVED***
+    newTask: '',
+  }
+
+  handleTaskChange(event) ***REMOVED***
+    this.setState(***REMOVED***newTask: event.target.value***REMOVED***
+  }
+
   render() ***REMOVED***
     return (
       <Draggable draggableId=***REMOVED***this.props.column.id} index=***REMOVED***this.props.index}>
@@ -40,10 +53,18 @@ export default class Column extends React.Component ***REMOVED***
                   ***REMOVED***this.props.tasks.map((task, index) => (
                     <Task key=***REMOVED***task.id} task=***REMOVED***task} index=***REMOVED***index} />
                   ))}
+                  <AddTask addTask=***REMOVED***this.props.addTask}/>
                   ***REMOVED***provided.placeholder}
                 </TaskList>
               )}
             </Droppable>
+            <form onSubmit=***REMOVED***this.props.createTask(this.state.newTask)}> /* to add the new list */
+              <label>
+                Add Task
+                <textarea value=***REMOVED***this.state.newTask} onChange=***REMOVED***this.handleTaskChange} />
+              </label>
+              <input type="submit" value="Add List" />
+            </form>
           </Container>
         )}
       </Draggable>

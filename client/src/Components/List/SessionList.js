@@ -3,13 +3,41 @@ import initialData from './initial-data';
 import Column from './column';
 import ***REMOVED*** DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import AddTask from './AddTask';
+import axios from 'axios';
 
 
 const Container = styled.div`
   display: flex;
 `;
 class SessionList extends React.Component ***REMOVED***
-  state = initialData;
+  constructor(props)***REMOVED***
+    super(props);
+    this.createTask = this.createTask.bind(this);
+    this.createList = this.createList.bind(this);
+    this.addTask = this.addTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
+    this.addList = this.addList.bind(this);
+    this.deleteList = this.deleteList.bind(this);
+  }
+  state = ***REMOVED***
+  userData: [],
+  newList: '',
+  user: ''
+  }
+
+  componentDidMount() ***REMOVED*** //need to do later 
+    axios.get(`http://localhost:3000/`, ***REMOVED***
+      params: ***REMOVED***
+        id: this.props.userId
+      }
+    })
+      .then(res => ***REMOVED***
+        
+        this.setState(***REMOVED*** userData: res.data ***REMOVED***
+        this.setState(***REMOVED***user: res.data.user})
+      })
+  }
 
   onDragEnd = result => ***REMOVED***
     const ***REMOVED*** destination, source, draggableId, type } = result;
@@ -90,6 +118,58 @@ class SessionList extends React.Component ***REMOVED***
 
   };
 
+createTask(text)***REMOVED***
+  axios.put(`http://localhost:3000/`, ***REMOVED***
+    params: ***REMOVED***
+      id: this.props.userId
+    }
+  })
+    .then(res => ***REMOVED***
+      const userLists = res.data;
+      this.setState(***REMOVED*** userData: userLists ***REMOVED***
+    })
+
+
+
+
+}  
+
+addTask(text)***REMOVED*** //when user switchin tasks between lists
+
+
+
+}
+
+
+deleteTask()***REMOVED*** //when user deletes task permanently
+
+}
+
+handleListChange(event) ***REMOVED***
+  this.setState(***REMOVED***newList: event.target.value***REMOVED***
+}
+
+addList()***REMOVED*** //add new list
+
+  axios.post('/list/create', ***REMOVED***
+    title: this.state.newList,
+    user: this.state.user
+  })
+  .then(function (response) ***REMOVED***
+    this.setState(***REMOVED***
+      newList: ' '
+    ***REMOVED***
+  })
+  .catch(function (error) ***REMOVED***
+    console.log(error);
+  ***REMOVED***
+
+}
+
+
+deleteList()***REMOVED*** //delete the list permanently
+
+}
 
   render() ***REMOVED***
     return (
@@ -103,13 +183,20 @@ class SessionList extends React.Component ***REMOVED***
               ***REMOVED***this.state.columnOrder.map((columnId, index) => ***REMOVED***
                 const column = this.state.columns[columnId];
                 const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
-
-                return <Column key=***REMOVED***column.id} column=***REMOVED***column} tasks=***REMOVED***tasks} index=***REMOVED***index} />;
+                //maps the created lists 
+                return <Column key=***REMOVED***column.id} column=***REMOVED***column} tasks=***REMOVED***tasks} index=***REMOVED***index} createTask=***REMOVED***this.createTask} deleteTask=***REMOVED***this.deleteTask} />;
               })}
               ***REMOVED***provided.placeholder}
             </Container>
           )}
         </Droppable>
+        <form onSubmit=***REMOVED***this.addList}> /* to add the new list */
+          <label>
+            Add List
+            <textarea value=***REMOVED***this.state.newList} onChange=***REMOVED***this.handleListChange} />
+          </label>
+          <input type="submit" value="Add List" />
+        </form>
       </DragDropContext>
     );
   }
