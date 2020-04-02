@@ -18,10 +18,10 @@
 }
 
 .controls ***REMOVED***
+    display: flex;
     justify-content: space-between;
     width: 20%;
     margin: auto;
-    display: flex;
 }
 
 .timer:disabled ***REMOVED***
