@@ -30,6 +30,10 @@ export default class Task extends React.Component {
     .catch(res => console.log(res.tk));
   }
 
+  deleteTask(){
+    
+  }
+
   render() {
     return (
       <Draggable draggableId={this.props.task.id} index={this.props.index}>

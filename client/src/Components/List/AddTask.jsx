@@ -16,11 +16,12 @@ const Container = styled.div`
 
 
 export default class AddTask extends React.Component {
-  constructor(){
+  constructor(props){
     super();
     this.state = {
       text: ' '
     };
+    this.props = props;
     this.changeText = this.changeText.bind(this);
   }
 
@@ -36,7 +37,7 @@ export default class AddTask extends React.Component {
           <Container
           >
             <input type="text" value={this.state.text} id="newtask" onChange={this.changeText} />
-            <Button variant="outline-primary" onClick={this.props.addTask.bind(this.state.text,this.state.id)}>Add Task</Button>
+            <Button variant="outline-primary" onClick={this.props.addTask.bind(this.state.text)}>Add Task</Button>
           </Container>
 
     );
