@@ -24,8 +24,8 @@ router.post('/task/update/:id', auth, async (req, res)  => {
   const taskid = req.params.id;
 
   try {
-    await list.update({name: sourcelistid},{$pull: {tasks: id }})
-    await list.update({name: destlistid}, {$push: {tasks: id }})
+    await list.update({name: sourcelistid},{$pull: {tasks: taskid }})
+    await list.update({name: destlistid}, {$push: {tasks: taskid }})
   } catch (e) {
     res.status(400).send(e);
   }
@@ -35,14 +35,17 @@ router.post('/task/update/:id', auth, async (req, res)  => {
 
 
 //An entry for a post request to create a task
-router.post('/create/task', auth, async (req, res, next) => {
+router.post('/task/create', auth, async (req, res) => {
+    // const listid = req.body.listid;
+    const content = req.body.content;
     const listid = req.body.listid;
-    const task = new Task({
-        ...req.body,
-    });
+    const task =  new Task({
+        content,
+        completed: false,
+        listid
+    })
     try {
         await task.save()
-        await list.update({name: listid}, {$push: {tasks: task._id }})
         //put task in list of user
         res.status(201).send(task);
     } catch (e) {
@@ -51,17 +54,20 @@ router.post('/create/task', auth, async (req, res, next) => {
 });
 
 //An entry for a post request to delete a task
-router.delete('/delete/task/:_id', auth, async (req, res, next) => {
-    const _id = req.params.id;
+router.delete('/task/delete/:id', auth, async (req, res) => {
+    // console.log(req.body);
+    const id = req.params.id;
     try {
-        const task = await Task.findById(_id);
+        const task = await Task.findById(id);
+        console.log(task);
         if (!task) return res.status(404).send();
         await Task.deleteOne({
-            _id
+            _id: id
         })
-        await list.update({name: listid}, {$push: {tasks: task._id }})
+        await list.update({name: task.listid}, {$push: {tasks: task._id }})
         res.send();
     } catch (e) {
+        console.log(e);
         res.status(500).send(e);
     }
 });

@@ -5,6 +5,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import AddTask from './AddTask';
 import axios from 'axios';
+import Auth from '../../HOC/Auth'
 
 
 const Container = styled.div`
@@ -14,29 +15,31 @@ class SessionList extends React.Component {
   constructor(props){
     super(props);
     this.createTask = this.createTask.bind(this);
-    this.createList = this.createList.bind(this);
+    // this.createList = this.createList.bind(this);
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.addList = this.addList.bind(this);
     this.deleteList = this.deleteList.bind(this);
+    this.handleListChange = this.handleListChange.bind(this)
   }
   state = {
   userData: [],
   newList: '',
-  user: ''
+  user: '',
+  columnOrder: []
   }
 
   componentDidMount() { //need to do later 
-    axios.get(`http://localhost:3000/`, {
-      params: {
-        id: this.props.userId
-      }
-    })
-      .then(res => {
+    // axios.get(`http://localhost:3000/`, {
+    //   params: {
+    //     id: this.props.userId
+    //   }
+    // })
+    //   .then(res => {
         
-        this.setState({ userData: res.data });
-        this.setState({user: res.data.user})
-      })
+    //     this.setState({ userData: res.data });
+    //     this.setState({user: res.data.user})
+    //   })
   }
 
   onDragEnd = result => {
@@ -119,15 +122,15 @@ class SessionList extends React.Component {
   };
 
 createTask(text){
-  axios.put(`http://localhost:3000/`, {
-    params: {
-      id: this.props.userId
-    }
-  })
-    .then(res => {
-      const userLists = res.data;
-      this.setState({ userData: userLists });
-    })
+  // axios.put(`http://localhost:3000/`, {
+  //   params: {
+  //     id: this.props.userId
+  //   }
+  // })
+  //   .then(res => {
+  //     const userLists = res.data;
+  //     this.setState({ userData: userLists });
+  //   })
 
 
 
@@ -149,15 +152,17 @@ handleListChange(event) {
   this.setState({newList: event.target.value});
 }
 
-addList(){ //add new list
-
-  axios.post('/list/create', {
+addList(e){ //add new list
+  e.preventDefault();
+  axios.defaults.headers = {
+    Authorization: Auth.getToken()
+}     
+  axios.post('http://localhost:8000/list/create', {
     title: this.state.newList,
-    user: this.state.user
   })
   .then(function (response) {
     this.setState({
-      newList: ' '
+      newList: ''
     });
   })
   .catch(function (error) {
@@ -190,7 +195,7 @@ deleteList(){ //delete the list permanently
             </Container>
           )}
         </Droppable>
-        <form onSubmit={this.addList}> /* to add the new list */
+        <form onSubmit={e => this.addList(e)}>
           <label>
             Add List
             <textarea value={this.state.newList} onChange={this.handleListChange} />
