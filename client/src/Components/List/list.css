@@ -1,4 +1,4 @@
-.list-controls ***REMOVED***
+.list-controls {
     justify-content: center;
     width: 20%;
     margin: 60px auto;
@@ -9,7 +9,7 @@
     border-radius: 20px;
 }
 
-.text ***REMOVED***
+.text {
     display: inline;
     justify-content: space-evenly;
 }

@@ -1,28 +1,28 @@
-***REMOVED***
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 require('../middleware/auth')
 
-const userSchema = new mongoose.Schema(***REMOVED***
-  name: ***REMOVED***
+const userSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
     trim: true
   },
-  email: ***REMOVED***
+  email: {
     type: String,
     required: true,
     lowercase: true,
     trim: true,
     unique: true
   },
-  password: ***REMOVED***
+  password: {
     type: String,
     required: true,
     minlength: 6
   },
-  tokens: [***REMOVED***
-    token: ***REMOVED***
+  tokens: [{
+    token: {
       type: String,
       required: true
     }
@@ -30,31 +30,31 @@ const userSchema = new mongoose.Schema(***REMOVED***
   // timestamps: true
 })
 
-userSchema.methods.genJWT = async function () ***REMOVED***
+userSchema.methods.genJWT = async function () {
   const user = this;
-  const token = jwt.sign(***REMOVED***
+  const token = jwt.sign({
     _id: user._id.toString(),
     expiresIn: '7d'
   }, process.env.JWTS);
-  user.tokens = user.tokens.concat(***REMOVED***
+  user.tokens = user.tokens.concat({
     token
-  ***REMOVED***
+  });
   await user.save();
   return token;
 };
 
 // Encypts the password before its pushed to the DB.
 // Saving passwords in plain text is never a good idea
-userSchema.pre("save", async function (next) ***REMOVED***
+userSchema.pre("save", async function (next) {
   const user = this;
-  if (user.isModified("password")) ***REMOVED***
+  if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
   }
   next();
-***REMOVED***
+});
 
-userSchema.statics.login = async (email, password) => ***REMOVED***
-  const user = await User.findOne(***REMOVED*** email ***REMOVED***
+userSchema.statics.login = async (email, password) => {
+  const user = await User.findOne({ email });
   console.log(user);
   if (!user) throw new Error("Unable to login");
   const isValid = await bcrypt.compare(password, user.password)
@@ -62,9 +62,9 @@ userSchema.statics.login = async (email, password) => ***REMOVED***
   else return user;
 }
 
-userSchema.virtual('userId').get(function() ***REMOVED***
+userSchema.virtual('userId').get(function() {
   return this._id;
-***REMOVED***
+});
 
 const User = mongoose.model("User", userSchema);
 

@@ -1,9 +1,9 @@
-***REMOVED***
-***REMOVED***
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+mongoose.connect(process.env.MONGO_URL, 
+{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+});

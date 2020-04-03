@@ -1,32 +1,32 @@
 import Cookies from 'universal-cookie';
 import decode from 'jwt-decode';
 
-const Auth = ***REMOVED***
+const Auth = {
     isAuthenticated: false,
-    getToken() ***REMOVED***
+    getToken() {
         const cookies = new Cookies();
         const cookie = cookies.get('Authorization');
         return cookie;
     },
-    authenticate() ***REMOVED***
-        try ***REMOVED***
+    authenticate() {
+        try {
             const tk = this.getToken();
             const decoded = decode(tk);
             console.log(decoded.iat);
             console.log(Date.now() / 1000);
 
-            if (decoded.iat < Date.now() / 1000) ***REMOVED***
+            if (decoded.iat < Date.now() / 1000) {
                 return this.isAuthenticated = true;
 
             }
-        } catch (error) ***REMOVED***
+        } catch (error) {
             return this.isAuthenticated = false;
         }
     },
-    logout() ***REMOVED***
+    logout() {
         this.isAuthenticated = false;
     },
-    getAuth() ***REMOVED***
+    getAuth() {
         return this.isAuthenticated;
     }
 };

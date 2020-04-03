@@ -9,11 +9,11 @@ import Button from '@material-ui/core/Button';
 import FullScreen from 'react-request-fullscreen'
 import LogoutButton from '../LogoutButton/LogoutButton'
 
-class Dashboard extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class Dashboard extends React.Component {
+  constructor(props) {
     super()
     this.props = props
-    this.state = ***REMOVED***
+    this.state = {
       loggedIn: false,
       timerRunning: false,
       timerMinute: 25,
@@ -26,57 +26,57 @@ class Dashboard extends React.Component ***REMOVED***
     this.backtoDash = this.backtoDash.bind(this);
   }
 
-  onFullScreenChange (isFullScreen) ***REMOVED***
-    this.setState(***REMOVED***
+  onFullScreenChange (isFullScreen) {
+    this.setState({
       isFullScreen
     })
   }
-  requestOrExitFullScreen () ***REMOVED***
+  requestOrExitFullScreen () {
     this.fullScreenRef.fullScreen()
   }
 
-  requestOrExitFullScreenByElement () ***REMOVED***
+  requestOrExitFullScreenByElement () {
     this.elFullScreenRef.fullScreen(this.elRef)
   }
 
-  getToken() ***REMOVED***
+  getToken() {
     const cookies = new Cookies();
     const cookie = cookies.get('Authorization');
     return cookie;
   }
 
-  isLoggedIn() ***REMOVED***
-    try ***REMOVED***
+  isLoggedIn() {
+    try {
       const tk = this.getToken();
       const decoded = decode(tk);
-      if(decoded.exp < Date.now() / 1000) ***REMOVED***
-          this.setState(***REMOVED***loggedIn: false})
+      if(decoded.exp < Date.now() / 1000) {
+          this.setState({loggedIn: false})
         }
-        this.setState(***REMOVED***loggedIn: true})
-      } catch (error) ***REMOVED***
-        this.setState(***REMOVED***loggedIn: false})
+        this.setState({loggedIn: true})
+      } catch (error) {
+        this.setState({loggedIn: false})
       }
   }
 
-  backtoDash() ***REMOVED***
+  backtoDash() {
     this.props.history.push('/dashboard')
   }
-  render() ***REMOVED***
-    const ***REMOVED*** isFullScreen } = this.state
+  render() {
+    const { isFullScreen } = this.state
     return (
       <div className="App">
-        ***REMOVED***/* <Navbar /> */}
+        {/* <Navbar /> */}
         <div className="back-controls">
-          <Button variant="contained" onClick=***REMOVED***this.backtoDash} >Go back</Button>
+          <Button variant="contained" onClick={this.backtoDash} >Go back</Button>
           <LogoutButton></LogoutButton>
         </div>
         <div className="timer-backdrop">
           <Timer />    
               <br></br>
-              <FullScreen ref=***REMOVED***ref => ***REMOVED*** this.fullScreenRef = ref }} onFullScreenChange=***REMOVED***this.onFullScreenChange.bind(this)}>
+              <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
                   <div className='rq'>
-                    <Button onClick=***REMOVED***this.requestOrExitFullScreen.bind(this)} variant="contained">
-                    ***REMOVED***!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
+                    <Button onClick={this.requestOrExitFullScreen.bind(this)} variant="contained">
+                    {!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
                     </Button>
                   </div>
           </FullScreen>

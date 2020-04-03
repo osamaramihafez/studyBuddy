@@ -1,56 +1,56 @@
 const users = [];
 
 // addUser
-const addUser = (***REMOVED***
+const addUser = ({
     id,
     username,
     room
-}) => ***REMOVED***
+}) => {
     username = username.trim();
     room = room.trim();
-    if (!username || !room) ***REMOVED***
-        return ***REMOVED***
+    if (!username || !room) {
+        return {
             error: "Username and room are required"
         }
     }
-    const existingUser = users.find((user) => ***REMOVED***
+    const existingUser = users.find((user) => {
         return user.room === room && user.username === username;
-    ***REMOVED***
-    if (existingUser) ***REMOVED***
-        return ***REMOVED***
+    });
+    if (existingUser) {
+        return {
             error: "Username is in use"
         }
     }
-    const user = ***REMOVED***
+    const user = {
         id,
         username,
         room
     };
     users.push(user);
-    return ***REMOVED***
+    return {
         user
     };
 }
 // removeUser
-const removeUser = (id) => ***REMOVED***
+const removeUser = (id) => {
     const index = users.findIndex((user) => id === user.id);
     if (index > -1) return users.splice(index, 1)[0];
 
 }
 
 // getUser
-const getUser = (id) => ***REMOVED***
+const getUser = (id) => {
     const index = users.findIndex((user) => user.id === id);
     if (index > -1) return users[index];
 }
 // getUsersinRoom
-const getUsersInRoom = (room) => ***REMOVED***
+const getUsersInRoom = (room) => {
     const usersInRoom = users.filter((user) => user.room === room);
 
     return usersInRoom;
 }
 
-module.exports = ***REMOVED***
+module.exports = {
     addUser,
     removeUser,
     getUser,

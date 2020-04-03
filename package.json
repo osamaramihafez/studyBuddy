@@ -1,28 +1,28 @@
-***REMOVED***
+{
   "name": "project-studybuddy",
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
-  "directories": ***REMOVED***
+  "directories": {
     "doc": "doc"
   },
-  "scripts": ***REMOVED***
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "dotenv -e src/vars.env nodemon src/app.js",
     "group": " dotenv -e src/vars.env nodemon src/group/server.js && dotenv -e src/vars.env nodemon src/app.js",
-    "app": "(cd client && npm run start) & npm run start"
+    "client": "(cd client && npm run start)"
   },
-  "repository": ***REMOVED***
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/UTMCSC301/project-studybuddy.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": ***REMOVED***
+  "bugs": {
     "url": "https://github.com/UTMCSC301/project-studybuddy/issues"
   },
   "homepage": "https://github.com/UTMCSC301/project-studybuddy#readme",
-  "dependencies": ***REMOVED***
+  "dependencies": {
     "bcrypt": "^3.0.7",
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
@@ -36,7 +36,7 @@
     "socket.io": "^2.3.0",
     "uifx": "^2.0.7"
   },
-  "devDependencies": ***REMOVED***
+  "devDependencies": {
     "nodemon": "^2.0.2"
   }
 }

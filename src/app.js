@@ -7,17 +7,17 @@ require("./utils/DbSetup");
 
 const app = express();
 
-app.use(function (req, res, next) ***REMOVED***
+app.use(function (req, res, next) {
     console.log(req.headers);
     res.header('Access-Control-Allow-Origin', req.headers.origin);
     res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization, DELETE, POST');
     res.header('Access-Control-Allow-Methods', 'DELETE, POST');
     next();
-***REMOVED***
+});
 
 app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
 app.use(listRouter);
 
-app.listen(PORT, () => console.log(`Listening on port $***REMOVED***PORT}`));
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

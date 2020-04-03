@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import ***REMOVED*** Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Task from './task';
-import ***REMOVED***Button, Form} from 'react-bootstrap';
+import {Button, Form} from 'react-bootstrap';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -22,58 +22,58 @@ const Title = styled.h3`
 const TaskList = styled.div`
   padding: 8px;
   transition: background-color 0.2s ease;
-  background-color: $***REMOVED***props => (props.isDraggingOver ? 'lightgreen' : 'inherit')};
+  background-color: ${props => (props.isDraggingOver ? 'lightgreen' : 'inherit')};
   flex-grow: 1;
   min-height: 100px;
 `;
 
-export default class Column extends React.Component ***REMOVED***
-  constructor(props)***REMOVED***
+export default class Column extends React.Component {
+  constructor(props){
     super(props);
     this.handleTaskChange.bind(this);
   }
 
-  state = ***REMOVED***
+  state = {
     newTask: '',
   }
 
-  handleTaskChange(event) ***REMOVED***
-    this.setState(***REMOVED***newTask: event.target.value***REMOVED***
+  handleTaskChange(event) {
+    this.setState({newTask: event.target.value});
   }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <Draggable draggableId=***REMOVED***this.props.column.listId} index=***REMOVED***this.props.index}>
-        ***REMOVED***provided => (
-          <Container ***REMOVED***...provided.draggableProps} ref=***REMOVED***provided.innerRef}>
+      <Draggable draggableId={this.props.column.listId} index={this.props.index}>
+        {provided => (
+          <Container {...provided.draggableProps} ref={provided.innerRef}>
             <Title 
-            ***REMOVED***...provided.dragHandleProps}>***REMOVED***this.props.column.listTitle}
-            <IconButton color="secondary" aria-label="upload picture" component="span" onClick=***REMOVED***() => this.props.deleteList(this.props.column.listId)}>
+            {...provided.dragHandleProps}>{this.props.column.listTitle}
+            <IconButton color="secondary" aria-label="upload picture" component="span" onClick={() => this.props.deleteList(this.props.column.listId)}>
               <ClearIcon />
             </IconButton>
             
             </Title>
-            <Droppable droppableId=***REMOVED***this.props.column.listId} type="task">
-              ***REMOVED***(provided,snapshot) => (
+            <Droppable droppableId={this.props.column.listId} type="task">
+              {(provided,snapshot) => (
                 <TaskList
-                  ref=***REMOVED***provided.innerRef}
-                  ***REMOVED***...provided.droppableProps}
-                  isDraggingOver=***REMOVED***snapshot.isDraggingOver}
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  isDraggingOver={snapshot.isDraggingOver}
                 >
-                  ***REMOVED***this.props.tasks.map((task, index) => (
-                    <Task key=***REMOVED***task._id} task=***REMOVED***task} index=***REMOVED***index} deleteTask=***REMOVED***this.props.deleteTask} listId=***REMOVED***this.props.column.listId} />
+                  {this.props.tasks.map((task, index) => (
+                    <Task key={task._id} task={task} index={index} deleteTask={this.props.deleteTask} listId={this.props.column.listId} />
                   ))}
-                    <Form action="submit" onSubmit=***REMOVED***e => this.props.createTask(e, this.state.newTask, this.props.column.listId)}>
+                    <Form action="submit" onSubmit={e => this.props.createTask(e, this.state.newTask, this.props.column.listId)}>
                       <Form.Control
                         placeholder="Task Name"
                         aria-label="Task Name"
                         aria-describedby="basic-addon1"
-                        onChange=***REMOVED***e => this.handleTaskChange(e)}
+                        onChange={e => this.handleTaskChange(e)}
                       />
-                      ***REMOVED***/* <input type="text" value=***REMOVED***this.state.newTask} id="newtask" onChange=***REMOVED***e => this.handleTaskChange(e)} /> */}
+                      {/* <input type="text" value={this.state.newTask} id="newtask" onChange={e => this.handleTaskChange(e)} /> */}
                       <Button variant="outline-primary" type="submit">Add Task</Button>
                     </Form>
-                  ***REMOVED***provided.placeholder}
+                  {provided.placeholder}
                 </TaskList>
               )}
             </Droppable>

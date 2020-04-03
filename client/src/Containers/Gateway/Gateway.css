@@ -1,13 +1,13 @@
 
 
-.subtitle-left ***REMOVED***
+.subtitle-left {
     font-family: sans-serif, 'Sen';
     font-size: 45px;
     width: 100px;
     font-weight: bold;
     color: black;
 }
-.subtitle-right ***REMOVED***
+.subtitle-right {
     font-family: sans-serif, 'Sen';
     font-size: 45px;
     width: 100px;
@@ -15,12 +15,12 @@
     color: black;
 }
 
-.text ***REMOVED***
+.container-text {
     text-align: left;
     color: black;
 }
 
-.container-left ***REMOVED***
+.container-left {
     align-content: flex-start;
     padding: 300px 0;
     float: left;
@@ -38,7 +38,7 @@
     transition:  0.2s ease-out;
 }
 
-.container-left:hover ***REMOVED***
+.container-left:hover {
     background-image: linear-gradient(to top, #df89b5 0%, #bfd9fe 100%);
     -webkit-transform:scale(1.02);
     -moz-transform:scale(1.02);
@@ -48,7 +48,7 @@
 }
 
 
-.container-right ***REMOVED***
+.container-right {
     float: right;
     padding: 150px 75px;
     margin-left: 60px;
@@ -65,7 +65,7 @@
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 
 }
-.container-right:hover ***REMOVED***
+.container-right:hover {
     background: linear-gradient(240deg, #d299c2 0%, #fef9d7 100%);
     background-position: right;
     -webkit-transform:scale(1.02);
@@ -77,7 +77,7 @@
 
 
 
-.title-1 ***REMOVED***
+.title-1 {
     padding:10px;
     font-family: sans-serif, 'Sen';
     font-size: 70px;
@@ -89,8 +89,8 @@
 
 @media only screen 
 and (min-device-width : 320px) 
-and (max-device-width : 480px) ***REMOVED***
-    .container-left ***REMOVED***
+and (max-device-width : 480px) {
+    .container-left {
         align-content: flex-start;
         padding: 300px 0;
         right: 30px;
@@ -108,7 +108,7 @@ and (max-device-width : 480px) ***REMOVED***
         -o-transition: 0.2s ease-out;
         transition:  0.2s ease-out;
     }
-    .container-right ***REMOVED***
+    .container-right {
         float: right;
         padding: 150px 75px;
         margin-left: 60px;

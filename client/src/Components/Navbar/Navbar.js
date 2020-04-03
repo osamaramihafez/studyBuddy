@@ -1,9 +1,9 @@
-import React, ***REMOVED*** Component } from 'react';
-import ***REMOVED*** Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-export default class Navbar extends Component ***REMOVED***
+export default class Navbar extends Component {
 
-  render() ***REMOVED***
+  render() {
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
         <Link to="/dashboard" className="navbar-brand">Dashboard</Link>

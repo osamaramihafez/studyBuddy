@@ -1,69 +1,69 @@
 import './Chat.css'
 import React from 'react';
 import Moment from 'react-moment';
-import ***REMOVED***Form, FormControl, Button} from 'react-bootstrap'
+import {Form, FormControl, Button} from 'react-bootstrap'
 
-class Chat extends React.Component ***REMOVED***
-    constructor(props) ***REMOVED***
+class Chat extends React.Component {
+    constructor(props) {
         super();
         this.props = props;
-        this.state = ***REMOVED***
+        this.state = {
             msg: "",
             chat: [],
         }
         this.socket = this.props.socket
     }
 
-    componentDidMount = () => ***REMOVED***
-        this.socket.on("message", (obj) => ***REMOVED***
+    componentDidMount = () => {
+        this.socket.on("message", (obj) => {
             // Add new messages to existing messages in "chat"
             console.log(obj);
-            this.setState(***REMOVED***
-                chat: this.state.chat.concat(***REMOVED***
+            this.setState({
+                chat: this.state.chat.concat({
                     username: obj.username, 
                     msg: obj.msg,
                     createdAt: obj.createdAt})
-            ***REMOVED***
-        ***REMOVED***
+            });
+        });
     }
 
-    renderMessages() ***REMOVED***
+    renderMessages() {
         return this.state.chat.map((obj, index) => (
-          <div key=***REMOVED***index}>
-            <span className="username">***REMOVED***obj.username}: </span>
-            <span className="message">***REMOVED***obj.msg} </span>
-            <Moment format="HH:mm" className="date">***REMOVED***obj.createdAt}</Moment>
+          <div key={index}>
+            <span className="username">{obj.username}: </span>
+            <span className="message">{obj.msg} </span>
+            <Moment format="HH:mm" className="date">{obj.createdAt}</Moment>
           </div>
         ));
       }
     
-      updateMessage = e => ***REMOVED***
-        this.setState(***REMOVED*** msg: e.target.value ***REMOVED***
+      updateMessage = e => {
+        this.setState({ msg: e.target.value });
       };
 
-      handleMessageSubmit = (e) => ***REMOVED***
+      handleMessageSubmit = (e) => {
           e.preventDefault();
-        if(!this.state.msg.length <= 0) ***REMOVED***
+        if(!this.state.msg.length <= 0) {
             this.socket.emit("sendMessage", this.state.msg);
-            this.setState(***REMOVED*** msg: "" ***REMOVED***
+            this.setState({ msg: "" });
         }
       };
-    render() ***REMOVED***
+    render() {
         return (
           <div>
             <div className="message-box">
             <Button variant="outline-primary" type="submit" className="send-button">Send</Button>
-            <Form className="mb-3" onSubmit=***REMOVED***this.handleMessageSubmit}>
+            <Form className="mb-3" onSubmit={this.handleMessageSubmit}>
                     <FormControl
                     placeholder="Your message"
                     aria-label="Your message"
                     aria-describedby="basic-addon2"
                     className="message-inp"
-                    onChange=***REMOVED***this.updateMessage}
-                    value=***REMOVED***this.state.msg}
+                    onChange={this.updateMessage}
+                    value={this.state.msg}
                     />
             </Form>
-            <div className="messages">***REMOVED***this.renderMessages()}</div>
+            <div className="messages">{this.renderMessages()}</div>
             </div>
           </div>
         );

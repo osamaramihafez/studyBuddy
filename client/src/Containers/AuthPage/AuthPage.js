@@ -2,14 +2,14 @@ import React from 'react'
 import './AuthPage.css'
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import ***REMOVED*** Container, Alert, Modal, Button, Spinner } from "react-bootstrap";
+import { Container, Alert, Modal, Button, Spinner } from "react-bootstrap";
 import LoginForm from '../../Components/Login/Login.js'
 
 
-class AuthPage extends React.Component ***REMOVED***
-  constructor() ***REMOVED***
+class AuthPage extends React.Component {
+  constructor() {
     super();
-    this.state = ***REMOVED***
+    this.state = {
       email: "",
       password: "",
       alert: <div></div>,
@@ -20,30 +20,30 @@ class AuthPage extends React.Component ***REMOVED***
     this.updateEmail = this.updateEmail.bind(this);
   }
 
-  updatePassword(e) ***REMOVED***
-    this.setState(***REMOVED*** password: e.target.value ***REMOVED***
+  updatePassword(e) {
+    this.setState({ password: e.target.value });
   }
 
-  updateEmail(e) ***REMOVED***
-    this.setState(***REMOVED*** email: e.target.value ***REMOVED***
+  updateEmail(e) {
+    this.setState({ email: e.target.value });
 
   }
 
-  async handleLogin(e) ***REMOVED***
+  async handleLogin(e) {
     e.preventDefault();
-    try ***REMOVED***
-      const res = await axios.post("http://localhost:8000/user/login", ***REMOVED***
+    try {
+      const res = await axios.post("http://localhost:8000/user/login", {
         email: this.state.email,
         password: this.state.password
       })
       const cookies = new Cookies();
       cookies.set('Authorization', 'Bearer ' + res.data.tk);
       this.props.history.push('/dashboard');
-    } catch (error) ***REMOVED***
-      this.setState(***REMOVED*** alert: <Alert variant="warning">Unable to login! Could not find a matching email and password</Alert> })
+    } catch (error) {
+      this.setState({ alert: <Alert variant="warning">Unable to login! Could not find a matching email and password</Alert> })
     }
   }
-  render() ***REMOVED***
+  render() {
     return (
       < Container className="container" >
         <Modal
@@ -55,12 +55,12 @@ class AuthPage extends React.Component ***REMOVED***
           </Spinner>
         </Modal>
         <LoginForm
-          loginHandler=***REMOVED***this.handleLogin}
-          updateEmail=***REMOVED***this.updateEmail}
-          updatePassword=***REMOVED***this.updatePassword}
-          spinnerHandler=***REMOVED***this.spinnerHandler}>
+          loginHandler={this.handleLogin}
+          updateEmail={this.updateEmail}
+          updatePassword={this.updatePassword}
+          spinnerHandler={this.spinnerHandler}>
         </LoginForm>
-        ***REMOVED***this.state.alert}
+        {this.state.alert}
       </Container >
     )
   }

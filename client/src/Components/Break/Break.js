@@ -2,18 +2,18 @@ import React from 'react'
 import './Break.css'
 import Button from 'react-bootstrap/Button'
 
-function Break(props) ***REMOVED***
+function Break(props) {
 
-    function increase() ***REMOVED***
-        if(props.break < 60)***REMOVED***
+    function increase() {
+        if(props.break < 60){
             props.changeBreak(props.break+ 1);
         }
         return
       }
 
-    function decrease()***REMOVED***
+    function decrease(){
 
-        if (props.break === 0) ***REMOVED***
+        if (props.break === 0) {
             return;
         }
 
@@ -26,12 +26,12 @@ function Break(props) ***REMOVED***
           <h4>Break Timer</h4>
           <section className="break-time-interval">
             <Button
-            onClick = ***REMOVED***decrease}
+            onClick = {decrease}
             className='counter-btn'
             >-</Button>
-            <p className="break-time">***REMOVED***props.break}</p>
+            <p className="break-time">{props.break}</p>
             <Button
-            onClick = ***REMOVED***increase}
+            onClick = {increase}
             className="counter-btn">+</Button>
           </section>
         </section>

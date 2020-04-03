@@ -1,21 +1,21 @@
-import React, ***REMOVED*** Component } from "react";
+import React, { Component } from "react";
 import FullScreen from 'react-request-fullscreen';
  
-class Fullscreen extends Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class Fullscreen extends Component {
+  constructor(props) {
     super();
  
-    this.state = ***REMOVED***
+    this.state = {
       isFull: false,
     };
   }
  
-  goFull = () => ***REMOVED***
-    this.setState(***REMOVED*** isFull: true ***REMOVED***
+  goFull = () => {
+    this.setState({ isFull: true });
   }
  
 
-  render() ***REMOVED***
+  render() {
     return (
         <FullScreen />
     );

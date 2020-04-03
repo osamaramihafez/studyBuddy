@@ -1,18 +1,18 @@
 import React from 'react';
 import Column from './column';
-import ***REMOVED*** DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import axios from 'axios';
 import Auth from '../../HOC/Auth'
-import ***REMOVED***Form} from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 import './List.css'
 import Button from '@material-ui/core/Button';
 
 const Container = styled.div`
   display: flex;
 `;
-class SessionList extends React.Component ***REMOVED***
-  constructor(props)***REMOVED***
+class SessionList extends React.Component {
+  constructor(props){
     super(props);
     this.createTask = this.createTask.bind(this);
     // this.createList = this.createList.bind(this);
@@ -21,45 +21,45 @@ class SessionList extends React.Component ***REMOVED***
     this.deleteList = this.deleteList.bind(this);
     this.handleListChange = this.handleListChange.bind(this)
   }
-  state = ***REMOVED***
+  state = {
     userData: [],
     newList: '',
     user: '',
     columnOrder: []
     }
 
-  componentDidMount() ***REMOVED***
-    axios.defaults.headers = ***REMOVED***
+  componentDidMount() {
+    axios.defaults.headers = {
       Authorization: Auth.getToken()
     }  
     axios.get(`http://localhost:8000/list/getAll`)
-    .then(res => ***REMOVED***
-      this.setState(***REMOVED***userData: res.data.lists})
+    .then(res => {
+      this.setState({userData: res.data.lists})
       // console.log(res.data.lists);
-      const test = this.state.userData.map(e => ***REMOVED***
+      const test = this.state.userData.map(e => {
         return e.listId;
-      ***REMOVED***
-      this.setState(***REMOVED***columnOrder: test})
+      });
+      this.setState({columnOrder: test})
       console.log('BEFORE', this.state.columnOrder);
-      ***REMOVED***
+      });
   }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
 
   }
 
-  onDragEnd = result => ***REMOVED***
-    const ***REMOVED*** destination, source, draggableId, type } = result;
-    if(!destination) ***REMOVED***
+  onDragEnd = result => {
+    const { destination, source, draggableId, type } = result;
+    if(!destination) {
       return;
     }
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
-    ) ***REMOVED***
+    ) {
       return;
     }
-    if (type === 'column') ***REMOVED***
+    if (type === 'column') {
       console.log(source.index);
       console.log(destination.index);
       const newColumnOrder = [...this.state.columnOrder];
@@ -68,123 +68,124 @@ class SessionList extends React.Component ***REMOVED***
       const data = [...this.state.userData];
       [data[source.index], data[destination.index]] = [data[destination.index], data[source.index]];
 
-      this.setState(***REMOVED***
+      this.setState({
         columnOrder: newColumnOrder,
         userData: data
-      ***REMOVED***
+      });
       console.log('AFTER', this.state.columnOrder);
       return;
     }
     const start = source.droppableId;
     const finish = destination.droppableId;
-    if(start === finish) ***REMOVED***
-      const list = this.state.userData.filter((e) => ***REMOVED***
+    if(start === finish) {
+      const list = this.state.userData.filter((e) => {
         return e.listId === start;
-      ***REMOVED***
+      });
       const tasks = list[0].tasks;
       [tasks[source.index], tasks[destination.index]] = [tasks[destination.index], tasks[source.index]];
 
       const newUserData = [...this.state.userData];
-      const ind = newUserData.findIndex((e) => ***REMOVED***
+      const ind = newUserData.findIndex((e) => {
          return e.listId === start;
-      ***REMOVED***
+      });
       newUserData[ind].tasks = tasks;
       return;
     }
-    let startList = this.state.userData.filter((e) => ***REMOVED***
+    let startList = this.state.userData.filter((e) => {
       return e.listId === start;
     })[0];
     const tasks = startList.tasks;
-    const task = tasks.filter(e => ***REMOVED***
+    const task = tasks.filter(e => {
       return e._id === draggableId
     })[0];
 
-    const finishList = this.state.userData.filter((e) => ***REMOVED***
+    const finishList = this.state.userData.filter((e) => {
       return e.listId === finish;
     })[0];
-    const ind = startList.tasks.findIndex(e => ***REMOVED***
+    const ind = startList.tasks.findIndex(e => {
       return e._id === task._id;
     })
     startList.tasks.splice(ind, 1)
     finishList.tasks.push(task);
   };
 
-createTask(e, content, listid)***REMOVED***
+createTask(e, content, listid){
   e.preventDefault();
   e.target.reset();
-  axios.defaults.headers = ***REMOVED***
+  axios.defaults.headers = {
     Authorization: Auth.getToken()
   };
-  axios.post(`http://localhost:8000/task/create`, ***REMOVED***
+  axios.post(`http://localhost:8000/task/create`, {
     content,
     listid
   })
-    .then(res => ***REMOVED***
+    .then(res => {
       const newUserData = [...this.state.userData];
-      const ind = newUserData.findIndex((e) => ***REMOVED***
+      const ind = newUserData.findIndex((e) => {
          return e.listId === listid;
-      ***REMOVED***
+      });
       newUserData[ind].tasks.push(res.data);
-      this.setState(***REMOVED***userData: newUserData***REMOVED***
+      this.setState({userData: newUserData});
     })
 }  
 
-deleteTask(taskId, listId)***REMOVED***
+deleteTask(taskId, listId){
 
-  let startList = this.state.userData.filter((e) => ***REMOVED***
+  let startList = this.state.userData.filter((e) => {
     return e.listId === listId;
   })[0];
 
-  const ind = startList.tasks.findIndex(e => ***REMOVED***
+  const ind = startList.tasks.findIndex(e => {
     return e._id === taskId;
   })
   startList.tasks.splice(ind, 1)
-  this.setState(***REMOVED******REMOVED***
-  axios.defaults.headers = ***REMOVED***
+  this.setState({});
+  axios.defaults.headers = {
     Authorization: Auth.getToken()
 }     
-  axios.delete('http://localhost:8000/task/delete/' + taskId).then(res => ***REMOVED***
+  axios.delete('http://localhost:8000/task/delete/' + taskId).then(res => {
     console.log(res.body)
-  }).catch(e => ***REMOVED***
+  }).catch(e => {
     console.log(e);
   })
 }
 
-handleListChange(event) ***REMOVED***
-  this.setState(***REMOVED***newList: event.target.value***REMOVED***
+handleListChange(event) {
+  this.setState({newList: event.target.value});
 }
 
-createList(e)***REMOVED*** //add new list
+createList(e){ //add new list
+  e.target.reset();
   e.preventDefault();
-  axios.defaults.headers = ***REMOVED***
+  axios.defaults.headers = {
     Authorization: Auth.getToken()
 }     
-  axios.post('http://localhost:8000/list/create', ***REMOVED***
+  axios.post('http://localhost:8000/list/create', {
     title: this.state.newList,
   })
-  .then(res => ***REMOVED***
+  .then(res => {
     console.log(res.data);
-    const newList = ***REMOVED***
+    const newList = {
       listId: res.data._id,
       listTitle: res.data.title,
       tasks: []
     }
-    this.setState(***REMOVED***userData: [
+    this.setState({userData: [
       ...this.state.userData,
       newList
-    ]***REMOVED***
+    ]});
     console.log(this.state.userData);
-    const test = this.state.userData.map(e => ***REMOVED***
+    const test = this.state.userData.map(e => {
       return e.listId;
-    ***REMOVED***
-    this.setState(***REMOVED***columnOrder: test})
+    });
+    this.setState({columnOrder: test})
   })
 }
 
 
-deleteList(listId)***REMOVED*** //delete the list permanently
+deleteList(listId){ //delete the list permanently
   const list = this.state.userData;
-  const ind = list.findIndex(e => ***REMOVED***
+  const ind = list.findIndex(e => {
     return e.listId === listId;
   })
   console.log(ind);
@@ -192,52 +193,52 @@ deleteList(listId)***REMOVED*** //delete the list permanently
   const first = this.state.columnOrder.slice(0, ind);
   const last = this.state.columnOrder.slice(ind);
   console.log(first, last)
-  this.setState(***REMOVED***
+  this.setState({
     columnOrder: [...first, ...last]
   })
-  // this.setState(***REMOVED***})
-  // axios.defaults.headers = ***REMOVED***
+  // this.setState({})
+  // axios.defaults.headers = {
   //   Authorization: Auth.getToken()
   // }     
   // axios.post('http://localhost:8000/list/delete' + listId)
 }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <DragDropContext onDragEnd=***REMOVED***this.onDragEnd}>
+      <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="list-controls">
-        <Form action="submit" onSubmit=***REMOVED***e => this.createList(e)}>
+        <Form action="submit" onSubmit={e => this.createList(e)}>
           <Form.Control
             placeholder="List Name"
             aria-label="List Name"
             aria-describedby="basic-addon1"
-            onChange=***REMOVED***this.handleListChange}
+            onChange={this.handleListChange}
           />
           <br />
           <Button variant="contained" type="submit">Add List</Button>
         </Form>
         </div>
         <Droppable droppableId="all-columns" direction="horizontal" type="column">
-          ***REMOVED***provided => (
+          {provided => (
             <Container id="sessionList"
-              ***REMOVED***...provided.droppableProps}
-              ref=***REMOVED***provided.innerRef}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
             >
-              ***REMOVED***this.state.columnOrder.map((e, index) => ***REMOVED***
+              {this.state.columnOrder.map((e, index) => {
                 const column = this.state.userData[index];
                 console.log(index, column)
                 const tasks = column.tasks;
                 //maps the created lists 
                 return <Column 
-                  key=***REMOVED***column.listId} 
-                  column=***REMOVED***column} 
-                  tasks=***REMOVED***tasks} 
-                  index=***REMOVED***index} 
-                  createTask=***REMOVED***this.createTask} 
-                  deleteTask=***REMOVED***this.deleteTask}
-                  deleteList=***REMOVED***this.deleteList} />;
+                  key={column.listId} 
+                  column={column} 
+                  tasks={tasks} 
+                  index={index} 
+                  createTask={this.createTask} 
+                  deleteTask={this.deleteTask}
+                  deleteList={this.deleteList} />;
               })}
-              ***REMOVED***provided.placeholder}
+              {provided.placeholder}
             </Container>
           )}
         </Droppable>

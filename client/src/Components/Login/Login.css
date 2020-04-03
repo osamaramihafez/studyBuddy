@@ -1,5 +1,5 @@
 
-.popup-joinroom ***REMOVED***
+.popup-joinroom {
     background-color: white;
     margin: auto;
     padding: 20px;
@@ -15,36 +15,36 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.loginPage ***REMOVED***
+.loginPage {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.title ***REMOVED***
+.title {
     text-align: center;
     color: black;
 }
 
-.subtitle ***REMOVED***
+.subtitle {
     text-align: center;
     color: black;
     font-size: 20px;
 }
 
-.special-link ***REMOVED***
+.special-link {
     font-size: 10px;
     color: rgb(151, 151, 151);
     text-decoration: none;
     margin: auto;
 }
 
-.special-link:hover ***REMOVED*** 
+.special-link:hover { 
     color: rgb(83, 83, 83);
-}.background ***REMOVED***
+}.background {
     color: aquamarine;
 }
-.popup ***REMOVED***
+.popup {
     background-color: white;
     margin: auto;
     padding: 20px;
@@ -60,30 +60,30 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.loginPage ***REMOVED***
+.loginPage {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.title ***REMOVED***
+.title {
     text-align: center;
     color: black;
 }
 
-.subtitle ***REMOVED***
+.subtitle {
     text-align: center;
     color: black;
     font-size: 20px;
 }
 
-.special-link ***REMOVED***
+.special-link {
     font-size: 10px;
     color: rgb(151, 151, 151);
     text-decoration: none;
     margin: auto;
 }
 
-.special-link:hover ***REMOVED*** 
+.special-link:hover { 
     color: rgb(83, 83, 83);
 }
