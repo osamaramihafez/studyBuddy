@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Task from './task';
+import {Button, Form} from 'react-bootstrap';
+import ClearIcon from '@material-ui/icons/Clear';
+import IconButton from '@material-ui/core/IconButton';
 
 const Container = styled.div`
   margin: 8px;
@@ -25,13 +28,32 @@ const TaskList = styled.div`
 `;
 
 export default class Column extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleTaskChange.bind(this);
+  }
+
+  state = {
+    newTask: '',
+  }
+
+  handleTaskChange(event) {
+    this.setState({newTask: event.target.value});
+  }
+
   render() {
     return (
-      <Draggable draggableId={this.props.column.id} index={this.props.index}>
+      <Draggable draggableId={this.props.column.listId} index={this.props.index}>
         {provided => (
           <Container {...provided.draggableProps} ref={provided.innerRef}>
-            <Title {...provided.dragHandleProps}>{this.props.column.title}</Title>
-            <Droppable droppableId={this.props.column.id} type="task">
+            <Title 
+            {...provided.dragHandleProps}>{this.props.column.listTitle}
+            <IconButton color="secondary" aria-label="upload picture" component="span" onClick={() => this.props.deleteList(this.props.column.listId)}>
+              <ClearIcon />
+            </IconButton>
+            
+            </Title>
+            <Droppable droppableId={this.props.column.listId} type="task">
               {(provided,snapshot) => (
                 <TaskList
                   ref={provided.innerRef}
@@ -39,8 +61,18 @@ export default class Column extends React.Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {this.props.tasks.map((task, index) => (
-                    <Task key={task.id} task={task} index={index} />
+                    <Task key={task._id} task={task} index={index} deleteTask={this.props.deleteTask} listId={this.props.column.listId} />
                   ))}
+                    <Form action="submit" onSubmit={e => this.props.createTask(e, this.state.newTask, this.props.column.listId)}>
+                      <Form.Control
+                        placeholder="Task Name"
+                        aria-label="Task Name"
+                        aria-describedby="basic-addon1"
+                        onChange={e => this.handleTaskChange(e)}
+                      />
+                      {/* <input type="text" value={this.state.newTask} id="newtask" onChange={e => this.handleTaskChange(e)} /> */}
+                      <Button variant="outline-primary" type="submit">Add Task</Button>
+                    </Form>
                   {provided.placeholder}
                 </TaskList>
               )}

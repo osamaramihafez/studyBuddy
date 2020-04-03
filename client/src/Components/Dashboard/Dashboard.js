@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
   requestOrExitFullScreen () {
     this.fullScreenRef.fullScreen()
   }
- 
+
   requestOrExitFullScreenByElement () {
     this.elFullScreenRef.fullScreen(this.elRef)
   }
@@ -61,7 +61,6 @@ class Dashboard extends React.Component {
   backtoDash() {
     this.props.history.push('/dashboard')
   }
-
   render() {
     const { isFullScreen } = this.state
     return (
@@ -72,7 +71,7 @@ class Dashboard extends React.Component {
           <LogoutButton></LogoutButton>
         </div>
         <div className="timer-backdrop">
-          <Timer />      
+          <Timer />    
               <br></br>
               <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
                   <div className='rq'>
