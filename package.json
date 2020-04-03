@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "dotenv -e src/vars.env nodemon src/app.js",
     "group": " dotenv -e src/vars.env nodemon src/group/server.js && dotenv -e src/vars.env nodemon src/app.js",
-    "client": "(cd client && npm run start) & npm run start"
+    "app": "(cd client && npm run start) & npm run start"
   },
   "repository": ***REMOVED***
     "type": "git",

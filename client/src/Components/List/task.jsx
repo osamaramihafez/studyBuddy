@@ -51,12 +51,11 @@ export default class Task extends React.Component ***REMOVED***
             ref=***REMOVED***provided.innerRef}
             isDragging=***REMOVED***snapshot.isDragging}
           >
-            <div className="Icon">
-            <p className="text">***REMOVED***this.props.task.content}</p>
+            <p className="text">***REMOVED***this.props.task.content}
             <IconButton color="secondary" aria-label="upload picture" component="span" onClick=***REMOVED***() => this.props.deleteTask(this.props.task._id, this.props.listId)}>
               <ClearIcon />
           </IconButton>
-            </div>
+          </p>
           </Container>
         )}
       </Draggable>

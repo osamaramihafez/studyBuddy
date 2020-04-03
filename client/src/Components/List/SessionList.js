@@ -4,8 +4,9 @@ import ***REMOVED*** DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import axios from 'axios';
 import Auth from '../../HOC/Auth'
-import ***REMOVED***Button, Form} from 'react-bootstrap';
-import './list.css'
+import ***REMOVED***Form} from 'react-bootstrap';
+import './List.css'
+import Button from '@material-ui/core/Button';
 
 const Container = styled.div`
   display: flex;
@@ -204,7 +205,7 @@ deleteList(listId)***REMOVED*** //delete the list permanently
   render() ***REMOVED***
     return (
       <DragDropContext onDragEnd=***REMOVED***this.onDragEnd}>
-        <div className="session-list">
+        <div className="list-controls">
         <Form action="submit" onSubmit=***REMOVED***e => this.createList(e)}>
           <Form.Control
             placeholder="List Name"
@@ -212,7 +213,8 @@ deleteList(listId)***REMOVED*** //delete the list permanently
             aria-describedby="basic-addon1"
             onChange=***REMOVED***this.handleListChange}
           />
-          <Button variant="outline-primary" type="submit">Add List</Button>
+          <br />
+          <Button variant="contained" type="submit">Add List</Button>
         </Form>
         </div>
         <Droppable droppableId="all-columns" direction="horizontal" type="column">
