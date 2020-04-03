@@ -8,12 +8,13 @@ import IconButton from '@material-ui/core/IconButton';
 
 const Container = styled.div`
   margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius 2px;
+  border: 2px solid white;
+  border-radius 7px;
   background-color: white;
   width: 30%;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 const Title = styled.h3`
   padding: 8px;

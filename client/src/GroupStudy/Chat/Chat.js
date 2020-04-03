@@ -1,5 +1,6 @@
 import './Chat.css'
 import React from 'react';
+import Moment from 'react-moment';
 import ***REMOVED***Form, FormControl, Button} from 'react-bootstrap'
 
 class Chat extends React.Component ***REMOVED***
@@ -16,19 +17,22 @@ class Chat extends React.Component ***REMOVED***
     componentDidMount = () => ***REMOVED***
         this.socket.on("message", (obj) => ***REMOVED***
             // Add new messages to existing messages in "chat"
+            console.log(obj);
             this.setState(***REMOVED***
                 chat: this.state.chat.concat(***REMOVED***
                     username: obj.username, 
-                    msg: obj.msg})
+                    msg: obj.msg,
+                    createdAt: obj.createdAt})
             ***REMOVED***
         ***REMOVED***
     }
 
-    renderChat() ***REMOVED***
-        return this.state.chat.map((***REMOVED*** username, msg }, index) => (
+    renderMessages() ***REMOVED***
+        return this.state.chat.map((obj, index) => (
           <div key=***REMOVED***index}>
-            <span style=***REMOVED******REMOVED*** color: "blue" }}>***REMOVED***username}: </span>
-            <span>***REMOVED***msg}</span>
+            <span className="username">***REMOVED***obj.username}: </span>
+            <span className="message">***REMOVED***obj.msg} </span>
+            <Moment format="HH:mm" className="date">***REMOVED***obj.createdAt}</Moment>
           </div>
         ));
       }
@@ -39,7 +43,6 @@ class Chat extends React.Component ***REMOVED***
 
       handleMessageSubmit = (e) => ***REMOVED***
           e.preventDefault();
-          console.log("test")
         if(!this.state.msg.length <= 0) ***REMOVED***
             this.socket.emit("sendMessage", this.state.msg);
             this.setState(***REMOVED*** msg: "" ***REMOVED***
@@ -60,7 +63,7 @@ class Chat extends React.Component ***REMOVED***
                     value=***REMOVED***this.state.msg}
                     />
             </Form>
-            <div className="messages">***REMOVED***this.renderChat()}</div>
+            <div className="messages">***REMOVED***this.renderMessages()}</div>
             </div>
           </div>
         );

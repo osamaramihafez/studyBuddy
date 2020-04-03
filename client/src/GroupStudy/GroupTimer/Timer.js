@@ -1,10 +1,9 @@
 import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
-import ***REMOVED***Button} from 'react-bootstrap'
+import Button from '@material-ui/core/Button';
 import ***REMOVED*** MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
 import './Timer.css'
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Notification from '../../Components/Notification/index'
@@ -252,22 +251,25 @@ class Timer extends React.Component ***REMOVED***
     return (
       
       <section className="timer-backdrop">
-          ***REMOVED***this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
           <input onBlur=***REMOVED***this.formatMinutes} disabled maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
           <p className="colon">:</p>
           <input onBlur=***REMOVED***this.formatSeconds} disabled maxLength="2" max="59" className="timer" type="number" value=***REMOVED***this.state.seconds} onChange=***REMOVED***this.updateSeconds} />
           <br />
-          <Button ref="btn" onClick=***REMOVED***this.handleClickPlay} disabled=***REMOVED***this.state.disabled}>
-          <MdPlayArrow />
-          </Button>
-          <Button onClick=***REMOVED***this.handleClickPause} disabled=***REMOVED***!this.state.disabled}>
-            <MdPause />
-          </Button>
-          <Button onClick=***REMOVED***this.handleClickReset}>
-            <MdRefresh />
-          </Button>
-          <Button ref="btn" onClick=***REMOVED***this.handleSwitchModes} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
-          <Notification ref=***REMOVED***ref => (this.notification = ref)} />
+          <div className="controls">
+            <Button variant="contained" ref="btn" onClick=***REMOVED***this.handleClickPlay} disabled=***REMOVED***this.state.disabled}>
+            <MdPlayArrow />
+            </Button>
+            <Button variant="contained" onClick=***REMOVED***this.handleClickPause} disabled=***REMOVED***!this.state.disabled}>
+              <MdPause />
+            </Button>
+            <Button variant="contained" onClick=***REMOVED***this.handleClickReset}>
+              <MdRefresh />
+            </Button>
+          </div>
+          <br />
+
+            <Button variant="contained" ref="btn" onClick=***REMOVED***this.handleSwitchModes} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
+            <Notification ref=***REMOVED***ref => (this.notification = ref)} />
           <br />
           <FormControlLabel
               control=***REMOVED***
@@ -275,10 +277,10 @@ class Timer extends React.Component ***REMOVED***
                   checked=***REMOVED***this.state.continious}
                   onChange=***REMOVED***this.handleSwitchContinue}
                   name="checkedB"
-                  color="primary"
+                  color="default"
                 />
               }
-              label=***REMOVED***<p className="Label">Continuous Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
+              label=***REMOVED***<p className="switch-label">Continuous Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
             />
       </section>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import ***REMOVED***Button} from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Auth from '../../HOC/Auth';
 import Cookies from 'universal-cookie';
@@ -11,6 +11,7 @@ class LogoutButton extends React.Component ***REMOVED***
         this.props = props;
         this.handleLogout = this.handleLogout.bind(this);
     }
+    
      async handleLogout () ***REMOVED***
         const tk = Auth.getToken();
         try ***REMOVED***
@@ -21,14 +22,14 @@ class LogoutButton extends React.Component ***REMOVED***
             await axios.post('http://localhost:8000/user/logout');
             const cookies = new Cookies();
             cookies.remove('Authorization');
-            this.props.history.push('/');
+            window.location.href="/";
         } catch (error) ***REMOVED***
             console.log(error);
         }
     }
     render () ***REMOVED***
 
-        return (<Button onClick=***REMOVED***this.handleLogout}>Logout</Button>);
+        return (<Button variant="contained" onClick=***REMOVED***this.handleLogout}>Logout</Button>);
     }
 }
 

@@ -6,8 +6,9 @@ import "./Register.css";
 
 
 class RegistrationForm extends React.Component ***REMOVED***
-    constructor() ***REMOVED***
+    constructor(props) ***REMOVED***
         super();
+        this.props = props;
         this.state = ***REMOVED***
             name: "",
             email: "",
