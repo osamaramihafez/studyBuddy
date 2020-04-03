@@ -155,6 +155,7 @@ handleListChange(event) {
 }
 
 createList(e){ //add new list
+  e.target.reset();
   e.preventDefault();
   axios.defaults.headers = {
     Authorization: Auth.getToken()
