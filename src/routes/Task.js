@@ -56,19 +56,20 @@ router.post('/task/create', auth, async (req, res) => ***REMOVED***
 //An entry for a post request to delete a task
 router.delete('/task/delete/:id', auth, async (req, res) => ***REMOVED***
     // console.log(req.body);
+    console.log("HERE")
     const id = req.params.id;
     try ***REMOVED***
-        const task = await Task.findById(id);
-        console.log(task);
-        if (!task) return res.status(404).send();
+        // const task = await Task.findById(id);
+        // console.log(task);
+        // if (!task) return res.status(404).send();
         await Task.deleteOne(***REMOVED***
             _id: id
         })
-        await list.update(***REMOVED***name: task.listid}, ***REMOVED***$push: ***REMOVED***tasks: task._id }})
+        // await list.update(***REMOVED***name: task.listid}, ***REMOVED***$push: ***REMOVED***tasks: task._id }})
         res.send();
     } catch (e) ***REMOVED***
         console.log(e);
-        res.status(500).send(e);
+        res.status(400).send(e);
     }
 ***REMOVED***
 

@@ -8,8 +8,6 @@ const Task = require('../models/Task');
 // Create a list
 router.post('/list/create', auth, async (req, res) => ***REMOVED***
     const title = req.body.title;
-    console.log(title);
-    console.log(req.user.id);
     const newList = new List(***REMOVED***
         title,
         userid: req.user.id
@@ -19,7 +17,10 @@ router.post('/list/create', auth, async (req, res) => ***REMOVED***
     // await user.update(***REMOVED***name: user}, $push: ***REMOVED***lists: listId***REMOVED***
     //end of change
     newList.save()
-    .then(() => res.json('List created!'))
+    .then(() => ***REMOVED***
+        res.status(201).json(newList);
+    }
+    )
     .catch(err => ***REMOVED***
         console.log(err)
         res.status(400).json('Error: ' + err);
@@ -31,18 +32,19 @@ router.get('/list/getAll/', auth, async (req, res) => ***REMOVED***
     try ***REMOVED***
         const user = req.user
         let lists = [];
-        console.log(user._id)
+        // console.log(user._id)
         const listIds = await List.find(***REMOVED***userid: user._id***REMOVED***
-        // console.log(lists);
+        // console.log(listIds);
         for(let i = 0; i < listIds.length; i++) ***REMOVED***
             const tasks = await Task.find(***REMOVED*** listid: listIds[i]._id ***REMOVED***
             const obj = ***REMOVED***
                 listId: listIds[i]._id,
+                listTitle: listIds[i].title,
                 tasks
             };
             lists.push(obj);
         }
-        console.log(lists);
+        // console.log(lists);
         res.status(200).send(***REMOVED***lists***REMOVED***
     } catch (error) ***REMOVED***
         console.log(error);
@@ -53,7 +55,6 @@ router.get('/list/getAll/', auth, async (req, res) => ***REMOVED***
 // Deletes a list
 router.delete('/list/delete/:id', auth, async (req, res) => ***REMOVED***
     try ***REMOVED***
-        ///changed code here
         await Task.deleteMany(***REMOVED***
             listid: req.params.id
         })

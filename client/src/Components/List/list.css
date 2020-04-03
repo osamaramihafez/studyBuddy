@@ -1,0 +1,18 @@
+.session-list ***REMOVED***
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.Icon ***REMOVED***
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    width: 100%;
+}
+
+.text ***REMOVED***
+    text-align: center;
+    font-size: 17px;
+}

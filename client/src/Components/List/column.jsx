@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import ***REMOVED*** Droppable, Draggable } from 'react-beautiful-dnd';
 import Task from './task';
-import AddTask from './AddTask';
+import ***REMOVED***Button, Form} from 'react-bootstrap';
+import ClearIcon from '@material-ui/icons/Clear';
+import IconButton from '@material-ui/core/IconButton';
+
 const Container = styled.div`
   margin: 8px;
   border: 1px solid lightgrey;
@@ -39,11 +42,17 @@ export default class Column extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     return (
-      <Draggable draggableId=***REMOVED***this.props.column.id} index=***REMOVED***this.props.index}>
+      <Draggable draggableId=***REMOVED***this.props.column.listId} index=***REMOVED***this.props.index}>
         ***REMOVED***provided => (
           <Container ***REMOVED***...provided.draggableProps} ref=***REMOVED***provided.innerRef}>
-            <Title ***REMOVED***...provided.dragHandleProps}>***REMOVED***this.props.column.title}</Title>
-            <Droppable droppableId=***REMOVED***this.props.column.id} type="task">
+            <Title 
+            ***REMOVED***...provided.dragHandleProps}>***REMOVED***this.props.column.listTitle}
+            <IconButton color="secondary" aria-label="upload picture" component="span" onClick=***REMOVED***() => this.props.deleteList(this.props.column.listId)}>
+              <ClearIcon />
+            </IconButton>
+            
+            </Title>
+            <Droppable droppableId=***REMOVED***this.props.column.listId} type="task">
               ***REMOVED***(provided,snapshot) => (
                 <TaskList
                   ref=***REMOVED***provided.innerRef}
@@ -51,20 +60,22 @@ export default class Column extends React.Component ***REMOVED***
                   isDraggingOver=***REMOVED***snapshot.isDraggingOver}
                 >
                   ***REMOVED***this.props.tasks.map((task, index) => (
-                    <Task key=***REMOVED***task.id} task=***REMOVED***task} index=***REMOVED***index} />
+                    <Task key=***REMOVED***task._id} task=***REMOVED***task} index=***REMOVED***index} deleteTask=***REMOVED***this.props.deleteTask} listId=***REMOVED***this.props.column.listId} />
                   ))}
-                  <AddTask addTask=***REMOVED***this.props.addTask}/>
+                    <Form action="submit" onSubmit=***REMOVED***e => this.props.createTask(e, this.state.newTask, this.props.column.listId)}>
+                      <Form.Control
+                        placeholder="Task Name"
+                        aria-label="Task Name"
+                        aria-describedby="basic-addon1"
+                        onChange=***REMOVED***e => this.handleTaskChange(e)}
+                      />
+                      ***REMOVED***/* <input type="text" value=***REMOVED***this.state.newTask} id="newtask" onChange=***REMOVED***e => this.handleTaskChange(e)} /> */}
+                      <Button variant="outline-primary" type="submit">Add Task</Button>
+                    </Form>
                   ***REMOVED***provided.placeholder}
                 </TaskList>
               )}
             </Droppable>
-            <form onSubmit=***REMOVED***this.props.createTask(this.state.newTask)}> /* to add the new list */
-              <label>
-                Add Task
-                <textarea value=***REMOVED***this.state.newTask} onChange=***REMOVED***this.handleTaskChange} />
-              </label>
-              <input type="submit" value="Add List" />
-            </form>
           </Container>
         )}
       </Draggable>
