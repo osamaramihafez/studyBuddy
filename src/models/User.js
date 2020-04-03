@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
     }
-  }],
+  }]
   // timestamps: true
 })
 
@@ -61,6 +61,11 @@ userSchema.statics.login = async (email, password) => {
   if (!isValid) throw new Error("Unable to login");
   else return user;
 }
+
+userSchema.virtual('userId').get(function() {
+  return this._id;
+});
+
 const User = mongoose.model("User", userSchema);
 
 
