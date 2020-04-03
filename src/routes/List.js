@@ -8,8 +8,6 @@ const Task = require('../models/Task');
 // Create a list
 router.post('/list/create', auth, async (req, res) => {
     const title = req.body.title;
-    console.log(title);
-    console.log(req.user.id);
     const newList = new List({
         title,
         userid: req.user.id
@@ -19,7 +17,10 @@ router.post('/list/create', auth, async (req, res) => {
     // await user.update({name: user}, $push: {lists: listId});
     //end of change
     newList.save()
-    .then(() => res.json('List created!'))
+    .then(() => {
+        res.status(201).json(newList);
+    }
+    )
     .catch(err => {
         console.log(err)
         res.status(400).json('Error: ' + err);
@@ -31,18 +32,19 @@ router.get('/list/getAll/', auth, async (req, res) => {
     try {
         const user = req.user
         let lists = [];
-        console.log(user._id)
+        // console.log(user._id)
         const listIds = await List.find({userid: user._id});
-        // console.log(lists);
+        // console.log(listIds);
         for(let i = 0; i < listIds.length; i++) {
             const tasks = await Task.find({ listid: listIds[i]._id });
             const obj = {
                 listId: listIds[i]._id,
+                listTitle: listIds[i].title,
                 tasks
             };
             lists.push(obj);
         }
-        console.log(lists);
+        // console.log(lists);
         res.status(200).send({lists});
     } catch (error) {
         console.log(error);
@@ -53,7 +55,6 @@ router.get('/list/getAll/', auth, async (req, res) => {
 // Deletes a list
 router.delete('/list/delete/:id', auth, async (req, res) => {
     try {
-        ///changed code here
         await Task.deleteMany({
             listid: req.params.id
         })
