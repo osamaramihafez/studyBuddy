@@ -1,4 +1,4 @@
-.left-side-reg ***REMOVED***
+.left-side-reg {
     background-color: white;
     padding: 20px;
     height: 100%;
@@ -12,28 +12,28 @@
 
 }
 
-.inner-form ***REMOVED***
+.inner-form {
     margin-top: 65px;
 }
 
-.title ***REMOVED***
+.title {
     text-align: center;
     color: black;
 }
 
-.subtitle ***REMOVED***
+.subtitle {
     text-align: center;
     color: black;
     font-size: 20px;
 }
 
-.special-link ***REMOVED***
+.special-link {
     font-size: 10px;
     color: rgb(151, 151, 151);
     text-decoration: none;
     margin: auto;
 }
 
-.special-link:hover ***REMOVED*** 
+.special-link:hover { 
     color: rgb(83, 83, 83);
 }

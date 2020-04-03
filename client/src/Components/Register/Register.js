@@ -1,15 +1,15 @@
 import React from "react";
-import ***REMOVED*** Form, Container, Button, OverlayTrigger, Popover, Alert, Overlay } from "react-bootstrap";
+import { Form, Container, Button, OverlayTrigger, Popover, Alert, Overlay } from "react-bootstrap";
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 import "./Register.css";
 
 
-class RegistrationForm extends React.Component ***REMOVED***
-    constructor(props) ***REMOVED***
+class RegistrationForm extends React.Component {
+    constructor(props) {
         super();
         this.props = props;
-        this.state = ***REMOVED***
+        this.state = {
             name: "",
             email: "",
             password: "",
@@ -24,85 +24,85 @@ class RegistrationForm extends React.Component ***REMOVED***
 
     }
 
-    validateForm() ***REMOVED***
+    validateForm() {
         var emailReg = /\S+@\S+/;
-        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.***REMOVED***6,})/;
+        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
         // console.log(re.test(this.state.email));
-        if ((this.state.name.length > 0 && emailReg.test(this.state.email)) && (passReg.test(this.state.password))) this.setState(***REMOVED*** valid: true ***REMOVED***
+        if ((this.state.name.length > 0 && emailReg.test(this.state.email)) && (passReg.test(this.state.password))) this.setState({ valid: true });
     }
 
-    updateName(e) ***REMOVED***
-        this.setState(***REMOVED*** name: e.target.value ***REMOVED***
+    updateName(e) {
+        this.setState({ name: e.target.value });
         this.validateForm();
     }
 
-    updatePassword(e) ***REMOVED***
-        this.setState(***REMOVED*** password: e.target.value ***REMOVED***
+    updatePassword(e) {
+        this.setState({ password: e.target.value });
         this.validateForm();
     }
 
-    updateEmail(e) ***REMOVED***
-        this.setState(***REMOVED*** email: e.target.value ***REMOVED***
+    updateEmail(e) {
+        this.setState({ email: e.target.value });
         this.validateForm();
     }
 
-    handleRegistration(e) ***REMOVED***
+    handleRegistration(e) {
         e.preventDefault();
         console.log(this.state);
 
-        axios.post("http://localhost:8000/send", ***REMOVED***
+        axios.post("http://localhost:8000/send", {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password
         })
 
-        axios.post("http://localhost:8000/create/user", ***REMOVED***
+        axios.post("http://localhost:8000/create/user", {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password
         })
-            .then(res => ***REMOVED***
+            .then(res => {
                 const cookies = new Cookies();
                 cookies.set('Authorization', 'Bearer ' + res.data.tk);
                 this.props.history.push('/dashboard');
             })
-            .catch(res => ***REMOVED***
-                this.setState(***REMOVED***
+            .catch(res => {
+                this.setState({
                     alert: (
                         <Alert
                             variant="danger">Unable to Register! There is an account that exists with that email
                             </Alert>)
                 })
-            ***REMOVED***
+            });
 
     }
-    render() ***REMOVED***
+    render() {
         return (
             <Container className="left-side-reg">
                 <Container className="inner-form">
                     <h3 className="subtitle">Registration</h3>
                     <br></br>
-                    <Form onSubmit=***REMOVED***this.handleRegistration} >
+                    <Form onSubmit={this.handleRegistration} >
                         <Form.Group controlId="name" className="inp-top">
                             <Form.Control
                                 autoFocus
                                 type="text"
-                                onChange=***REMOVED***this.updateName}
+                                onChange={this.updateName}
                                 placeholder="name"
                             />
                         </Form.Group>
                         <Form.Group controlId="email" className="test">
                             <Form.Control
                                 type="email"
-                                onChange=***REMOVED***this.updateEmail}
+                                onChange={this.updateEmail}
                                 placeholder="email"
                             />
                         </Form.Group>
                         <OverlayTrigger
                             placement="right"
                             trigger="focus"
-                            overlay=***REMOVED***
-                                <Popover id=***REMOVED***`popover-positioned-bottom`}>
+                            overlay={
+                                <Popover id={`popover-positioned-bottom`}>
                                     <Popover.Title as="h3">Password Guidelines</Popover.Title>
                                     <Popover.Content>
                                         <ul>
@@ -117,14 +117,14 @@ class RegistrationForm extends React.Component ***REMOVED***
                             <Form.Group controlId="password" className="test1">
                                 <Form.Control
                                     type="password"
-                                    onChange=***REMOVED***this.updatePassword}
+                                    onChange={this.updatePassword}
                                     placeholder="password"
                                 />
                             </Form.Group>
                         </OverlayTrigger>
                         <br></br>
-                        <Button variant="primary" type="submit" disabled=***REMOVED***!this.state.valid}>Submit</Button>
-                        ***REMOVED***this.state.alert}
+                        <Button variant="primary" type="submit" disabled={!this.state.valid}>Submit</Button>
+                        {this.state.alert}
                     </Form>
                 </Container>
             </Container>

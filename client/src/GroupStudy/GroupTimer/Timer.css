@@ -1,4 +1,4 @@
-.timer ***REMOVED***
+.timer {
     font-size: 118px;
     border: none;
     display: inline-block;
@@ -12,7 +12,7 @@
     font-weight: 700;
 }
 
-.timer-backdrop ***REMOVED***
+.timer-backdrop {
     margin-top: 100px;
     padding: 50px;
     width: 50%;
@@ -20,7 +20,7 @@
     margin-top: 100px;
 }
 
-/* .controls ***REMOVED***
+/* .controls {
     justify-content: space-between;
     width: 20%;
     margin: auto;
@@ -28,7 +28,7 @@
 } */
 
 
-.timer:disabled ***REMOVED***
+.timer:disabled {
     font-size: 118px;
     border: none;
     display: inline-block;
@@ -42,22 +42,22 @@
     font-weight: 700;
 }
 
-input[type="number"] ***REMOVED***
+input[type="number"] {
     -moz-appearance: textfield;
 }
 
-.colon ***REMOVED***
+.colon {
     font-size: 100px;
     display: inline-block;
     color: white;
     height: auto;
 }
 
-.break ***REMOVED***
+.break {
     color: red;
 }
 
-.Label ***REMOVED***
+.Label {
     color: black;
     margin-bottom: auto;
     font-weight: 400;

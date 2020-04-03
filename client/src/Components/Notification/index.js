@@ -6,7 +6,7 @@ const Container = styled.div`
     color: white;
     padding: 16px;
     position: absolute;
-    top: $***REMOVED***props => props.top}px;
+    top: ${props => props.top}px;
     right: 70px;
     z-index: 999;
     transition: top 0.5s ease;
@@ -30,33 +30,33 @@ const Container = styled.div`
 `;
 
 
-export default class Notification extends React.Component***REMOVED***
+export default class Notification extends React.Component{
     
-    constructor(props)***REMOVED***
+    constructor(props){
         super(props);
 
-        this.state = ***REMOVED***
+        this.state = {
             top: -100,
             text: 'empty',
         };
     }
 
-    showNotification = (input) => ***REMOVED***
-        this.setState(***REMOVED***
+    showNotification = (input) => {
+        this.setState({
             top: 75,
             text: input,
-        }, () => ***REMOVED***
-            setTimeout(() => ***REMOVED***
-                this.setState(***REMOVED***
+        }, () => {
+            setTimeout(() => {
+                this.setState({
                     top: -100,
                 })
             }, 3000);
-        ***REMOVED***
+        });
     }
 
-    render () ***REMOVED***
+    render () {
         return (
-            <Container top=***REMOVED***this.state.top}>***REMOVED***this.state.text}</Container>
+            <Container top={this.state.top}>{this.state.text}</Container>
         );
     }
 

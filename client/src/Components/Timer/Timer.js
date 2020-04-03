@@ -2,17 +2,17 @@ import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
 import Button from '@material-ui/core/Button';
-import ***REMOVED*** MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
+import { MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
 import './Timer.css'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Notification from '../Notification'
 
-class Timer extends React.Component ***REMOVED***
-  constructor() ***REMOVED***
+class Timer extends React.Component {
+  constructor() {
     super()
 
-    this.state = ***REMOVED***
+    this.state = {
       minutes: "25",
       seconds: "00",
       disabled: false,
@@ -35,82 +35,82 @@ class Timer extends React.Component ***REMOVED***
     this.tick = this.tick.bind(this);
   }
 
-  switchMode() ***REMOVED***
-    this.setState(***REMOVED***
+  switchMode() {
+    this.setState({
       break: !this.state.break,
-    ***REMOVED***
-    if(!this.state.break) ***REMOVED***
-      this.setState(***REMOVED***
+    });
+    if(!this.state.break) {
+      this.setState({
         minutes: "05"
-      ***REMOVED***
+      });
       return;
     }
-    else this.setState(***REMOVED***
+    else this.setState({
       minutes: "25"
-    ***REMOVED***
+    });
   }
 
-  updateMinutes(e) ***REMOVED***
+  updateMinutes(e) {
     let value = e.target.value;
-    if(value < 0) ***REMOVED***
+    if(value < 0) {
       return;
     }
-    if( value.length > 2) ***REMOVED***
+    if( value.length > 2) {
       return;
     }
-    this.setState(***REMOVED***minutes: value***REMOVED***
+    this.setState({minutes: value});
 
   }
-  updateSeconds(e) ***REMOVED***
+  updateSeconds(e) {
     let value = e.target.value;
     console.log(value);
-    if(value < 0) ***REMOVED***
+    if(value < 0) {
       return;
     }
-    if( value.length > 2) ***REMOVED***
+    if( value.length > 2) {
       return;
     }
-    this.setState(***REMOVED***seconds: value***REMOVED***
+    this.setState({seconds: value});
   }
 
-  tick() ***REMOVED***
+  tick() {
     const min = Math.floor(this.secondsRemaining / 60);
     const sec = (this.secondsRemaining - (min * 60));
-    this.setState(***REMOVED***
+    this.setState({
       minutes: min,
       seconds: sec
     })
-    if (sec < 10) ***REMOVED***
-      this.setState(***REMOVED***
+    if (sec < 10) {
+      this.setState({
         seconds: "0" + this.state.seconds,
       })
     }
-    if (min < 10) ***REMOVED***this.setState(***REMOVED***
+    if (min < 10) {this.setState({
       minutes: "0" + min,
     })
     }
-    if (min === 0 & sec === 0) ***REMOVED***
-      if (this.state.continious) ***REMOVED***this.notification.showNotification('Timer Complete. New timer starting!');}
-      else ***REMOVED***this.notification.showNotification('Timer Complete. Start your new timer!');}
+    if (min === 0 & sec === 0) {
+      if (this.state.continious) {this.notification.showNotification('Timer Complete. New timer starting!');}
+      else {this.notification.showNotification('Timer Complete. Start your new timer!');}
       
       this.stop();
       this.switchMode();
-      if(this.state.continious) ***REMOVED***
+      if(this.state.continious) {
         this.start()
       }
     }
     this.secondsRemaining--
   }
 
-  stop() ***REMOVED***
+  stop() {
     clearInterval(this.intervalHandle);
-    this.setState(***REMOVED***
+    this.setState({
       disabled: false,
     })
   }
 
-  start() ***REMOVED***
-    this.setState(***REMOVED***
+  start() {
+    this.setState({
       disabled: true,
       sound: true
     })
@@ -120,85 +120,85 @@ class Timer extends React.Component ***REMOVED***
 
   }
 
-  reset() ***REMOVED***
+  reset() {
     this.stop();
-    this.setState(***REMOVED***
+    this.setState({
       seconds: '00',
       minutes: '25',
       sound: true,
       break: false
-    ***REMOVED***
-    this.setState(***REMOVED***disabled: false})
+    });
+    this.setState({disabled: false})
   }
 
-  formatMinutes(e) ***REMOVED***
+  formatMinutes(e) {
     const value = e.target.value;
-    if( value.length >= 2) ***REMOVED***
+    if( value.length >= 2) {
       return;
     }
-    if(value < 10) ***REMOVED***
-      this.setState(***REMOVED***
+    if(value < 10) {
+      this.setState({
         minutes: "0" + value
       })
     }
     return;
   }
 
-  formatSeconds(e) ***REMOVED***
+  formatSeconds(e) {
     const value = e.target.value;
-    if( value.length >= 2) ***REMOVED***
+    if( value.length >= 2) {
       return;
     }
-    else if(value < 10) ***REMOVED***
-      this.setState(***REMOVED***
+    else if(value < 10) {
+      this.setState({
         seconds: "0" + value
       })
       return;
     }
   }
 
-  switchContinue() ***REMOVED***
-    this.setState(***REMOVED***
+  switchContinue() {
+    this.setState({
       continious: !this.state.continious
     })
   }
 
-  render() ***REMOVED***
+  render() {
     return (
       
       <section>
-          <input onBlur=***REMOVED***this.formatMinutes} disabled=***REMOVED***this.state.disabled} maxLength="2" max="99" className="timer" type="number" value=***REMOVED***this.state.minutes} onChange=***REMOVED***this.updateMinutes} />
+          <input onBlur={this.formatMinutes} disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
           <p className="colon">:</p>
-          <input onBlur=***REMOVED***this.formatSeconds} disabled=***REMOVED***this.state.disabled} maxLength="2" max="59" className="timer" type="number" value=***REMOVED***this.state.seconds} onChange=***REMOVED***this.updateSeconds} />
+          <input onBlur={this.formatSeconds} disabled={this.state.disabled} maxLength="2" max="59" className="timer" type="number" value={this.state.seconds} onChange={this.updateSeconds} />
           <br />
           <div className="controls">
-            <Button variant="contained" ref="btn" onClick=***REMOVED***this.start} disabled=***REMOVED***this.state.disabled}>
+            <Button variant="contained" ref="btn" onClick={this.start} disabled={this.state.disabled}>
             <MdPlayArrow />
             </Button>
-            <Button variant="contained" onClick=***REMOVED***this.stop} disabled=***REMOVED***!this.state.disabled}>
+            <Button variant="contained" onClick={this.stop} disabled={!this.state.disabled}>
               <MdPause />
             </Button>
-            <Button variant="contained" onClick=***REMOVED***this.reset}>
+            <Button variant="contained" onClick={this.reset}>
               <MdRefresh />
             </Button>
           </div>
           <br />
           <div >
           <FormControlLabel
-              control=***REMOVED***
+              control={
                 <Switch
-                  checked=***REMOVED***this.state.continious}
-                  onChange=***REMOVED***this.switchContinue}
+                  checked={this.state.continious}
+                  onChange={this.switchContinue}
                   name="checkedB"
                   color="default"
                 />
               }
-              label=***REMOVED***<p className="switch-label">Continuous Mode ***REMOVED***this.state.continious === true ? "Enabled": "Disabled"}</p>}
+              label={<p className="switch-label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
             />
             <br />
-          <Button variant="contained" ref="btn" onClick=***REMOVED***this.switchMode} disabled=***REMOVED***this.state.disabled}>Switch Modes ***REMOVED***this.state.br}</Button>
+          <Button variant="contained" ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
           </div>
-          <Notification ref=***REMOVED***ref => (this.notification = ref)} />
+          <Notification ref={ref => (this.notification = ref)} />
       </section>
     )
   }

@@ -1,12 +1,12 @@
-const generateMessage = (msg, username) => ***REMOVED***
+const generateMessage = (msg, username) => {
     console.log(msg);
-    return ***REMOVED***
+    return {
         username,
         msg,
         createdAt: new Date().getTime()
     }
 }
 
-module.exports = ***REMOVED***
+module.exports = {
     generateMessage,
 }

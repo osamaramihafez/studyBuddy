@@ -3,86 +3,86 @@ const http = require("http");
 const app = express();
 const socket = require('socket.io');
 const server = http.createServer(app);
-const io = socket(server, ***REMOVED***
+const io = socket(server, {
   origins: '*:*'
-***REMOVED***
+});
 const port = 3001;
-const ***REMOVED*** generateMessage } = require("./utils/messages")
-const ***REMOVED***
+const { generateMessage } = require("./utils/messages")
+const {
   getUser,
   getUsersInRoom,
   addUser,
   removeUser
 } = require("./utils/users")
 // Timer implementation 
-io.on("connection", socket => ***REMOVED***
-  socket.on('join', (***REMOVED***
+io.on("connection", socket => {
+  socket.on('join', ({
       username,
       room
-  }, callback) => ***REMOVED***
-      const ***REMOVED***
+  }, callback) => {
+      const {
           error,
           user
-      } = addUser(***REMOVED***
+      } = addUser({
           id: socket.id,
           username,
           room
       })
-      if (error) ***REMOVED***
+      if (error) {
           return callback(error);
       }
       socket.join(user.room);
       socket.emit("message", generateMessage("Welcome", "Server"));
-      socket.broadcast.to(user.room).emit("message", generateMessage(`$***REMOVED***user.username} has joined!`, "Admin"));
-      io.to(user.room).emit("roomData", ***REMOVED***
+      socket.broadcast.to(user.room).emit("message", generateMessage(`${user.username} has joined!`, "Admin"));
+      io.to(user.room).emit("roomData", {
           room: user.room,
           users: getUsersInRoom(user.room)
       })
-  ***REMOVED***
-  socket.on("sendMessage", (msg) => ***REMOVED***
+  });
+  socket.on("sendMessage", (msg) => {
       const user = getUser(socket.id);
       console.log("hello");
       io.to(user.room).emit("message", generateMessage(msg, user.username));
-  ***REMOVED***
+  });
 
-  socket.on("sendPlay", () => ***REMOVED***
+  socket.on("sendPlay", () => {
     const user = getUser(socket.id);
     io.to(user.room).emit("play", socket.id);
-  ***REMOVED***
+  });
 
-  socket.on("sendPause", () => ***REMOVED***
+  socket.on("sendPause", () => {
     const user = getUser(socket.id)
     io.to(user.room).emit("pause", socket.id);
   })
 
-  socket.on("sendReset", () => ***REMOVED***
+  socket.on("sendReset", () => {
     const user = getUser(socket.id)
     io.to(user.room).emit("reset", socket.id);
   })
 
-  socket.on("sendSwitchModes", () => ***REMOVED***
+  socket.on("sendSwitchModes", () => {
     const user = getUser(socket.id)
     console.log("test");
     io.to(user.room).emit("switchModes", socket.id);
   })
 
-  socket.on("sendSwitchContinue", () => ***REMOVED***
+  socket.on("sendSwitchContinue", () => {
     const user = getUser(socket.id)
     console.log("test");
     io.to(user.room).emit("switchContinue", socket.id);
   })
 
-  socket.on("disconnect", () => ***REMOVED***
+  socket.on("disconnect", () => {
       const user = removeUser(socket.id);
-      if (user) ***REMOVED***
-          io.to(user.room).emit('message', generateMessage(`$***REMOVED***user.username} has disconnected`, "Admin"));
-          io.to(user.room).emit("roomData", ***REMOVED***
+      if (user) {
+          io.to(user.room).emit('message', generateMessage(`${user.username} has disconnected`, "Admin"));
+          io.to(user.room).emit("roomData", {
               room: user.room,
               users: getUsersInRoom(user.room)
           })
       }
   })
-***REMOVED***
+});
 
 console.log('listening on port', port);
 server.listen(port);

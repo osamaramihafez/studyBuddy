@@ -1,4 +1,4 @@
-.timer ***REMOVED***
+.timer {
     font-size: 118px;
     border: none;
     display: inline-block;
@@ -11,20 +11,20 @@
     font-weight: 600;
 }
 
-.timer-backdrop ***REMOVED***
+.timer-backdrop {
     margin-top: 100px;
     padding: 50px
     background-color;
 }
 
-.controls ***REMOVED***
+.controls {
     display: flex;
     justify-content: space-between;
     width: 20%;
     margin: auto;
 }
 
-.timer:disabled ***REMOVED***
+.timer:disabled {
     font-size: 118px;
     border: none;
     display: inline-block;
@@ -38,11 +38,11 @@
     font-weight: 600;
 }
 
-input[type="number"] ***REMOVED***
+input[type="number"] {
     -moz-appearance: textfield;
 }
 
-.colon ***REMOVED***
+.colon {
     font-size: 100px;
     display: inline-block;
     color: white;
@@ -51,14 +51,14 @@ input[type="number"] ***REMOVED***
     font-weight: bold;
 }
 
-.break ***REMOVED***
+.break {
     font-family: 'Sen', sans-serif;
     margin-bottom: auto;
     color: red;
     font-weight: bold;
 }
 
-.status-box ***REMOVED***
+.status-box {
     background-color: #E0E0E0;
     border: 1px solid #E0E0E0;
     border-radius: 20px;
@@ -69,19 +69,19 @@ input[type="number"] ***REMOVED***
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.switch-label ***REMOVED***
+.switch-label {
     font-family: 'Sen', sans-serif;
     margin-bottom: auto;
     color: white;
 }
-.sub-controls ***REMOVED***
+.sub-controls {
     justify-content: space-between;
     width: 35%;
     margin: auto;
     display: flex;
 }
 
-.Label ***REMOVED***
+.Label {
     color: black;
     margin-bottom: auto;
     font-weight: 2000px;

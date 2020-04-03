@@ -1,24 +1,24 @@
-***REMOVED***
+const mongoose = require('mongoose');
 require('../middleware/auth')
 
 //Schema to map to a MongoDB collection defining a task within a collection
-const taskSchema = new mongoose.Schema(***REMOVED***
-  content: ***REMOVED***
+const taskSchema = new mongoose.Schema({
+  content: {
     type: String,
     required: true
   },
-  completed: ***REMOVED***
+  completed: {
     type: Boolean,
   },
-  listid: ***REMOVED***
+  listid: {
     type: mongoose.ObjectId,
     required: true,
   }
 })
 
-taskSchema.virtual('taskId').get(function() ***REMOVED***
+taskSchema.virtual('taskId').get(function() {
   return this._id;
-***REMOVED***
+});
 
 const Task = mongoose.model("Task", taskSchema);
 

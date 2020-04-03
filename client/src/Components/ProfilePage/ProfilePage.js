@@ -1,15 +1,15 @@
-import React, ***REMOVED*** Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class ProfilePage extends Component ***REMOVED***
-    constructor(props) ***REMOVED***
+export default class ProfilePage extends Component {
+    constructor(props) {
         super(props);
 
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.state = ***REMOVED***
+        this.state = {
             name: '',
             email: '',
             tokens: [],
@@ -17,46 +17,46 @@ export default class ProfilePage extends Component ***REMOVED***
         }
     }
 
-    componentDidMount() ***REMOVED***
+    componentDidMount() {
         axios.get('http://localhost:3000/Task/')
-        .then(response => ***REMOVED***
-          this.setState(***REMOVED*** tasks: response.data })
+        .then(response => {
+          this.setState({ tasks: response.data })
         })
-        .catch((error) => ***REMOVED***
+        .catch((error) => {
           console.log(error);
         })
     
         axios.get('http://localhost:8000/User/' + this.props.match.params.id)
-          .then(response => ***REMOVED***
-            if (response.data.length > 0) ***REMOVED***
-              this.setState(***REMOVED***
+          .then(response => {
+            if (response.data.length > 0) {
+              this.setState({
                 name: response.data.name,
                 email: response.data.email,
                 tokens: response.data.tokens,
               })
             }
           })
-          .catch((error) => ***REMOVED***
+          .catch((error) => {
             console.log(error);
           })
     }
 
-    onChangeName(e) ***REMOVED***
-        this.setState(***REMOVED***
+    onChangeName(e) {
+        this.setState({
           name: e.target.value
         })
     }
 
-    onChangeEmail(e) ***REMOVED***
-        this.setState(***REMOVED***
+    onChangeEmail(e) {
+        this.setState({
           email: e.target.value
         })
     }
 
-    onSubmit(e) ***REMOVED***
+    onSubmit(e) {
         e.preventDefault();
     
-        const user = ***REMOVED***
+        const user = {
           name: this.state.username,
           email: this.state.email,
           tokens: this.state.tokens,
@@ -68,18 +68,18 @@ export default class ProfilePage extends Component ***REMOVED***
             .then(res => console.log(res.data));
     }
       
-  render() ***REMOVED***
+  render() {
     return (
         <div>
         <h3>Profile Page</h3>
-        <form onSubmit=***REMOVED***this.onSubmit}>
+        <form onSubmit={this.onSubmit}>
             <div className="form-group"> 
                 <label>Name: </label>
                 <input  type="text"
                     required
                     className="form-control"
-                    value=***REMOVED***this.state.name}
-                    onChange=***REMOVED***this.onChangeName}
+                    value={this.state.name}
+                    onChange={this.onChangeName}
                     />
             </div>
           <div className="form-group"> 
@@ -87,8 +87,8 @@ export default class ProfilePage extends Component ***REMOVED***
             <input  type="text"
                 required
                 className="form-control"
-                value=***REMOVED***this.state.email}
-                onChange=***REMOVED***this.onChangeEmail}
+                value={this.state.email}
+                onChange={this.onChangeEmail}
                 />
           </div>
           <div className="form-group">
@@ -96,7 +96,7 @@ export default class ProfilePage extends Component ***REMOVED***
             <input 
                 type="text" 
                 className="form-control"
-                value=***REMOVED***this.state.tokens}
+                value={this.state.tokens}
                 />
           </div>
           <div className="form-group">

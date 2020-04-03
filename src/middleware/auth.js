@@ -1,23 +1,23 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-***REMOVED***
+require('dotenv').config();
 
-const auth = async (req, res, next) => ***REMOVED***
-    try ***REMOVED***
+const auth = async (req, res, next) => {
+    try {
         console.log(req)
         const token = req.header('Authorization').replace('Bearer ', '');
         console.log(token);
         const dec = jwt.verify(token, process.env.JWTS);
-        const user = await User.findOne(***REMOVED***
+        const user = await User.findOne({
             _id: dec._id,
             'tokens.token': token
         })
         if(!user) throw new Error();
         req.token = token;
         req.user = user;
-    } catch (error) ***REMOVED***
+    } catch (error) {
         console.log(error)
-        res.status(401).send(***REMOVED***message: "Please authenticate beforehand"})
+        res.status(401).send({message: "Please authenticate beforehand"})
     }
     next();
 }

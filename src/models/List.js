@@ -1,20 +1,20 @@
-***REMOVED***
+const mongoose = require('mongoose');
 
-const listSchema = new mongoose.Schema(***REMOVED***
-    title: ***REMOVED***
+const listSchema = new mongoose.Schema({
+    title: {
         type: String,
         required: true,
     },
 
-    userid: ***REMOVED***
+    userid: {
           type: mongoose.ObjectId,
           required: true,
     }
 })
 
-listSchema.virtual('listId').get(function() ***REMOVED***
+listSchema.virtual('listId').get(function() {
     return this._id;
-***REMOVED***
+});
 
 
 const List = mongoose.model("Lists", listSchema);

@@ -1,12 +1,12 @@
 import React from 'react'
-import ***REMOVED*** Button, Form, Container } from "react-bootstrap";
+import { Button, Form, Container } from "react-bootstrap";
 import './Auth.css'
 
-class SocketAuth extends React.Component ***REMOVED***
+class SocketAuth extends React.Component {
 
-    constructor() ***REMOVED***
+    constructor() {
       super();
-      this.state = ***REMOVED***
+      this.state = {
         dN: null,
         code: null
       }
@@ -15,35 +15,35 @@ class SocketAuth extends React.Component ***REMOVED***
       this.goStudy = this.goStudy.bind(this)
     }
 
-    goStudy(e) ***REMOVED***
+    goStudy(e) {
       e.preventDefault();
       console.log(this.state);
       this.props.history.push('/dashboard/group/study?name=' + this.state.dN + '?code=' + this.state.code)
     }
 
-    updateDisplayName(e) ***REMOVED***
+    updateDisplayName(e) {
       const dN = e.target.value;
-      this.setState(***REMOVED***
+      this.setState({
         dN
       })
     }
 
-    updateCode(e) ***REMOVED***
+    updateCode(e) {
       const code = e.target.value;
-      this.setState(***REMOVED***
+      this.setState({
         code
       })
     }
-    render() ***REMOVED***
+    render() {
         return (
           <Container className="popup-joinroom">
             <h1 className="title">Join Your Group</h1>
             <br />
-            <Form onSubmit=***REMOVED***this.goStudy}> 
+            <Form onSubmit={this.goStudy}> 
               <Form.Group controlId="text" action="./test.js">
                 <Form.Control
                   type="text"
-                  onChange=***REMOVED***this.updateDisplayName}
+                  onChange={this.updateDisplayName}
                   placeholder="Display Name"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
@@ -52,10 +52,10 @@ class SocketAuth extends React.Component ***REMOVED***
               </Form.Group>
               <Form.Group controlId="formBasicPassword" className="pwdInp" >
                 <Form.Control
-                  // onChange=***REMOVED***props.updatePassword}
+                  // onChange={props.updatePassword}
                   type="password"
                   placeholder="Room Code"
-                  onChange=***REMOVED***this.updateCode}
+                  onChange={this.updateCode}
                   required
                 />
                 <br />

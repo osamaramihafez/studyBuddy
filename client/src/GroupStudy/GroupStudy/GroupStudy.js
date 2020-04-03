@@ -8,41 +8,41 @@ import Button from '@material-ui/core/Button';
 import LogoutButton from '../../Components/LogoutButton/LogoutButton'
 const socket = openSocket('http://localhost:3001');
 
-class GroupStudy extends React.Component ***REMOVED***
-    constructor(props) ***REMOVED***
+class GroupStudy extends React.Component {
+    constructor(props) {
         super();
         this.props = props;
         this.backtoDash = this.backtoDash.bind(this);
     }
-    componentDidMount = () => ***REMOVED***
+    componentDidMount = () => {
         let urlObject = url.parse(window.location.href);
         const name = urlObject.query.split("?")[0].split("=")[1];
         const code = urlObject.query.split("?")[1].split("=")[1];
-        socket.emit("join", ***REMOVED***
+        socket.emit("join", {
             username: name,
             room: code
-          }, (error) => ***REMOVED***
-            if (error) ***REMOVED***
+          }, (error) => {
+            if (error) {
               console.log(error);
               alert(error);
               this.props.history.push('/dashboard/group/auth');
             }
-          ***REMOVED***
+          });
     }
 
-    backtoDash() ***REMOVED***
+    backtoDash() {
       this.props.history.push('/dashboard')
     }
 
-    render()***REMOVED***
+    render(){
         return(
         <div>
             <div className="back-controls">
-              <Button variant="contained" onClick=***REMOVED***this.backtoDash} >Go back</Button>
+              <Button variant="contained" onClick={this.backtoDash} >Go back</Button>
               <LogoutButton></LogoutButton>
             </div>
-            <Timer socket=***REMOVED***socket} className="timer-backdrop"/>
-            <Chat socket=***REMOVED***socket}/>
+            <Timer socket={socket} className="timer-backdrop"/>
+            <Chat socket={socket}/>
         </div>
         )
     }
