@@ -35,7 +35,7 @@ export default class Gateway extends Component {
                         Solo Studying
                     </h2>
                     
-                    <p className="text">Study by yourself with just an adjustable timer and task manager.</p>
+                    <p className="container-text">Study by yourself with just an adjustable timer and task manager.</p>
                     <a href="/dashboard/solo">
                         <Button className="test">Start Studying</Button>
                     </a>
@@ -44,7 +44,7 @@ export default class Gateway extends Component {
                     <h2 className="subtitle-right">
                         Group Studying
                     </h2>
-                    <p className="text">Study with your team with the standard timer and with an added group chat!</p>
+                    <p className="container-text">Study with your team with the standard timer and with an added group chat!</p>
                     <a href="/dashboard/group/auth">
                         <Button className="test">Join a Room</Button>
                     </a>
