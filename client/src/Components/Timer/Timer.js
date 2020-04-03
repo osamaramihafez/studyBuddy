@@ -1,10 +1,9 @@
 import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
-import {Button} from 'react-bootstrap'
+import Button from '@material-ui/core/Button';
 import { MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
 import './Timer.css'
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Notification from '../Notification'
@@ -168,34 +167,38 @@ class Timer extends React.Component {
     return (
       
       <section>
-          {this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
           <input onBlur={this.formatMinutes} disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
           <p className="colon">:</p>
           <input onBlur={this.formatSeconds} disabled={this.state.disabled} maxLength="2" max="59" className="timer" type="number" value={this.state.seconds} onChange={this.updateSeconds} />
           <br />
-          <Button ref="btn" onClick={this.start} disabled={this.state.disabled}>
-          <MdPlayArrow />
-          </Button>
-          <Button onClick={this.stop} disabled={!this.state.disabled}>
-            <MdPause />
-          </Button>
-          <Button onClick={this.reset}>
-            <MdRefresh />
-          </Button>
-          <Button ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
-          <Notification ref={ref => (this.notification = ref)} />
+          <div className="controls">
+            <Button variant="contained" ref="btn" onClick={this.start} disabled={this.state.disabled}>
+            <MdPlayArrow />
+            </Button>
+            <Button variant="contained" onClick={this.stop} disabled={!this.state.disabled}>
+              <MdPause />
+            </Button>
+            <Button variant="contained" onClick={this.reset}>
+              <MdRefresh />
+            </Button>
+          </div>
           <br />
+          <div >
           <FormControlLabel
               control={
                 <Switch
                   checked={this.state.continious}
                   onChange={this.switchContinue}
                   name="checkedB"
-                  color="primary"
+                  color="default"
                 />
               }
-              label={<p className="Label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
+              label={<p className="switch-label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
             />
+            <br />
+          <Button variant="contained" ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
+          </div>
+          <Notification ref={ref => (this.notification = ref)} />
       </section>
     )
   }

@@ -32,7 +32,7 @@ io.on("connection", socket => {
           return callback(error);
       }
       socket.join(user.room);
-      socket.emit("message", generateMessage("Welcome", "Admin"));
+      socket.emit("message", generateMessage("Welcome", "Server"));
       socket.broadcast.to(user.room).emit("message", generateMessage(`${user.username} has joined!`, "Admin"));
       io.to(user.room).emit("roomData", {
           room: user.room,
@@ -84,12 +84,5 @@ io.on("connection", socket => {
   })
 });
 
-
-
-// Chat implementation
-
-
 console.log('listening on port', port);
-
-
 server.listen(port);

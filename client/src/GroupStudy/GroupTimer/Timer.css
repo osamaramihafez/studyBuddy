@@ -1,11 +1,15 @@
 .timer {
-    font-size: 100px;
+    font-size: 118px;
     border: none;
     display: inline-block;
-    width: 130px;
+    width: 135px;
     text-align: center;
+    background-color: #F6F5F6;
+    color: white;
     background-color: transparent;
-    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    font-family: 'Sen', sans-serif;
+    font-weight: 700;
 }
 
 .timer-backdrop {
@@ -16,16 +20,26 @@
     margin-top: 100px;
 }
 
+/* .controls {
+    justify-content: space-between;
+    width: 20%;
+    margin: auto;
+    display: flex;
+} */
+
+
 .timer:disabled {
-    font-size: 100px;
+    font-size: 118px;
     border: none;
     display: inline-block;
-    width: 130px;
+    width: 135px;
     text-align: center;
     background-color: #F6F5F6;
-    color: black;
+    color: white;
     background-color: transparent;
     -moz-appearance: textfield;
+    font-family: 'Sen', sans-serif;
+    font-weight: 700;
 }
 
 input[type="number"] {
@@ -35,7 +49,7 @@ input[type="number"] {
 .colon {
     font-size: 100px;
     display: inline-block;
-    color: black;
+    color: white;
     height: auto;
 }
 
@@ -46,4 +60,5 @@ input[type="number"] {
 .Label {
     color: black;
     margin-bottom: auto;
+    font-weight: 400;
 }

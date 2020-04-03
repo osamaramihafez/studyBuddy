@@ -4,12 +4,15 @@ import Chat from '../Chat/Chat'
 import openSocket from 'socket.io-client';
 import Timer from '../GroupTimer/Timer';
 import url from 'url';
+import Button from '@material-ui/core/Button';
+import LogoutButton from '../../Components/LogoutButton/LogoutButton'
 const socket = openSocket('http://localhost:3001');
 
 class GroupStudy extends React.Component {
     constructor(props) {
         super();
         this.props = props;
+        this.backtoDash = this.backtoDash.bind(this);
     }
     componentDidMount = () => {
         let urlObject = url.parse(window.location.href);
@@ -22,14 +25,22 @@ class GroupStudy extends React.Component {
             if (error) {
               console.log(error);
               alert(error);
-              this.props.history.push('/dashboard');
+              this.props.history.push('/dashboard/group/auth');
             }
           });
+    }
+
+    backtoDash() {
+      this.props.history.push('/dashboard')
     }
 
     render(){
         return(
         <div>
+            <div className="back-controls">
+              <Button variant="contained" onClick={this.backtoDash} >Go back</Button>
+              <LogoutButton></LogoutButton>
+            </div>
             <Timer socket={socket} className="timer-backdrop"/>
             <Chat socket={socket}/>
         </div>
