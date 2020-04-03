@@ -4,16 +4,15 @@ import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
-import Button from '@material-ui/core/Button';
 import SessionList from '../List/SessionList';
-import Navbar from '../Navbar/Navbar'
+import Button from '@material-ui/core/Button';
 import FullScreen from 'react-request-fullscreen'
-
+import LogoutButton from '../LogoutButton/LogoutButton'
 
 class Dashboard extends React.Component {
-  constructor() {
+  constructor(props) {
     super()
-
+    this.props = props
     this.state = {
       loggedIn: false,
       timerRunning: false,
@@ -24,7 +23,9 @@ class Dashboard extends React.Component {
       flipper: true,
       FullScreen: false,
     }
+    this.backtoDash = this.backtoDash.bind(this);
   }
+
   onFullScreenChange (isFullScreen) {
     this.setState({
       isFullScreen
@@ -57,11 +58,19 @@ class Dashboard extends React.Component {
       }
   }
 
+  backtoDash() {
+    this.props.history.push('/dashboard')
+  }
+
   render() {
     const { isFullScreen } = this.state
     return (
       <div className="App">
-        <Navbar />
+        {/* <Navbar /> */}
+        <div className="back-controls">
+          <Button variant="contained" onClick={this.backtoDash} >Go back</Button>
+          <LogoutButton></LogoutButton>
+        </div>
         <div className="timer-backdrop">
           <Timer />      
               <br></br>

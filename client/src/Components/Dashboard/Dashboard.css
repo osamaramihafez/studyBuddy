@@ -91,6 +91,13 @@ h4{
   color: white;
 }
 
+.back-controls {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 8%;
+}
+
 #sessionList {
   padding-top: 2%;
   padding-bottom: 2%;
