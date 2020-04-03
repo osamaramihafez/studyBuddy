@@ -1,18 +1,5 @@
-.session-list {
-    margin-top: 100px;
+.list-controls {
+    justify-content: space-between;
+    width: 20%;
     display: flex;
-    justify-content: center;
-}
-
-.Icon {
-    height: auto;
-    display: flex;
-    justify-content: space-evenly;
-    margin: auto;
-    width: 100%;
-}
-
-.text {
-    text-align: center;
-    font-size: 17px;
 }
