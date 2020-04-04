@@ -25,10 +25,17 @@ class RegistrationForm extends React.Component {
     }
 
     validateForm() {
+        console.log("running")
         var emailReg = /\S+@\S+/;
-        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
+        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{4,})/;
         // console.log(re.test(this.state.email));
-        if ((this.state.name.length > 0 && emailReg.test(this.state.email)) && (passReg.test(this.state.password))) this.setState({ valid: true });
+        if ((this.state.name.length > 0 && emailReg.test(this.state.email))) 
+            if (passReg.test(this.state.password)) this.setState({ valid: true });
+        else {
+            console.log("running")
+
+            this.setState({ valid: false })
+        }
     }
 
     updateName(e) {
@@ -71,7 +78,7 @@ class RegistrationForm extends React.Component {
                     alert: (
                         <Alert
                             variant="danger">Unable to Register! There is an account that exists with that email
-                            </Alert>)
+                        </Alert>)
                 })
             });
 
