@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "dotenv -e src/vars.env nodemon src/app.js",
-    "group": " dotenv -e src/vars.env nodemon src/group/server.js && dotenv -e src/vars.env nodemon src/app.js",
-    "client": "(cd client && npm run start)"
+    "group": " dotenv -e src/vars.env nodemon src/group/server.js",
+    "back": "dotenv -e src/vars.env nodemon src/app.js",
+    "client": "(cd client && npm run start)",
+    "start": "concurrently \"npm run group\" \"npm run back\" \"npm run client\""
   },
   "repository": {
     "type": "git",
