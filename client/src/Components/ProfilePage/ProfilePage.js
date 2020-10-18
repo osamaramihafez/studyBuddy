@@ -71,7 +71,8 @@ export default class ProfilePage extends Component {
   render() {
     return (
         <div>
-        <h3>Profile Page</h3>
+        <h3 id="profilepg">Profile Page</h3>
+        <hr color="white"></hr>
         <form onSubmit={this.onSubmit}>
             <div className="form-group"> 
                 <label>Name: </label>
@@ -92,15 +93,7 @@ export default class ProfilePage extends Component {
                 />
           </div>
           <div className="form-group">
-            <label>Tokens: </label>
-            <input 
-                type="text" 
-                className="form-control"
-                value={this.state.tokens}
-                />
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Edit Profile Page" className="btn btn-primary" />
+            <input id='editprofpag' type="submit" value="Edit Profile Page" className="btn btn-primary" />
           </div>
         </form>
       </div>

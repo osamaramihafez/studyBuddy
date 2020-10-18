@@ -1,5 +1,6 @@
 import React from 'react'
 import './Break.css'
+import Button from 'react-bootstrap/Button'
 
 function Break(props) {
 
@@ -24,14 +25,14 @@ function Break(props) {
         <section className="break-interval-container">
           <h4>Break Timer</h4>
           <section className="break-time-interval">
-            <button
+            <Button
             onClick = {decrease}
             className='counter-btn'
-            >-</button>
+            >-</Button>
             <p className="break-time">{props.break}</p>
-            <button
+            <Button
             onClick = {increase}
-            className="counter-btn">+</button>
+            className="counter-btn">+</Button>
           </section>
         </section>
     )
