@@ -2,25 +2,17 @@ import React from 'react'
 import Cookies from 'universal-cookie'
 import decode from 'jwt-decode'
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import Navbar from '../Navbar/Navbar'
 import './Dashboard.css'
 import Timer from '../Timer/Timer'
-import Break from '../Break/Break'
-import Session from '../List/Session'
-import ClearBtn from '../ClearButton/ClearDoneTasks'
-import Button from 'react-bootstrap/Button'
 import SessionList from '../List/SessionList';
+import Button from '@material-ui/core/Button';
+import FullScreen from 'react-request-fullscreen'
 import LogoutButton from '../LogoutButton/LogoutButton'
-import CalendarPage from '../CalendarPage/CalendarPage'
-import LogoutButton from '../LogoutButton/LogoutButton';
-import FullScreen, { fullScreenSupported } from 'react-request-fullscreen'
 
 class Dashboard extends React.Component {
-  constructor() {
+  constructor(props) {
     super()
-
+    this.props = props
     this.state = {
       loggedIn: false,
       timerRunning: false,
@@ -29,15 +21,11 @@ class Dashboard extends React.Component {
       session: 25,
       counter : false,
       flipper: true,
-      FullScreen: false
-  
+      FullScreen: false,
     }
-    this.updateTimer = this.updateTimer.bind(this);
-    this.resetTimer = this.resetTimer.bind(this);
-    this.changeBreak = this.changeBreak.bind(this);
-    this.changeSession = this.changeSession.bind(this);
-    this.isTimerRunning = this.isTimerRunning.bind(this);
+    this.backtoDash = this.backtoDash.bind(this);
   }
+
   onFullScreenChange (isFullScreen) {
     this.setState({
       isFullScreen
@@ -46,70 +34,10 @@ class Dashboard extends React.Component {
   requestOrExitFullScreen () {
     this.fullScreenRef.fullScreen()
   }
- 
+
   requestOrExitFullScreenByElement () {
     this.elFullScreenRef.fullScreen(this.elRef)
   }
- 
-
-  isTimerRunning(timerRunning) {
-    this.setState({
-      timerRunning: timerRunning
-    })
-  }
-
-
-  updateTimer() {
-    this.setState( (prevState) => {
-      return {
-        timerMinute: prevState.timerMinute - 1
-      }
-    })
-    
-  }
-
-  resetTimer() {
-    this.setState({
-      timerMinute: 25,
-      break: 5,
-      session: 25,
-      flipper:true,
-    })
-  }
-
-  changeBreak(breaktwo) {
-    
-    if (this.counter === true){
-      this.setState({
-        break: breaktwo
-      })
-    }
-    else{
-      this.setState({
-        counter: false,
-        flipper: false,
-        break: breaktwo,
-        timerMinute: breaktwo
-      })
-    }
-}
-
-changeSession(newsession) {
-  
-  if (this.counter === true){
-    this.setState({
-      session: newsession
-    })
-  }
-  else{
-    this.setState({
-      counter: false,
-      flipper: true,
-      session: newsession,
-      timerMinute: newsession
-    })
-  }
-}
 
   getToken() {
     const cookies = new Cookies();
@@ -130,39 +58,29 @@ changeSession(newsession) {
       }
   }
 
+  backtoDash() {
+    this.props.history.push('/dashboard')
+  }
   render() {
     const { isFullScreen } = this.state
-
-    console.log(this.getToken());
     return (
       <div className="App">
-        <Navbar />
-        <Timer />      
-         <ClearBtn/>
-         <LogoutButton></LogoutButton>
-          <Button id='fullscreen'
-            onClick={this.goFull}>
-          Go Fullscreen
-        </Button>
-            <br></br>
-            <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
-          <div
-            className='rq'
-            onClick={this.requestOrExitFullScreen.bind(this)}
-          >
-            <Button>
-            {!isFullScreen ? 'Fullscreen' : 'Exit FullScreen'}
-            </Button>
-          </div>
-        </FullScreen>
-        <FullScreen ref={ref => { this.elFullScreenRef = ref }}>
-          <div
-            className='el-rq'
-            ref={ref => { this.elRef = ref }}
-            onClick={this.requestOrExitFullScreenByElement.bind(this)}
-          >
-          </div>
-        </FullScreen>
+        {/* <Navbar /> */}
+        <div className="back-controls">
+          <Button variant="contained" onClick={this.backtoDash} >Go back</Button>
+          <LogoutButton></LogoutButton>
+        </div>
+        <div className="timer-backdrop">
+          <Timer />    
+              <br></br>
+              <FullScreen ref={ref => { this.fullScreenRef = ref }} onFullScreenChange={this.onFullScreenChange.bind(this)}>
+                  <div className='rq'>
+                    <Button onClick={this.requestOrExitFullScreen.bind(this)} variant="contained">
+                    {!isFullScreen ? 'Go Fullscreen' : 'Exit FullScreen' }
+                    </Button>
+                  </div>
+          </FullScreen>
+        </div>
         <SessionList id="sessionList" ></SessionList>
         </div>
     )

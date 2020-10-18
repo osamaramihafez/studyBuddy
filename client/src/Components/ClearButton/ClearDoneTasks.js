@@ -1,7 +1,9 @@
 import React from 'react'
 import UIfx from 'uifx'
 import axios from 'axios';
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button';
+import './ClearDoneTasks.css'
+import { MdClearAll } from 'react-icons/md';
 //npm install axios
 
 class ClearDoneTasks extends React.Component {
@@ -50,8 +52,8 @@ class ClearDoneTasks extends React.Component {
 
   render() {
     return (
-        <Button ref="clearBtn" onClick={this.clear}>
-            Clear
+        <Button variant="contained" ref="clearBtn" onClick={this.clear}>
+          <MdClearAll></MdClearAll>
         </Button>
     )
   }

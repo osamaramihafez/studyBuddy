@@ -4,9 +4,11 @@ import axios from 'axios'
 import Cookies from 'universal-cookie';
 import "./Register.css";
 
+
 class RegistrationForm extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
+        this.props = props;
         this.state = {
             name: "",
             email: "",
@@ -23,10 +25,17 @@ class RegistrationForm extends React.Component {
     }
 
     validateForm() {
+        console.log("running")
         var emailReg = /\S+@\S+/;
-        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
+        const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{4,})/;
         // console.log(re.test(this.state.email));
-        if ((this.state.name.length > 0 && emailReg.test(this.state.email)) && (passReg.test(this.state.password))) this.setState({ valid: true });
+        if ((this.state.name.length > 0 && emailReg.test(this.state.email))) 
+            if (passReg.test(this.state.password)) this.setState({ valid: true });
+        else {
+            console.log("running")
+
+            this.setState({ valid: false })
+        }
     }
 
     updateName(e) {
@@ -47,6 +56,13 @@ class RegistrationForm extends React.Component {
     handleRegistration(e) {
         e.preventDefault();
         console.log(this.state);
+
+        axios.post("http://localhost:8000/send", {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        })
+
         axios.post("http://localhost:8000/create/user", {
             name: this.state.name,
             email: this.state.email,
@@ -62,7 +78,7 @@ class RegistrationForm extends React.Component {
                     alert: (
                         <Alert
                             variant="danger">Unable to Register! There is an account that exists with that email
-                            </Alert>)
+                        </Alert>)
                 })
             });
 
@@ -73,7 +89,7 @@ class RegistrationForm extends React.Component {
                 <Container className="inner-form">
                     <h3 className="subtitle">Registration</h3>
                     <br></br>
-                    <Form onSubmit={this.handleRegistration}>
+                    <Form onSubmit={this.handleRegistration} >
                         <Form.Group controlId="name" className="inp-top">
                             <Form.Control
                                 autoFocus

@@ -1,11 +1,12 @@
 import React from 'react'
 import UIfx from 'uifx'
 import mp3File from './beep.mp3'
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button';
 import { MdPlayArrow, MdPause, MdRefresh } from 'react-icons/md';
-import Countdown from 'react-countdown';
 import './Timer.css'
-import { ThemeProvider } from 'styled-components';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import Notification from '../Notification'
 
 class Timer extends React.Component {
   constructor() {
@@ -16,7 +17,8 @@ class Timer extends React.Component {
       seconds: "00",
       disabled: false,
       sound: true,  //play the sound whenever reset
-      break: false 
+      break: false,
+      continious: false
     }
 
     this.beep = new UIfx(mp3File);
@@ -28,6 +30,7 @@ class Timer extends React.Component {
     this.updateSeconds = this.updateSeconds.bind(this);
     this.formatSeconds = this.formatSeconds.bind(this);
     this.switchMode = this.switchMode.bind(this);
+    this.switchContinue = this.switchContinue.bind(this);
 
     this.tick = this.tick.bind(this);
   }
@@ -36,21 +39,20 @@ class Timer extends React.Component {
     this.setState({
       break: !this.state.break,
     });
-    if(this.state.break === false) {
+    if(!this.state.break) {
       this.setState({
         minutes: "05"
       });
       return;
     }
-    this.setState({
+    else this.setState({
       minutes: "25"
     });
   }
 
   updateMinutes(e) {
     let value = e.target.value;
-    console.log(value);
-    if(value <= 0) {
+    if(value < 0) {
       return;
     }
     if( value.length > 2) {
@@ -61,10 +63,11 @@ class Timer extends React.Component {
   }
   updateSeconds(e) {
     let value = e.target.value;
-    if( value.length >= 2) {
+    console.log(value);
+    if(value < 0) {
       return;
     }
-    if(value <= 0) {
+    if( value.length > 2) {
       return;
     }
     this.setState({seconds: value});
@@ -87,8 +90,14 @@ class Timer extends React.Component {
     })
     }
     if (min === 0 & sec === 0) {
+      if (this.state.continious) {this.notification.showNotification('Timer Complete. New timer starting!');}
+      else {this.notification.showNotification('Timer Complete. Start your new timer!');}
+      
       this.stop();
       this.switchMode();
+      if(this.state.continious) {
+        this.start()
+      }
     }
     this.secondsRemaining--
   }
@@ -116,7 +125,8 @@ class Timer extends React.Component {
     this.setState({
       seconds: '00',
       minutes: '25',
-      sound: true
+      sound: true,
+      break: false
     });
     this.setState({disabled: false})
   }
@@ -147,24 +157,48 @@ class Timer extends React.Component {
     }
   }
 
+  switchContinue() {
+    this.setState({
+      continious: !this.state.continious
+    })
+  }
+
   render() {
     return (
+      
       <section>
-          {this.state.break === false ? <h1>ACTIVE</h1> : <h1 className="break">BREAK</h1>}
           <input onBlur={this.formatMinutes} disabled={this.state.disabled} maxLength="2" max="99" className="timer" type="number" value={this.state.minutes} onChange={this.updateMinutes} />
           <p className="colon">:</p>
           <input onBlur={this.formatSeconds} disabled={this.state.disabled} maxLength="2" max="59" className="timer" type="number" value={this.state.seconds} onChange={this.updateSeconds} />
           <br />
-          <Button ref="btn" onClick={this.start} disabled={this.state.disabled}>
-          <MdPlayArrow />
-          </Button>
-          <Button onClick={this.stop} disabled={!this.state.disabled}>
-            <MdPause />
-          </Button>
-          <Button onClick={this.reset}>
-            <MdRefresh />
-          </Button>
-          <Button ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes</Button>
+          <div className="controls">
+            <Button variant="contained" ref="btn" onClick={this.start} disabled={this.state.disabled}>
+            <MdPlayArrow />
+            </Button>
+            <Button variant="contained" onClick={this.stop} disabled={!this.state.disabled}>
+              <MdPause />
+            </Button>
+            <Button variant="contained" onClick={this.reset}>
+              <MdRefresh />
+            </Button>
+          </div>
+          <br />
+          <div >
+          <FormControlLabel
+              control={
+                <Switch
+                  checked={this.state.continious}
+                  onChange={this.switchContinue}
+                  name="checkedB"
+                  color="default"
+                />
+              }
+              label={<p className="switch-label">Continuous Mode {this.state.continious === true ? "Enabled": "Disabled"}</p>}
+            />
+            <br />
+          <Button variant="contained" ref="btn" onClick={this.switchMode} disabled={this.state.disabled}>Switch Modes {this.state.br}</Button>
+          </div>
+          <Notification ref={ref => (this.notification = ref)} />
       </section>
     )
   }
