@@ -15,6 +15,7 @@ const auth = async (req, res, next) => {
         req.token = token;
         req.user = user;
     } catch (error) {
+        console.log(error)
         res.status(401).send({message: "Please authenticate beforehand"})
     }
     next();
